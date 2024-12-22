@@ -1,7 +1,10 @@
+import React from "react";
+import Home from "./pages/Home/Index";
+
 const WasteNot = () => {
     return(
         <div className="waste-not">
-            <h1>Waste Not</h1>
+            <Home />
         </div>
     );
 }

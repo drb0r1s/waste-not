@@ -1,0 +1,40 @@
+.home {
+    height: 100vh;
+    width: 100vw;
+    @include center(column);
+    gap: 30px;
+    position: relative;
+
+    h1 {
+        color: black;
+        font-size: 50px;
+        position: absolute;
+        top: 10%;
+    }
+
+    .household-holder {
+        width: 90%;
+        
+        @import "./household";
+    }
+
+    .create-holder {
+        height: 60px;
+        width: 60px;
+        @include center;
+        border: 3px solid $primary;
+        border-radius: 50%;
+        position: absolute;
+        top: 85%;
+        padding: 30px;
+        
+        img {
+            height: 40px;
+            width: 40px;
+            object-fit: contain;
+        }
+    }
+
+    @import "./home-modal";
+    @import "./household-modal";
+}

@@ -1,0 +1,26 @@
+.household {
+    width: 100%;
+    @include center;
+    justify-content: space-between;
+    border: 3px solid $primary;
+    border-radius: 5px;
+    padding: 10px 30px;
+
+    p {
+        color: black;
+        font-size: 40px;
+        text-transform: capitalize;
+        margin: 0;
+    }
+
+    .household-person-holder {
+        @include center;
+        gap: 10px;
+
+        img {
+            height: 50px;
+            width: 50px;
+            object-fit: contain;
+        }
+    }
+}

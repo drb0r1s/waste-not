@@ -1,0 +1,47 @@
+.home-modal {
+    width: 100%;
+    @include center(column);
+    background-color: white;
+    border-top: 5px solid $primary;
+    position: absolute;
+    bottom: -305px;
+    padding: 30px 0;
+    transition: 300ms;
+
+    .home-modal-x-holder {
+        height: 30px;
+        width: 100%;
+        @include center;
+        justify-content: flex-end;
+        padding: 10px 30px;
+        padding-bottom: 40px;
+
+        img {
+            height: 30px;
+            width: 30px;
+            object-fit: contain;
+        }
+    }
+
+    .home-modal-button-holder {
+        width: 100%;
+        @include center(column);
+        gap: 5px;
+        position: relative;
+
+        button {
+            width: 70%;
+            color: black;
+            text-transform: capitalize;
+            font-size: 25px;
+            background: transparent;
+            border: 2px solid $primary;
+            border-radius: 5px;
+            padding: 10px 0;
+        }
+    }
+}
+
+#home-modal-active {
+    bottom: 0;
+}
