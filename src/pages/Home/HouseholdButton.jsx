@@ -1,10 +1,10 @@
 import React from "react";
 import { images } from "../../data/images";
 
-const Household = ({ index }) => {
+const HouseholdButton = ({ index, household }) => {
     return(
         <div className="household">
-            <p>household {index + 1}</p>
+            <p>{household.name ? household.name : `household ${index + 1}}`}</p>
             
             <div className="household-person-holder">
                 <img src={images.personIcon} alt="PERSON" />
@@ -14,4 +14,4 @@ const Household = ({ index }) => {
     );
 }
 
-export default Household;
+export default HouseholdButton;

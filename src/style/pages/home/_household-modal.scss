@@ -8,6 +8,90 @@
     left: 100%;
     padding: 30px 0;
     transition: 300ms;
+
+    .household-modal-create,
+    .household-modal-join {
+        height: 100vh;
+        width: 100vw;
+        @include center(column);
+        gap: 50px;
+        position: relative;
+        
+        .modal-x {
+            height: 30px;
+            width: 30px;
+            position: absolute;
+            top: 10px;
+            right: 30px;
+        }
+        
+        h2 {
+            @include floating-title;
+            font-weight: normal;
+        }
+
+        fieldset {
+            width: 80%;
+            @include center(column);
+            align-items: flex-start;
+            gap: 10px;
+            border: none;
+            margin-top: 50px;
+
+            label {
+                color: $secondary;
+                font-size: 15px;
+                text-transform: capitalize;
+            }
+
+            input {
+                width: 100%;
+                color: black;
+                font-size: 20px;
+                border: 3px solid $primary;
+                outline: none;
+                padding: 10px;
+                transition: 300ms;
+
+                &:focus {
+                    border: 3px solid $secondary;
+                }
+
+                &::placeholder {
+                    color: gray;
+                }
+            }
+        }
+
+        .household-modal-create-icon-button {
+            @include center(column);
+            gap: 5px;
+            background-color: transparent;
+            border: none;
+
+            img {
+                height: 100px;
+                width: 100px;
+                object-fit: contain;
+            }
+
+            span {
+                color: $secondary;
+                font-size: 15px;
+                text-transform: capitalize;
+            }
+        }
+
+        .button-holder {
+            width: 100%;
+            @include center(column);
+            gap: 10px;
+
+            button {
+                @include default-button;
+            }
+        }
+    }
 }
 
 #household-modal-active {

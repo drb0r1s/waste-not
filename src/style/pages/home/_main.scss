@@ -6,16 +6,21 @@
     position: relative;
 
     h1 {
-        color: black;
-        font-size: 50px;
-        position: absolute;
-        top: 10%;
+        @include floating-title;
     }
 
     .household-holder {
         width: 90%;
+        @include center(column);
+        gap: 5px;
+
+        span {
+            color: grey;
+            font-size: 30px;
+            font-style: italic;
+        }
         
-        @import "./household";
+        @import "./household-button";
     }
 
     .create-holder {

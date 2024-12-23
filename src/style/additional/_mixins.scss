@@ -4,3 +4,28 @@
     justify-content: center;
     flex-direction: $direction;
 }
+
+@mixin title {
+    color: black;
+    font-size: 50px;
+    text-transform: capitalize;
+}
+
+@mixin floating-title {
+    color: black;
+    font-size: 50px;
+    text-transform: capitalize;
+    position: absolute;
+    top: 10%;
+}
+
+@mixin default-button {
+    width: 70%;
+    color: black;
+    font-size: 15px;
+    text-transform: capitalize;
+    background: transparent;
+    border: 2px solid $primary;
+    border-radius: 5px;
+    padding: 10px 0;
+}
