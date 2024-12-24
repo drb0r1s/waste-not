@@ -1,0 +1,19 @@
+.household-menu {
+    width: 100%;
+    @include center;
+    justify-content: space-between;
+    border-top: 1px solid black;
+    padding: 10px 20px;
+    position: fixed;
+    bottom: 0;
+
+    img {
+        height: 40px;
+        width: 40px;
+        object-fit: contain;
+    }
+
+    .plus-button {
+        position: relative;
+    }
+}

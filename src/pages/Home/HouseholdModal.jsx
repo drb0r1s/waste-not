@@ -3,7 +3,8 @@ import { images } from "../../data/images";
 
 const HouseholdModal = ({
     type, householdModalRef, disableHouseholdModal,
-    createButtonClicked, createHouseholdInput, setCreateHouseholdInput
+    createButtonClicked, joinButtonClicked, createHouseholdInput,
+    setCreateHouseholdInput
 }) => {
     const buttons = ["invite people", "done"];
     
@@ -53,6 +54,10 @@ const HouseholdModal = ({
                         placeholder="84ad345t..."
                     />
                 </fieldset>
+
+                <div className="button-holder">
+                    <button onClick={joinButtonClicked}>join</button>
+                </div>
             </div> : <div className="household-modal-join">
             
             </div>}

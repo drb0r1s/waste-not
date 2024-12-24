@@ -15,29 +15,10 @@
         gap: 5px;
 
         span {
-            color: grey;
-            font-size: 30px;
-            font-style: italic;
+            @include no-span;
         }
         
         @import "./household-button";
-    }
-
-    .create-holder {
-        height: 60px;
-        width: 60px;
-        @include center;
-        border: 3px solid $primary;
-        border-radius: 50%;
-        position: absolute;
-        top: 85%;
-        padding: 30px;
-        
-        img {
-            height: 40px;
-            width: 40px;
-            object-fit: contain;
-        }
     }
 
     @import "./home-modal";

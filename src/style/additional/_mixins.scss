@@ -29,3 +29,9 @@
     border-radius: 5px;
     padding: 10px 0;
 }
+
+@mixin no-span {
+    color: grey;
+    font-size: 30px;
+    font-style: italic;
+}

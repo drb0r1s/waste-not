@@ -1,0 +1,16 @@
+.plus-button {
+    height: 60px;
+    width: 60px;
+    @include center;
+    border: 3px solid $primary;
+    border-radius: 50%;
+    position: absolute;
+    top: 85%;
+    padding: 30px;
+        
+    img {
+        height: 40px;
+        width: 40px;
+        object-fit: contain;
+    }
+}

@@ -86,6 +86,8 @@
             width: 100%;
             @include center(column);
             gap: 10px;
+            position: absolute;
+            top: 85%;
 
             button {
                 @include default-button;

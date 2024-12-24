@@ -22,6 +22,26 @@
   font-family: WasteNot-SemiBold;
   src: url("../fonts/Oswald-SemiBold.ttf");
 }
+.plus-button {
+  height: 60px;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  border: 3px solid #add8e6;
+  border-radius: 50%;
+  position: absolute;
+  top: 85%;
+  padding: 30px;
+}
+.plus-button img {
+  height: 40px;
+  width: 40px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -59,7 +79,7 @@
   font-size: 30px;
   font-style: italic;
 }
-.home .household-holder .household {
+.home .household-holder .household-button {
   width: 100%;
   display: flex;
   align-items: center;
@@ -70,41 +90,22 @@
   border-radius: 5px;
   padding: 10px 30px;
 }
-.home .household-holder .household p {
+.home .household-holder .household-button p {
   color: black;
   font-size: 30px;
   text-transform: capitalize;
   margin: 0;
 }
-.home .household-holder .household .household-person-holder {
+.home .household-holder .household-button .household-person-holder {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
   gap: 10px;
 }
-.home .household-holder .household .household-person-holder img {
+.home .household-holder .household-button .household-person-holder img {
   height: 35px;
   width: 35px;
-  -o-object-fit: contain;
-     object-fit: contain;
-}
-.home .create-holder {
-  height: 60px;
-  width: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  border: 3px solid #add8e6;
-  border-radius: 50%;
-  position: absolute;
-  top: 85%;
-  padding: 30px;
-}
-.home .create-holder img {
-  height: 40px;
-  width: 40px;
   -o-object-fit: contain;
      object-fit: contain;
 }
@@ -272,6 +273,8 @@
   justify-content: center;
   flex-direction: column;
   gap: 10px;
+  position: absolute;
+  top: 85%;
 }
 .home .household-modal .household-modal-create .button-holder button,
 .home .household-modal .household-modal-join .button-holder button {
@@ -286,4 +289,87 @@
 }
 .home #household-modal-active {
   left: 0;
+}
+
+.household {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+.household header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 30px;
+  border-bottom: 3px solid #4682B4;
+}
+.household header img {
+  height: 30px;
+  width: 30px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.household header h2 {
+  color: black;
+  font-size: 40px;
+  text-transform: capitalize;
+}
+.household .household-tag-holder {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-start;
+  border-bottom: 1px solid black;
+  padding: 10px;
+  gap: 5px;
+}
+.household .household-tag-holder p {
+  color: black;
+  font-size: 15px;
+  background-color: lightgrey;
+  border-radius: 10px;
+  text-transform: capitalize;
+  padding: 5px 15px;
+}
+.household .article-holder {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.household .article-holder span {
+  color: grey;
+  font-size: 30px;
+  font-style: italic;
+}
+.household .household-menu {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
+  border-top: 1px solid black;
+  padding: 10px 20px;
+  position: fixed;
+  bottom: 0;
+}
+.household .household-menu img {
+  height: 40px;
+  width: 40px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.household .household-menu .plus-button {
+  position: relative;
 }/*# sourceMappingURL=main.css.map */

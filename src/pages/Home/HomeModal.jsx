@@ -1,13 +1,8 @@
 import React from "react";
 import { images } from "../../data/images";
 
-const HomeModal = ({ homeModalRef, setIsHomeModalActive, enableHouseholdModal }) => {
+const HomeModal = ({ homeModalRef, disableHomeModal, enableHouseholdModal }) => {
     const buttons = ["create household", "join household", "scan QR"];
-
-    function disableHomeModal() {
-        homeModalRef.current.id = "";
-        setTimeout(() => setIsHomeModalActive(false), 300);
-    }
     
     return(
         <div className="home-modal" ref={homeModalRef}>

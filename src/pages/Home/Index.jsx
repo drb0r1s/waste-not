@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import HouseholdButton from "./HouseholdButton";
 import HomeModal from "./HomeModal";
 import HouseholdModal from "./HouseholdModal";
-import { images } from "../../data/images";
+import PlusButton from "../../components/PlusButton";
 import { Household } from "../../functions/Household";
 
 const Home = () => {
@@ -13,6 +14,8 @@ const Home = () => {
 
     const homeModalRef = useRef(null);
     const householdModalRef = useRef(null);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         if(!localStorage.getItem("households")) return;
@@ -63,19 +66,26 @@ const Home = () => {
         }
     }
 
+    function joinButtonClicked() {
+
+    }
+
     return(
         <div className="home">
             <h1 className="floating-title">WasteNot</h1>
 
             <div className="household-holder">
                 {!households.length ? <span>There are no households.</span> : households.map((household, index) => {
-                    return <HouseholdButton key={index} index={index} household={household} />;
+                    return <HouseholdButton
+                        key={index}
+                        index={index}
+                        household={household}
+                        onClick={() => navigate("/household", { state: household })}
+                    />;
                 })}
             </div>
 
-            <div className="create-holder" onClick={() => setIsHomeModalActive(true)}>
-                <img src={images.plusIcon} alt="+" />
-            </div>
+            <PlusButton onClick={() => setIsHomeModalActive(true)} />
 
             {isHomeModalActive ? <HomeModal
                 homeModalRef={homeModalRef}
@@ -84,7 +94,7 @@ const Home = () => {
             /> : <></>}
 
             {householdModals.create ? <HouseholdModal type="create" householdModalRef={householdModalRef} disableHouseholdModal={disableHouseholdModal} createButtonClicked={createButtonClicked} createHouseholdInput={createHouseholdInput} setCreateHouseholdInput={setCreateHouseholdInput} />
-            : householdModals.join ? <HouseholdModal type="join" householdModalRef={householdModalRef} disableHouseholdModal={disableHouseholdModal} />
+            : householdModals.join ? <HouseholdModal type="join" householdModalRef={householdModalRef} disableHouseholdModal={disableHouseholdModal} joinButtonClicked={joinButtonClicked} />
             : householdModals.scan ? <HouseholdModal type="scan" householdModalRef={householdModalRef} disableHouseholdModal={disableHouseholdModal} /> : <></>}
         </div>
     );
