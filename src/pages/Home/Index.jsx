@@ -4,10 +4,10 @@ import HouseholdButton from "./HouseholdButton";
 import HomeModal from "./HomeModal";
 import HouseholdModal from "./HouseholdModal";
 import PlusButton from "../../components/PlusButton";
-import { Household } from "../../functions/Household";
+import { Storage } from "../../functions/Storage";
 
 const Home = () => {
-    const [households, setHouseholds] = useState([]);
+    const [households, setHouseholds] = useState(Storage.get("HOUSEHOLDS"));
     const [isHomeModalActive, setIsHomeModalActive] = useState(false);
     const [householdModals, setHouseholdModals] = useState({ create: false, join: false, scan: false });
     const [createHouseholdInput, setCreateHouseholdInput] = useState("");
@@ -18,13 +18,8 @@ const Home = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(!localStorage.getItem("households")) return;
-        setHouseholds(JSON.parse(localStorage.getItem("households")));
-    }, []);
-
-    useEffect(() => {
-        if(localStorage.getItem("households")) setHouseholds(JSON.parse(localStorage.getItem("households")));
-    }, [localStorage.getItem("households")]);
+        if(Storage.get("HOUSEHOLDS").length) setHouseholds(Storage.get("HOUSEHOLDS"));
+    }, [localStorage.getItem("HOUSEHOLDS")]);
     
     useEffect(() => {
         if(isHomeModalActive) setTimeout(() => {
@@ -55,8 +50,13 @@ const Home = () => {
 
                 break;
             case "done":
-                const household = { name: createHouseholdInput, icon: "" };
-                Household.create(household);
+                const household = {
+                    name: createHouseholdInput,
+                    icon: "",
+                    members: 1
+                };
+
+                Storage.add("HOUSEHOLDS", household);
 
                 setCreateHouseholdInput("");
                 disableHouseholdModal("create");

@@ -1,0 +1,23 @@
+.household-members-modal-return {
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+button {
+    @include default-button;
+    font-size: 30px;
+}
+
+.member-holder {
+    width: 100%;
+    @include center(column);
+    align-items: flex-start;
+    gap: 10px;
+    padding-left: 20px 0;
+    padding-left: 30px;
+
+    @import "./household-members-modal-member";
+}

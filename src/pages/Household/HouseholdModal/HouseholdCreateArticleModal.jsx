@@ -1,0 +1,80 @@
+import React, { useState } from "react";
+import { images } from "../../../data/images";
+import { Storage } from "../../../functions/Storage";
+
+const HouseholdCreateArticleModal = ({ household, disableHouseholdModal }) => {
+    const [articleInputs, setArticleInputs] = useState({ name: "", icon: "", expirationDate: "" });
+    const [isPerishable, setIsPerishable] = useState(true);
+    
+    const buttons = ["scan barcode", "scan expiration date"];
+
+    function createArticle() {
+        Storage.add("ARTICLES", {...articleInputs, householdId: household.id});
+        
+        setArticleInputs({ name: "", icon: "", expirationDate: "" });
+        disableHouseholdModal();
+    }
+    
+    return(
+        <>
+            <header>
+                <img src={images.returnIcon} alt="RETURN" onClick={disableHouseholdModal} />
+                <h2>add article</h2>
+            </header>
+
+            <div className="household-create-article-modal-content-holder">
+                <form>
+                    <fieldset>
+                        <label htmlFor="create-article-modal-name">name</label>
+                        
+                        <input
+                            type="text"
+                            name="create-article-modal-name"
+                            id="create-article-modal-name"
+                            placeholder="Pan..."
+                            value={articleInputs.name}
+                            onChange={e => setArticleInputs(prevArticleInputs => { return {...prevArticleInputs, name: e.target.value} })}
+                        />
+
+                        <div className="household-create-article-modal-checkbox-holder">
+                            <input
+                                type="checkbox"
+                                name="create-article-perishable"
+                                id="create-article-perishable"
+                                checked={isPerishable}
+                                onChange={() => setIsPerishable(prevIsPerishable => !prevIsPerishable)}
+                            />
+
+                            <label htmlFor="create-article-perishable">perishable</label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset id={!isPerishable ? "create-article-modal-fieldset-disabled" : ""}>
+                        <label htmlFor="create-article-modal-expiration">expiration date</label>
+                        
+                        <input
+                            type="date"
+                            name="create-article-modal-expiration"
+                            id="create-article-modal-expiration"
+                            placeholder="25.2.2030."
+                            onChange={e => setArticleInputs(prevArticleInputs => { return {...prevArticleInputs, expirationDate: e.target.value} })}
+                        />
+                    </fieldset>
+                </form>
+
+                <div className="button-holder">
+                    {buttons.map((button, index) => {
+                        return <button key={index}>{button}</button>;
+                    })}
+                </div>
+            </div>
+
+            <button
+                className="household-create-article-modal-button"
+                onClick={createArticle}
+            >done</button>
+        </>
+    );
+}
+
+export default HouseholdCreateArticleModal;

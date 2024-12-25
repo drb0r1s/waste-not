@@ -1,0 +1,28 @@
+.household-article {
+    @include center;
+    gap: 20px;
+    padding: 20px;
+
+    img {
+        height: 80px;
+        width: 80px;
+        object-fit: contain;
+    }
+
+    .household-article-content {
+        @include center(column);
+        align-items: flex-start;
+
+        strong {
+            color: $primary;
+            font-size: 35px;
+            text-transform: capitalize;
+        }
+
+        p {
+            color: black;
+            font-size: 20px;
+            margin: 0;
+        }
+    }
+}

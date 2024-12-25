@@ -67,12 +67,15 @@
   top: 10%;
 }
 .home .household-holder {
+  height: 50%;
   width: 90%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  justify-content: flex-start;
   gap: 5px;
+  overflow: scroll;
 }
 .home .household-holder span {
   color: grey;
@@ -300,6 +303,203 @@
   flex-direction: column;
   position: relative;
 }
+.household .household-modal {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: white;
+  position: absolute;
+  left: 100%;
+  transition: 300ms;
+  z-index: 1;
+}
+.household .household-modal header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 30px;
+  border-bottom: 3px solid #4682B4;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+}
+.household .household-modal header img {
+  height: 30px;
+  width: 30px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.household .household-modal header h2 {
+  color: black;
+  font-size: 40px;
+  text-transform: capitalize;
+}
+.household .household-modal header img {
+  position: absolute;
+  left: 30px;
+}
+.household .household-modal .household-create-article-modal-content-holder {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 100px;
+  margin-top: 150px;
+}
+.household .household-modal .household-create-article-modal-content-holder form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+.household .household-modal .household-create-article-modal-content-holder form fieldset {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  border: none;
+  position: relative;
+  top: 0;
+  transition: 300ms;
+}
+.household .household-modal .household-create-article-modal-content-holder form fieldset label {
+  color: #4682B4;
+  font-size: 15px;
+  text-transform: capitalize;
+}
+.household .household-modal .household-create-article-modal-content-holder form fieldset input {
+  width: 100%;
+  color: black;
+  font-size: 20px;
+  background-color: white;
+  border: 3px solid #add8e6;
+  outline: none;
+  padding: 10px;
+  transition: 300ms;
+}
+.household .household-modal .household-create-article-modal-content-holder form fieldset input:focus {
+  border: 3px solid #4682B4;
+}
+.household .household-modal .household-create-article-modal-content-holder form fieldset input::-moz-placeholder {
+  color: gray;
+}
+.household .household-modal .household-create-article-modal-content-holder form fieldset input::placeholder {
+  color: gray;
+}
+.household .household-modal .household-create-article-modal-content-holder form fieldset .household-create-article-modal-checkbox-holder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 5px;
+}
+.household .household-modal .household-create-article-modal-content-holder form #create-article-modal-fieldset-disabled {
+  opacity: 0;
+  top: 10px;
+}
+.household .household-modal .household-create-article-modal-content-holder .button-holder {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+}
+.household .household-modal .household-create-article-modal-content-holder .button-holder button {
+  width: 70%;
+  color: black;
+  font-size: 15px;
+  text-transform: capitalize;
+  background: transparent;
+  border: 2px solid #add8e6;
+  border-radius: 5px;
+  padding: 10px 0;
+}
+.household .household-modal .household-create-article-modal-button {
+  width: 70%;
+  color: black;
+  font-size: 15px;
+  text-transform: capitalize;
+  background: transparent;
+  border: 2px solid #add8e6;
+  border-radius: 5px;
+  padding: 10px 0;
+  position: absolute;
+  top: 80%;
+}
+.household .household-modal .household-members-modal-return {
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
+.household .household-modal button {
+  width: 70%;
+  color: black;
+  font-size: 15px;
+  text-transform: capitalize;
+  background: transparent;
+  border: 2px solid #add8e6;
+  border-radius: 5px;
+  padding: 10px 0;
+  font-size: 30px;
+}
+.household .household-modal .member-holder {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding-left: 20px 0;
+  padding-left: 30px;
+}
+.household .household-modal .member-holder .household-members-modal-member {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 20px;
+}
+.household .household-modal .member-holder .household-members-modal-member img {
+  height: 60px;
+  width: 60px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.household .household-modal .member-holder .household-members-modal-member p {
+  color: black;
+  font-size: 40px;
+  text-transform: capitalize;
+  margin: 0;
+}
+.household .household-members-modal {
+  width: 90vw;
+  justify-content: flex-start;
+  gap: 50px;
+  border-right: 3px solid #add8e6;
+  left: -100%;
+  padding-top: 100px;
+}
+.household #household-modal-active {
+  left: 0;
+}
 .household header {
   width: 100%;
   display: flex;
@@ -342,15 +542,51 @@
 }
 .household .article-holder {
   height: 100%;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: relative;
+  overflow: scroll;
 }
 .household .article-holder span {
   color: grey;
   font-size: 30px;
   font-style: italic;
+}
+.household .article-holder .household-article {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 20px;
+  padding: 20px;
+}
+.household .article-holder .household-article img {
+  height: 80px;
+  width: 80px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.household .article-holder .household-article .household-article-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.household .article-holder .household-article .household-article-content strong {
+  color: #add8e6;
+  font-size: 35px;
+  text-transform: capitalize;
+}
+.household .article-holder .household-article .household-article-content p {
+  color: black;
+  font-size: 20px;
+  margin: 0;
 }
 .household .household-menu {
   width: 100%;
@@ -359,9 +595,10 @@
   justify-content: center;
   flex-direction: row;
   justify-content: space-between;
+  background-color: white;
   border-top: 1px solid black;
   padding: 10px 20px;
-  position: fixed;
+  position: sticky;
   bottom: 0;
 }
 .household .household-menu img {
@@ -372,4 +609,5 @@
 }
 .household .household-menu .plus-button {
   position: relative;
+  top: 0;
 }/*# sourceMappingURL=main.css.map */

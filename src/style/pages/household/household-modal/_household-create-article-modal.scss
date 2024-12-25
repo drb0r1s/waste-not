@@ -1,0 +1,88 @@
+header {
+    @include household-header;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+
+    img {
+        position: absolute;
+        left: 30px;
+    }
+}
+
+.household-create-article-modal-content-holder {
+    height: 100%;
+    width: 100%;
+    @include center(column);
+    justify-content: flex-start;
+    gap: 100px;
+    margin-top: 150px;
+    
+    form {
+        width: 100%;
+        @include center(column);
+        gap: 20px;
+    
+        fieldset {
+            width: 80%;
+            @include center(column);
+            align-items: flex-start;
+            gap: 10px;
+            border: none;
+            position: relative;
+            top: 0;
+            transition: 300ms;
+    
+            label {
+                color: $secondary;
+                font-size: 15px;
+                text-transform: capitalize;
+            }
+    
+            input {
+                width: 100%;
+                color: black;
+                font-size: 20px;
+                background-color: white;
+                border: 3px solid $primary;
+                outline: none;
+                padding: 10px;
+                transition: 300ms;
+    
+                &:focus {
+                    border: 3px solid $secondary;
+                }
+    
+                &::placeholder {
+                    color: gray;
+                }
+            }
+
+            .household-create-article-modal-checkbox-holder {
+                @include center;
+                gap: 5px;
+            }
+        }
+
+        #create-article-modal-fieldset-disabled {
+            opacity: 0;
+            top: 10px;
+        }
+    }
+    
+    .button-holder {
+        width: 100%;
+        @include center(column);
+        gap: 15px;
+    
+        button {
+            @include default-button;
+        }
+    }
+}
+
+.household-create-article-modal-button {
+    @include default-button;
+    position: absolute;
+    top: 80%;
+}

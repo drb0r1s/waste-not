@@ -4,6 +4,7 @@
     @include center(column);
     position: relative;
 
+    @import "./household-modal/main";
     @import "./household-header";
 
     .household-tag-holder {
@@ -26,11 +27,18 @@
 
     .article-holder {
         height: 100%;
-        @include center;
+        width: 100vw;
+        @include center(column);
+        align-items: flex-start;
+        justify-content: flex-start;
+        position: relative;
+        overflow: scroll;
         
         span {
             @include no-span;
         }
+
+        @import "./household-article";
     }
 
     @import "./household-menu";

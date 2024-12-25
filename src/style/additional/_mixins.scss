@@ -35,3 +35,23 @@
     font-size: 30px;
     font-style: italic;
 }
+
+@mixin household-header {
+    width: 100%;
+    @include center;
+    justify-content: space-between;
+    padding: 10px 30px;
+    border-bottom: 3px solid $secondary;
+
+    img {
+        height: 30px;
+        width: 30px;
+        object-fit: contain;
+    }
+    
+    h2 {
+        color: black;
+        font-size: 40px;
+        text-transform: capitalize;
+    }
+}

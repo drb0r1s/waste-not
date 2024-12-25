@@ -1,0 +1,17 @@
+.household-members-modal-member {
+    @include center;
+    gap: 20px;
+
+    img {
+        height: 60px;
+        width: 60px;
+        object-fit: contain;
+    }
+
+    p {
+        color: black;
+        font-size: 40px;
+        text-transform: capitalize;
+        margin: 0;
+    }
+}

@@ -10,9 +10,12 @@
     }
 
     .household-holder {
+        height: 50%;
         width: 90%;
         @include center(column);
+        justify-content: flex-start;
         gap: 5px;
+        overflow: scroll;
 
         span {
             @include no-span;
