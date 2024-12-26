@@ -1,15 +1,17 @@
 import React from "react";
 import HouseholdCreateArticleModal from "./HouseholdCreateArticleModal";
-import HouseholdMembersModal from "./HouseholdMembersModal/Index";
+import HouseholdMembersModal from "./householdMembersModal/Index";
+import HouseholdSettingsModal from "./HouseholdSettingsModal";
 
 const HouseholdModal = ({
     type, household, householdModalRef,
-    disableHouseholdModal
+    disableHouseholdModal, enableHouseholdMemberModal
 }) => {
     return(
         <div className={`household-modal household-${type}-modal`} ref={householdModalRef}>
             {type === "create-article" ? <HouseholdCreateArticleModal household={household} disableHouseholdModal={disableHouseholdModal} />
-            : type === "members" ? <HouseholdMembersModal household={household} disableHouseholdModal={disableHouseholdModal} /> : <></>}
+            : type === "members" ? <HouseholdMembersModal household={household} disableHouseholdModal={disableHouseholdModal} enableHouseholdMemberModal={enableHouseholdMemberModal} />
+            : type === "settings" ? <HouseholdSettingsModal household={household} disableHouseholdModal={disableHouseholdModal} /> : <></>}
         </div>
     );
 }

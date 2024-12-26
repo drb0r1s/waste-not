@@ -1,0 +1,55 @@
+.invite {
+    height: 100vh;
+    width: 100vw;
+    @include center(column);
+    position: relative;
+
+    .return {
+        height: 30px;
+        width: 30px;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        margin: 0;
+    }
+
+    h2 {
+        @include floating-title;
+    }
+
+    .invite-code-holder {
+        width: 100%;
+        @include center(column);
+        gap: 10px;
+        
+        p {
+            width: 70%;
+            color: $primary;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            border: 3px solid black;
+            border-radius: 3px;
+            margin: 0;
+            padding: 10px;
+            transition: 300ms;
+        }
+
+        #invite-p-copied {
+            color: $secondary;
+            border: 3px solid $primary;
+        }
+
+        button {
+            @include default-button;
+            font-size: 20px;
+        }
+    }
+
+    img {
+        height: 300px;
+        width: 300px;
+        object-fit: contain;
+        margin-top: 80px;
+    }
+}

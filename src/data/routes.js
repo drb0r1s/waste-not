@@ -1,5 +1,6 @@
-import Home from "../pages/Home/Index";
-import Household from "../pages/Household/Index";
+import Home from "../pages/home/Index";
+import Household from "../pages/household/Index";
+import Invite from "../pages/invite/Index";
 
 export const routes = [
     {
@@ -11,4 +12,9 @@ export const routes = [
         path: "/household",
         element: <Household />
     },
+
+    {
+        path: "/invite",
+        element: <Invite />
+    }
 ];

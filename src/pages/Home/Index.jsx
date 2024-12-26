@@ -50,8 +50,11 @@ const Home = () => {
 
                 break;
             case "done":
+                const householdNextId = parseInt(localStorage.getItem("HOUSEHOLDS_NEXT_ID"));
+                const householdName = createHouseholdInput ? createHouseholdInput : `Household ${householdNextId + 1}`;
+
                 const household = {
-                    name: createHouseholdInput,
+                    name: householdName,
                     icon: "",
                     members: 1
                 };

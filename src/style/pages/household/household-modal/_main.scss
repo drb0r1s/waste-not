@@ -7,9 +7,10 @@
     left: 100%;
     transition: 300ms;
     z-index: 1;
+}
 
+.household-create-article-modal {
     @import "./household-create-article-modal";
-    @import "./household-members-modal/main";
 }
 
 .household-members-modal {
@@ -19,6 +20,14 @@
     border-right: 3px solid $primary;
     left: -100%;
     padding-top: 100px;
+
+    @import "./household-members-modal/main";
+}
+
+.household-settings-modal {
+    justify-content: flex-start;
+
+    @import "./household-settings-modal";
 }
 
 #household-modal-active {

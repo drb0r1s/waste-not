@@ -316,7 +316,7 @@
   transition: 300ms;
   z-index: 1;
 }
-.household .household-modal header {
+.household .household-create-article-modal header {
   width: 100%;
   display: flex;
   align-items: center;
@@ -329,22 +329,22 @@
   position: absolute;
   top: 0;
 }
-.household .household-modal header img {
+.household .household-create-article-modal header img {
   height: 30px;
   width: 30px;
   -o-object-fit: contain;
      object-fit: contain;
 }
-.household .household-modal header h2 {
+.household .household-create-article-modal header h2 {
   color: black;
   font-size: 40px;
   text-transform: capitalize;
 }
-.household .household-modal header img {
+.household .household-create-article-modal header img {
   position: absolute;
   left: 30px;
 }
-.household .household-modal .household-create-article-modal-content-holder {
+.household .household-create-article-modal .household-create-article-modal-content-holder {
   height: 100%;
   width: 100%;
   display: flex;
@@ -355,7 +355,7 @@
   gap: 100px;
   margin-top: 150px;
 }
-.household .household-modal .household-create-article-modal-content-holder form {
+.household .household-create-article-modal .household-create-article-modal-content-holder form {
   width: 100%;
   display: flex;
   align-items: center;
@@ -363,7 +363,7 @@
   flex-direction: column;
   gap: 20px;
 }
-.household .household-modal .household-create-article-modal-content-holder form fieldset {
+.household .household-create-article-modal .household-create-article-modal-content-holder form fieldset {
   width: 80%;
   display: flex;
   align-items: center;
@@ -376,12 +376,12 @@
   top: 0;
   transition: 300ms;
 }
-.household .household-modal .household-create-article-modal-content-holder form fieldset label {
+.household .household-create-article-modal .household-create-article-modal-content-holder form fieldset label {
   color: #4682B4;
   font-size: 15px;
   text-transform: capitalize;
 }
-.household .household-modal .household-create-article-modal-content-holder form fieldset input {
+.household .household-create-article-modal .household-create-article-modal-content-holder form fieldset input {
   width: 100%;
   color: black;
   font-size: 20px;
@@ -391,27 +391,27 @@
   padding: 10px;
   transition: 300ms;
 }
-.household .household-modal .household-create-article-modal-content-holder form fieldset input:focus {
+.household .household-create-article-modal .household-create-article-modal-content-holder form fieldset input:focus {
   border: 3px solid #4682B4;
 }
-.household .household-modal .household-create-article-modal-content-holder form fieldset input::-moz-placeholder {
+.household .household-create-article-modal .household-create-article-modal-content-holder form fieldset input::-moz-placeholder {
   color: gray;
 }
-.household .household-modal .household-create-article-modal-content-holder form fieldset input::placeholder {
+.household .household-create-article-modal .household-create-article-modal-content-holder form fieldset input::placeholder {
   color: gray;
 }
-.household .household-modal .household-create-article-modal-content-holder form fieldset .household-create-article-modal-checkbox-holder {
+.household .household-create-article-modal .household-create-article-modal-content-holder form fieldset .household-create-article-modal-checkbox-holder {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
   gap: 5px;
 }
-.household .household-modal .household-create-article-modal-content-holder form #create-article-modal-fieldset-disabled {
+.household .household-create-article-modal .household-create-article-modal-content-holder form #create-article-modal-fieldset-disabled {
   opacity: 0;
   top: 10px;
 }
-.household .household-modal .household-create-article-modal-content-holder .button-holder {
+.household .household-create-article-modal .household-create-article-modal-content-holder .button-holder {
   width: 100%;
   display: flex;
   align-items: center;
@@ -419,7 +419,7 @@
   flex-direction: column;
   gap: 15px;
 }
-.household .household-modal .household-create-article-modal-content-holder .button-holder button {
+.household .household-create-article-modal .household-create-article-modal-content-holder .button-holder button {
   width: 70%;
   color: black;
   font-size: 15px;
@@ -429,7 +429,7 @@
   border-radius: 5px;
   padding: 10px 0;
 }
-.household .household-modal .household-create-article-modal-button {
+.household .household-create-article-modal .household-create-article-modal-button {
   width: 70%;
   color: black;
   font-size: 15px;
@@ -441,14 +441,22 @@
   position: absolute;
   top: 80%;
 }
-.household .household-modal .household-members-modal-return {
+.household .household-members-modal {
+  width: 90vw;
+  justify-content: flex-start;
+  gap: 50px;
+  border-right: 3px solid #add8e6;
+  left: -100%;
+  padding-top: 100px;
+}
+.household .household-members-modal .household-members-modal-return {
   height: 30px;
   width: 30px;
   position: absolute;
   top: 30px;
   left: 30px;
 }
-.household .household-modal button {
+.household .household-members-modal button {
   width: 70%;
   color: black;
   font-size: 15px;
@@ -459,7 +467,7 @@
   padding: 10px 0;
   font-size: 30px;
 }
-.household .household-modal .member-holder {
+.household .household-members-modal .member-holder {
   width: 100%;
   display: flex;
   align-items: center;
@@ -470,35 +478,164 @@
   padding-left: 20px 0;
   padding-left: 30px;
 }
-.household .household-modal .member-holder .household-members-modal-member {
+.household .household-members-modal .member-holder .household-members-modal-member {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
   gap: 20px;
 }
-.household .household-modal .member-holder .household-members-modal-member img {
+.household .household-members-modal .member-holder .household-members-modal-member img {
   height: 60px;
   width: 60px;
   -o-object-fit: contain;
      object-fit: contain;
 }
-.household .household-modal .member-holder .household-members-modal-member p {
+.household .household-members-modal .member-holder .household-members-modal-member p {
   color: black;
   font-size: 40px;
   text-transform: capitalize;
   margin: 0;
 }
-.household .household-members-modal {
-  width: 90vw;
+.household .household-settings-modal {
   justify-content: flex-start;
-  gap: 50px;
-  border-right: 3px solid #add8e6;
-  left: -100%;
-  padding-top: 100px;
+}
+.household .household-settings-modal header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 30px;
+  border-bottom: 3px solid #4682B4;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+}
+.household .household-settings-modal header img {
+  height: 30px;
+  width: 30px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.household .household-settings-modal header h2 {
+  color: black;
+  font-size: 40px;
+  text-transform: capitalize;
+}
+.household .household-settings-modal header img {
+  position: absolute;
+  left: 30px;
+}
+.household .household-settings-modal .household-settings-modal-button-holder {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 5px;
+  padding: 0 30px;
+  margin-top: 120px;
+}
+.household .household-settings-modal .household-settings-modal-button-holder button {
+  color: black;
+  font-size: 23px;
+  text-transform: capitalize;
+  background-color: transparent;
+  border: none;
+}
+.household .household-settings-modal .household-settings-modal-button-holder button:last-child {
+  color: red;
 }
 .household #household-modal-active {
   left: 0;
+}
+.household .household-member-modal-holder {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-end;
+  background-color: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  position: absolute;
+  transition: 300ms;
+  z-index: 1;
+}
+.household .household-member-modal-holder .household-member-modal {
+  height: 70%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: white;
+  border: 2px solid #4682B4;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  position: absolute;
+  bottom: -100%;
+  transition: 300ms;
+}
+.household .household-member-modal-holder .household-member-modal .household-member-modal-background {
+  height: 30%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  background-image: url("../images/image-icon.png");
+  background-size: cover;
+  border-bottom: 1px solid black;
+  position: relative;
+}
+.household .household-member-modal-holder .household-member-modal .household-member-modal-background img {
+  height: 120px;
+  width: 120px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  background-color: white;
+  border: 3px solid #add8e6;
+  border-radius: 50%;
+  position: absolute;
+  left: 30px;
+  bottom: 0;
+  transform: translateY(50%);
+}
+.household .household-member-modal-holder .household-member-modal strong {
+  color: #add8e6;
+  font-size: 40px;
+  margin-top: 5px;
+}
+.household .household-member-modal-holder .household-member-modal .household-member-modal-button-holder {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 50px;
+}
+.household .household-member-modal-holder .household-member-modal .household-member-modal-button-holder button {
+  width: 70%;
+  color: black;
+  font-size: 15px;
+  text-transform: capitalize;
+  background: transparent;
+  border: 2px solid #add8e6;
+  border-radius: 5px;
+  padding: 10px 0;
+}
+.household .household-member-modal-holder #household-member-modal-active {
+  bottom: 0;
+}
+.household #household-member-modal-holder-active {
+  opacity: 1;
 }
 .household header {
   width: 100%;
@@ -610,4 +747,71 @@
 .household .household-menu .plus-button {
   position: relative;
   top: 0;
+}
+
+.invite {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+.invite .return {
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  margin: 0;
+}
+.invite h2 {
+  color: black;
+  font-size: 50px;
+  text-transform: capitalize;
+  position: absolute;
+  top: 10%;
+}
+.invite .invite-code-holder {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+.invite .invite-code-holder p {
+  width: 70%;
+  color: #add8e6;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  border: 3px solid black;
+  border-radius: 3px;
+  margin: 0;
+  padding: 10px;
+  transition: 300ms;
+}
+.invite .invite-code-holder #invite-p-copied {
+  color: #4682B4;
+  border: 3px solid #add8e6;
+}
+.invite .invite-code-holder button {
+  width: 70%;
+  color: black;
+  font-size: 15px;
+  text-transform: capitalize;
+  background: transparent;
+  border: 2px solid #add8e6;
+  border-radius: 5px;
+  padding: 10px 0;
+  font-size: 20px;
+}
+.invite img {
+  height: 300px;
+  width: 300px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  margin-top: 80px;
 }/*# sourceMappingURL=main.css.map */

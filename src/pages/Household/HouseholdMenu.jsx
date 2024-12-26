@@ -11,7 +11,7 @@ const HouseholdMenu = ({ enableHouseholdModal }) => {
             <PlusButton onClick={() => enableHouseholdModal("create-article")} />
 
             <img src={images.bellIcon} alt="NOTIFICATIONS" />
-            <img src={images.settingsIcon} alt="SETTINGS" />
+            <img src={images.settingsIcon} alt="SETTINGS" onClick={() => enableHouseholdModal("settings")} />
         </div>
     );
 }

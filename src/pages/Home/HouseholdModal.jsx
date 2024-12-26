@@ -27,7 +27,7 @@ const HouseholdModal = ({
                     />
                 </fieldset>
 
-                <button className="household-modal-create-icon-button">
+                <button className="household-modal-create-icon-button" type="button">
                     <img src={images.imageIcon} alt="ICON" />
                     <span>icon</span>
                 </button>

@@ -5,6 +5,7 @@
     position: relative;
 
     @import "./household-modal/main";
+    @import "./household-member-modal";
     @import "./household-header";
 
     .household-tag-holder {

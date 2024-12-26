@@ -1,8 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import HouseholdMembersModalMember from "./HoseholdMembersModalMember";
 import { images } from "../../../../data/images";
 
-const HouseholdMembersModal = ({ household, disableHouseholdModal }) => {
+const HouseholdMembersModal = ({ household, disableHouseholdModal, enableHouseholdMemberModal }) => {
+    const navigate = useNavigate();
+    
     return(
         <>
             <img
@@ -12,10 +15,10 @@ const HouseholdMembersModal = ({ household, disableHouseholdModal }) => {
                 onClick={disableHouseholdModal}
             />
         
-            <button>invite people</button>
+            <button onClick={() => navigate("/invite", { state: household })}>invite people</button>
 
             <div className="member-holder">
-                <HouseholdMembersModalMember />
+                <HouseholdMembersModalMember enableHouseholdMemberModal={enableHouseholdMemberModal} />
             </div>
         </>
     );

@@ -1,0 +1,33 @@
+header {
+    @include household-header;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+
+    img {
+        position: absolute;
+        left: 30px;
+    }
+}
+
+.household-settings-modal-button-holder {
+    width: 100%;
+    @include center(column);
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 5px;
+    padding: 0 30px;
+    margin-top: 120px;
+
+    button {
+        color: black;
+        font-size: 23px;
+        text-transform: capitalize;
+        background-color: transparent;
+        border: none;
+
+        &:last-child {
+            color: red;
+        }
+    }
+}

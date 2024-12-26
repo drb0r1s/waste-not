@@ -3,7 +3,8 @@ import { useLocation } from "react-router-dom";
 import HouseholdHeader from "./HouseholdHeader";
 import HouseholdMenu from "./HouseholdMenu";
 import HouseholdArticle from "./HouseholdArticle";
-import HouseholdModal from "./HouseholdModal/Index";
+import HouseholdModal from "./householdModal/Index";
+import HouseholdMemberModal from "./HouseholdMemberModal";
 import { Storage } from "../../functions/Storage";
 
 const Household = () => {
@@ -13,9 +14,13 @@ const Household = () => {
     const foreign = { key: "householdId", value: household.id };
 
     const [articles, setArticles] = useState(Storage.get("ARTICLES", foreign));
+
     const [isHouseholdModalActive, setIsHouseholdModalActive] = useState(false);
-    
+    const [isHouseholdMemberModalActive, setIsHouseholdMemberModalActive] = useState(false);
+
     const householdModalRef = useRef(null);
+    const householdMemberModalHolderRef = useRef(null);
+    const householdMemberModalRef = useRef(null);
 
     const tags = ["fridge", "freezer", "pantry"];
 
@@ -32,6 +37,24 @@ const Household = () => {
         householdModalRef.current.id = "";
         setTimeout(() => { setIsHouseholdModalActive(false) }, 300);
     }
+
+    function enableHouseholdMemberModal() {
+        setIsHouseholdMemberModalActive(true);
+        
+        setTimeout(() => {
+            householdMemberModalHolderRef.current.id = "household-member-modal-holder-active";
+            householdMemberModalRef.current.id = "household-member-modal-active";
+        }, 1);
+    }
+
+    function disableHouseholdMemberModal(target) {
+        if(!target.classList.contains("household-member-modal-holder")) return;
+        
+        householdMemberModalHolderRef.current.id = "";
+        householdMemberModalRef.current.id = "";
+        
+        setTimeout(() => setIsHouseholdMemberModalActive(false), 300);
+    }
     
     return(
         <div className="household">
@@ -40,6 +63,13 @@ const Household = () => {
                 household={household}
                 householdModalRef={householdModalRef}
                 disableHouseholdModal={disableHouseholdModal}
+                enableHouseholdMemberModal={enableHouseholdMemberModal}
+            /> : <></>}
+
+            {isHouseholdMemberModalActive ? <HouseholdMemberModal
+                householdMemberModalHolderRef={householdMemberModalHolderRef}
+                householdMemberModalRef={householdMemberModalRef}
+                disableHouseholdMemberModal={disableHouseholdMemberModal}
             /> : <></>}
             
             <HouseholdHeader household={household} />

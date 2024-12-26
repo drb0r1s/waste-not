@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { images } from "../../../data/images";
 import { Storage } from "../../../functions/Storage";
 
 const HouseholdCreateArticleModal = ({ household, disableHouseholdModal }) => {
     const [articleInputs, setArticleInputs] = useState({ name: "", icon: "", expirationDate: "" });
     const [isPerishable, setIsPerishable] = useState(true);
+
+    const expirationInputRef = useRef(null);
     
     const buttons = ["scan barcode", "scan expiration date"];
 
+    useEffect(() => {
+        if(!isPerishable && articleInputs.expirationDate) setArticleInputs(prevArticleInputs => { return {...prevArticleInputs, expirationDate: ""} });
+    }, [isPerishable]);
+
     function createArticle() {
+        if(isPerishable && !articleInputs.expirationDate) return expirationInputRef.current.style.border = "3px solid red";
+        
         Storage.add("ARTICLES", {...articleInputs, householdId: household.id});
         
         setArticleInputs({ name: "", icon: "", expirationDate: "" });
@@ -56,7 +64,7 @@ const HouseholdCreateArticleModal = ({ household, disableHouseholdModal }) => {
                             type="date"
                             name="create-article-modal-expiration"
                             id="create-article-modal-expiration"
-                            placeholder="25.2.2030."
+                            ref={expirationInputRef}
                             onChange={e => setArticleInputs(prevArticleInputs => { return {...prevArticleInputs, expirationDate: e.target.value} })}
                         />
                     </fieldset>
