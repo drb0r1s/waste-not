@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { images } from "../../data/images";
+import { ExtendedDate } from "../../functions/ExtendedDate";
 
-const HouseholdArticle = ({ article }) => {
-    function formatDate(date) {
-        const [year, month, day] = date.split("-");
-        return `${day}.${month}.${year}.`;
-    }
+const HouseholdArticle = ({ article, onClick }) => {
+    const [daysLeft, setDaysLeft] = useState("");
+    
+    useEffect(() => {
+        if(!article.expirationDate) return;
+        setDaysLeft(ExtendedDate.getExpirationContent(article.expirationDate));
+    }, []);
     
     return(
-        <div className="household-article">
+        <div className="household-article" onClick={() => onClick(article)}>
             <img src={images.imageIcon} alt="ARTICLE" />
 
             <div className="household-article-content">
                 <strong>{article.name}</strong>
-                {article.expirationDate ? <p>Expire on: {formatDate(article.expirationDate)}</p> : <></>}
+                {article.expirationDate ? <p style={ExtendedDate.getDayDifference(article.expirationDate) < 0 ? { color: "red" } : {}}>{daysLeft}</p> : <></>}
             </div>
         </div>
     );

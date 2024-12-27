@@ -9,7 +9,14 @@
     z-index: 1;
 }
 
-.household-create-article-modal {
+.household-article-modal {
+    top: 100%;
+    left: 0;
+
+    @import "./household-article-modal";
+}
+
+.household-create-article-modal {    
     @import "./household-create-article-modal";
 }
 
@@ -31,5 +38,6 @@
 }
 
 #household-modal-active {
+    top: 0;
     left: 0;
 }

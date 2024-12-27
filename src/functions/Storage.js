@@ -14,21 +14,21 @@ export const Storage = {
         const values = JSON.parse(localStorage.getItem(key));
         const keyNextId = parseInt(localStorage.getItem(`${key}_NEXT_ID`));
 
-        localStorage.setItem(key, JSON.stringify([...values, {...value, id: keyNextId}]));
+        localStorage.setItem(key, JSON.stringify([...values, {id: keyNextId, ...value}]));
         localStorage.setItem(`${key}_NEXT_ID`, keyNextId + 1);
     },
 
-    get: (key, foreign) => {
+    get: (key, filter) => {
         if(!localStorage.getItem(key)) return [];
 
         let values = JSON.parse(localStorage.getItem(key));
-        if(foreign == null) return values;
+        if(filter == null) return values;
 
-        if(foreign.key !== null) {
+        if(filter.key !== null) {
             const filteredValues = [];
 
             for(let i = 0; i < values.length; i++) {
-                if(values[i][foreign.key] === foreign.value) filteredValues.push(values[i]);
+                if(values[i][filter.key] === filter.value) filteredValues.push(values[i]);
             }
 
             values = filteredValues;
@@ -53,5 +53,21 @@ export const Storage = {
     
             localStorage.setItem(key, JSON.stringify(newItem));
         }
+    },
+
+    update: (key, id, updatedProps) => {
+        const item = JSON.parse(localStorage.getItem(key));
+        const newItem = [];
+
+        for(let i = 0; i < item.length; i++) {
+            if(item[i].id === id) {
+                newItem.push({...item[i], ...updatedProps});
+                continue;
+            }
+
+            newItem.push(item[i]);
+        }
+
+        localStorage.setItem(key, JSON.stringify(newItem));
     }
 }

@@ -96,7 +96,6 @@
 .home .household-holder .household-button p {
   color: black;
   font-size: 30px;
-  text-transform: capitalize;
   margin: 0;
 }
 .home .household-holder .household-button .household-person-holder {
@@ -315,6 +314,117 @@
   left: 100%;
   transition: 300ms;
   z-index: 1;
+}
+.household .household-article-modal {
+  top: 100%;
+  left: 0;
+}
+.household .household-article-modal .household-article-modal-return {
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
+.household .household-article-modal .household-article-modal-title-holder {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 20px;
+  position: absolute;
+  top: 10%;
+}
+.household .household-article-modal .household-article-modal-title-holder img {
+  height: 100px;
+  width: 100px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border: 3px solid #add8e6;
+  border-radius: 50%;
+}
+.household .household-article-modal .household-article-modal-title-holder h2 {
+  width: 60%;
+  color: #add8e6;
+  font-size: 45px;
+}
+.household .household-article-modal .household-article-modal-title-holder input {
+  width: 60%;
+  color: black;
+  font-size: 45px;
+  background-color: white;
+  border: 1px solid black;
+  padding: 3px 5px;
+}
+.household .household-article-modal .household-article-modal-info-holder {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  position: absolute;
+  top: 30%;
+}
+.household .household-article-modal .household-article-modal-info-holder .household-article-modal-info {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+.household .household-article-modal .household-article-modal-info-holder .household-article-modal-info .household-article-modal-info-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
+}
+.household .household-article-modal .household-article-modal-info-holder .household-article-modal-info .household-article-modal-info-content p {
+  color: black;
+  font-size: 25px;
+  text-transform: capitalize;
+  margin: 0;
+}
+.household .household-article-modal .household-article-modal-info-holder .household-article-modal-info .household-article-modal-info-content span {
+  color: #add8e6;
+  font-size: 25px;
+  font-weight: bold;
+  text-transform: none;
+}
+.household .household-article-modal .household-article-modal-info-holder .household-article-modal-info .household-article-modal-info-content input {
+  color: black;
+  font-size: 20px;
+  background-color: white;
+  border: 1px solid black;
+  padding: 3px 5px;
+}
+.household .household-article-modal .household-article-modal-info-holder .household-article-modal-info strong {
+  color: #4682B4;
+  font-size: 20px;
+}
+.household .household-article-modal .household-article-modal-button-holder {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  position: absolute;
+  bottom: 5%;
+}
+.household .household-article-modal .household-article-modal-button-holder button {
+  width: 70%;
+  color: black;
+  font-size: 15px;
+  text-transform: capitalize;
+  background: transparent;
+  border: 2px solid #add8e6;
+  border-radius: 5px;
+  padding: 10px 0;
 }
 .household .household-create-article-modal header {
   width: 100%;
@@ -551,6 +661,7 @@
   color: red;
 }
 .household #household-modal-active {
+  top: 0;
   left: 0;
 }
 .household .household-member-modal-holder {
@@ -658,6 +769,9 @@
   font-size: 40px;
   text-transform: capitalize;
 }
+.household header h2 {
+  text-transform: none;
+}
 .household .household-tag-holder {
   width: 100%;
   display: flex;
@@ -695,10 +809,12 @@
   font-style: italic;
 }
 .household .article-holder .household-article {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
+  justify-content: flex-start;
   gap: 20px;
   padding: 20px;
 }
@@ -718,7 +834,6 @@
 .household .article-holder .household-article .household-article-content strong {
   color: #add8e6;
   font-size: 35px;
-  text-transform: capitalize;
 }
 .household .article-holder .household-article .household-article-content p {
   color: black;

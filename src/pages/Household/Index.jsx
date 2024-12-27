@@ -11,12 +11,13 @@ const Household = () => {
     const location = useLocation();
     const household = location.state;
 
-    const foreign = { key: "householdId", value: household.id };
+    const filter = { key: "householdId", value: household.id };
 
-    const [articles, setArticles] = useState(Storage.get("ARTICLES", foreign));
+    const [articles, setArticles] = useState(Storage.get("ARTICLES", filter));
 
     const [isHouseholdModalActive, setIsHouseholdModalActive] = useState(false);
     const [isHouseholdMemberModalActive, setIsHouseholdMemberModalActive] = useState(false);
+    const [activeArticle, setActiveArticle] = useState(false);
 
     const householdModalRef = useRef(null);
     const householdMemberModalHolderRef = useRef(null);
@@ -25,7 +26,12 @@ const Household = () => {
     const tags = ["fridge", "freezer", "pantry"];
 
     useEffect(() => {
-        if(Storage.get("ARTICLES", foreign).length) setArticles(Storage.get("ARTICLES", foreign));
+        setArticles(Storage.get("ARTICLES", filter));
+
+        if(activeArticle) {
+            const newActiveArticle = Storage.get("ARTICLES", { key: "id", value: activeArticle.id });
+            setActiveArticle(newActiveArticle);
+        }
     }, [localStorage.getItem("ARTICLES")]);
 
     function enableHouseholdModal(type) {
@@ -36,6 +42,16 @@ const Household = () => {
     function disableHouseholdModal() {
         householdModalRef.current.id = "";
         setTimeout(() => { setIsHouseholdModalActive(false) }, 300);
+    }
+
+    function enableHouseholdArticleModal(article) {
+        enableHouseholdModal("article");
+        setActiveArticle(article);
+    }
+
+    function disableHouseholdArticleModal() {
+        disableHouseholdModal();
+        setTimeout(() => setActiveArticle(false), 300);
     }
 
     function enableHouseholdMemberModal() {
@@ -63,6 +79,8 @@ const Household = () => {
                 household={household}
                 householdModalRef={householdModalRef}
                 disableHouseholdModal={disableHouseholdModal}
+                activeArticle={activeArticle}
+                disableHouseholdArticleModal={disableHouseholdArticleModal}
                 enableHouseholdMemberModal={enableHouseholdMemberModal}
             /> : <></>}
 
@@ -85,7 +103,11 @@ const Household = () => {
                 style={!articles.length ? { alignItems: "center", justifyContent: "center" } : {}}
             >
                 {!articles.length ? <span>There are no articles.</span> : articles.map((article, index) => {
-                    return <HouseholdArticle key={index} article={article} />;
+                    return <HouseholdArticle
+                        key={index}
+                        article={article}
+                        onClick={enableHouseholdArticleModal}
+                    />;
                 })}
             </div>
 

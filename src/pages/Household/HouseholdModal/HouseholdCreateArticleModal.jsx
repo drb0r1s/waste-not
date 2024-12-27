@@ -17,7 +17,16 @@ const HouseholdCreateArticleModal = ({ household, disableHouseholdModal }) => {
     function createArticle() {
         if(isPerishable && !articleInputs.expirationDate) return expirationInputRef.current.style.border = "3px solid red";
         
-        Storage.add("ARTICLES", {...articleInputs, householdId: household.id});
+        const [article] = Storage.get("ARTICLES", { key: "name", value: articleInputs.name });
+
+        if(article) Storage.update("ARTICLES", article.id, { amount: article.amount + 1 });
+        
+        else Storage.add("ARTICLES", {
+            householdId: household.id,
+            ...articleInputs,
+            amount: 1,
+            lastUsed: null
+        });
         
         setArticleInputs({ name: "", icon: "", expirationDate: "" });
         disableHouseholdModal();

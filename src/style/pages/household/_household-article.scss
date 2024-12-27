@@ -1,5 +1,7 @@
 .household-article {
+    width: 100%;
     @include center;
+    justify-content: flex-start;
     gap: 20px;
     padding: 20px;
 
@@ -16,7 +18,6 @@
         strong {
             color: $primary;
             font-size: 35px;
-            text-transform: capitalize;
         }
 
         p {

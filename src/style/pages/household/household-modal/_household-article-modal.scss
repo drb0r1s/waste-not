@@ -1,0 +1,97 @@
+.household-article-modal-return {
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+.household-article-modal-title-holder {
+    width: 100%;
+    @include center;
+    gap: 20px;
+    position: absolute;
+    top: 10%;
+    
+    img {
+        height: 100px;
+        width: 100px;
+        object-fit: contain;
+        border: 3px solid $primary;
+        border-radius: 50%;
+    }
+
+    h2 {
+        width: 60%;
+        color: $primary;
+        font-size: 45px;
+    }
+
+    input {
+        width: 60%;
+        color: black;
+        font-size: 45px;
+        background-color: white;
+        border: 1px solid black;
+        padding: 3px 5px;
+    }
+}
+
+.household-article-modal-info-holder {
+    width: 100%;
+    @include center(column);
+    gap: 20px;
+    position: absolute;
+    top: 30%;
+
+    .household-article-modal-info {
+        width: 70%;
+        @include center(column);
+        align-items: flex-start;
+        gap: 5px;
+
+        .household-article-modal-info-content {
+            @include center;
+            gap: 10px;
+            
+            p {
+                color: black;
+                font-size: 25px;
+                text-transform: capitalize;
+                margin: 0;
+            }
+    
+            span {
+                color: $primary;
+                font-size: 25px;
+                font-weight: bold;
+                text-transform: none;
+            }
+    
+            input {
+                color: black;
+                font-size: 20px;
+                background-color: white;
+                border: 1px solid black;
+                padding: 3px 5px;
+            }
+        }
+
+        strong {
+            color: $secondary;
+            font-size: 20px;
+        }
+    }
+}
+
+.household-article-modal-button-holder {
+    width: 100%;
+    @include center(column);
+    gap: 10px;
+    position: absolute;
+    bottom: 5%;
+
+    button {
+        @include default-button;
+    }
+}

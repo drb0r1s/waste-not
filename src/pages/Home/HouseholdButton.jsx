@@ -1,7 +1,7 @@
 import React from "react";
 import { images } from "../../data/images";
 
-const HouseholdButton = ({ index, household, onClick }) => {
+const HouseholdButton = ({ household, onClick }) => {
     return(
         <div className="household-button" onClick={onClick}>
             <p>{household.name}</p>
