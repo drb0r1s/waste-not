@@ -13,7 +13,7 @@
     top: 100%;
     left: 0;
 
-    @import "./household-article-modal";
+    @import "./household-article-modal/main";
 }
 
 .household-create-article-modal {    
@@ -29,6 +29,14 @@
     padding-top: 100px;
 
     @import "./household-members-modal/main";
+}
+
+.household-list-modal {
+    @import "./household-list-modal/main";
+}
+
+.household-notifications-modal {
+    @import "./household-notifications-modal";
 }
 
 .household-settings-modal {

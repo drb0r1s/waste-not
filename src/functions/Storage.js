@@ -1,6 +1,6 @@
 export const Storage = {
     initialization: () => {
-        const items = ["HOUSEHOLDS", "ARTICLES"];
+        const items = ["HOUSEHOLDS", "ARTICLES", "LIST_ARTICLES"];
         
         for(let i = 0; i < items.length; i++) {
             if(localStorage.getItem(items[i])) continue;

@@ -1,6 +1,6 @@
 import React from "react";
+import HouseholdHeader from "../../../components/HouseholdHeader";
 import { useNavigate } from "react-router-dom";
-import { images } from "../../../data/images";
 import { Storage } from "../../../functions/Storage";
 
 const HouseholdSettingsModal = ({ household, disableHouseholdModal }) => {
@@ -20,15 +20,7 @@ const HouseholdSettingsModal = ({ household, disableHouseholdModal }) => {
 
     return(
         <>
-            <header>
-                <img
-                    src={images.returnIcon}
-                    alt="RETURN"
-                    onClick={disableHouseholdModal}
-                />
-
-                <h2>settings</h2>
-            </header>
+            <HouseholdHeader title="settings" returnFunction={disableHouseholdModal} />
 
             <div className="household-settings-modal-button-holder">
                 {buttons.map((button, index) => {

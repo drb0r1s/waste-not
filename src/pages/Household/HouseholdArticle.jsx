@@ -9,6 +9,8 @@ const HouseholdArticle = ({ article, onClick }) => {
         if(!article.expirationDate) return;
         setDaysLeft(ExtendedDate.getExpirationContent(article.expirationDate));
     }, []);
+
+    useEffect(() => setDaysLeft(ExtendedDate.getExpirationContent(article.expirationDate)), [article]);
     
     return(
         <div className="household-article" onClick={() => onClick(article)}>

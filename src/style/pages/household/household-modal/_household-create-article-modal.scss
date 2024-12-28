@@ -1,13 +1,7 @@
-header {
-    @include household-header;
+.household-header {
     justify-content: center;
     position: absolute;
     top: 0;
-
-    img {
-        position: absolute;
-        left: 30px;
-    }
 }
 
 .household-create-article-modal-content-holder {

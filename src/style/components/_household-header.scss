@@ -1,0 +1,28 @@
+.household-header {
+    width: 100%;
+    @include center;
+    justify-content: center;
+    padding: 10px 30px;
+    border-bottom: 3px solid $secondary;
+
+    img {
+        height: 30px;
+        width: 30px;
+        object-fit: contain;
+        position: absolute;
+        
+        &:first-child {
+            left: 30px;
+        }
+
+        &:last-child {
+            right: 30px;
+        }
+    }
+    
+    h2 {
+        color: black;
+        font-size: 40px;
+        text-transform: capitalize;
+    }
+}

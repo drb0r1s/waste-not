@@ -1,0 +1,9 @@
+.household-header {
+    justify-content: center;
+    position: absolute;
+    top: 0;
+}
+
+span {
+    @include no-span;
+}

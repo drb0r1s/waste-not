@@ -6,7 +6,10 @@
 
     @import "./household-modal/main";
     @import "./household-member-modal";
-    @import "./household-header";
+    
+    .household-main-header h2 {
+        text-transform: none;
+    }
 
     .household-tag-holder {
         width: 100%;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
-import HouseholdHeader from "./HouseholdHeader";
+import { useLocation, useNavigate } from "react-router-dom";
+import HouseholdHeader from "../../components/HouseholdHeader";
 import HouseholdMenu from "./HouseholdMenu";
 import HouseholdArticle from "./HouseholdArticle";
 import HouseholdModal from "./householdModal/Index";
@@ -10,6 +10,8 @@ import { Storage } from "../../functions/Storage";
 const Household = () => {
     const location = useLocation();
     const household = location.state;
+
+    const navigate = useNavigate();
 
     const filter = { key: "householdId", value: household.id };
 
@@ -82,6 +84,7 @@ const Household = () => {
                 activeArticle={activeArticle}
                 disableHouseholdArticleModal={disableHouseholdArticleModal}
                 enableHouseholdMemberModal={enableHouseholdMemberModal}
+                isList={false}
             /> : <></>}
 
             {isHouseholdMemberModalActive ? <HouseholdMemberModal
@@ -90,7 +93,12 @@ const Household = () => {
                 disableHouseholdMemberModal={disableHouseholdMemberModal}
             /> : <></>}
             
-            <HouseholdHeader household={household} />
+            <HouseholdHeader
+                title={household.name}
+                returnFunction={() => navigate("/")}
+                searchFunction={true}
+                className="household-main-header"
+            />
 
             <div className="household-tag-holder">
                 {tags.map((tag, index) => {

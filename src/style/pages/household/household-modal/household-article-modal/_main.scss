@@ -1,3 +1,10 @@
+@import "./household-article-modal-use-modal";
+@import "./household-article-modal-recipe-modal";
+
+#household-article-modal-modal-active {
+    left: 0;
+}
+
 .household-article-modal-return {
     height: 30px;
     width: 30px;
@@ -29,11 +36,17 @@
 
     input {
         width: 60%;
-        color: black;
+        color: $primary;
         font-size: 45px;
+        outline: none;
         background-color: white;
-        border: 1px solid black;
-        padding: 3px 5px;
+        border: 3px solid $primary;
+        padding: 3px 10px;
+        transition: 300ms;
+
+        &:focus {
+            border: 3px solid $secondary;
+        }
     }
 }
 
@@ -45,7 +58,7 @@
     top: 30%;
 
     .household-article-modal-info {
-        width: 70%;
+        width: 80%;
         @include center(column);
         align-items: flex-start;
         gap: 5px;
@@ -71,9 +84,15 @@
             input {
                 color: black;
                 font-size: 20px;
+                outline: none;
                 background-color: white;
                 border: 1px solid black;
                 padding: 3px 5px;
+                transition: 300ms;
+
+                &:focus {
+                    border: 1px solid $secondary;
+                }
             }
         }
 
@@ -93,5 +112,10 @@
 
     button {
         @include default-button;
+    }
+
+    .household-article-modal-button-disabled {
+        opacity: .5;
+        transition: 300ms;
     }
 }

@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import { images } from "../../../data/images";
+import HouseholdHeader from "../../../components/HouseholdHeader";
 import { Storage } from "../../../functions/Storage";
+import { ExtendedDate } from "../../../functions/ExtendedDate";
 
-const HouseholdCreateArticleModal = ({ household, disableHouseholdModal }) => {
+const HouseholdCreateArticleModal = ({ household, disableHouseholdModal, isList }) => {
     const [articleInputs, setArticleInputs] = useState({ name: "", icon: "", expirationDate: "" });
     const [isPerishable, setIsPerishable] = useState(true);
 
@@ -15,11 +16,19 @@ const HouseholdCreateArticleModal = ({ household, disableHouseholdModal }) => {
     }, [isPerishable]);
 
     function createArticle() {
-        if(isPerishable && !articleInputs.expirationDate) return expirationInputRef.current.style.border = "3px solid red";
+        if(isPerishable && !articleInputs.expirationDate && !isList) return expirationInputRef.current.style.border = "3px solid red";
         
         const [article] = Storage.get("ARTICLES", { key: "name", value: articleInputs.name });
 
-        if(article) Storage.update("ARTICLES", article.id, { amount: article.amount + 1 });
+        if(article && !isList) Storage.update("ARTICLES", article.id, { amount: article.amount + 1 });
+        
+        else if(isList) Storage.add("LIST_ARTICLES", {
+            householdId: household.id,
+            name: articleInputs.name,
+            icon: articleInputs.icon,
+            date: ExtendedDate.defaultFormat(),
+            isMarked: false
+        });
         
         else Storage.add("ARTICLES", {
             householdId: household.id,
@@ -34,10 +43,7 @@ const HouseholdCreateArticleModal = ({ household, disableHouseholdModal }) => {
     
     return(
         <>
-            <header>
-                <img src={images.returnIcon} alt="RETURN" onClick={disableHouseholdModal} />
-                <h2>add article</h2>
-            </header>
+            <HouseholdHeader title="add article" returnFunction={disableHouseholdModal} />
 
             <div className="household-create-article-modal-content-holder">
                 <form>
@@ -53,7 +59,7 @@ const HouseholdCreateArticleModal = ({ household, disableHouseholdModal }) => {
                             onChange={e => setArticleInputs(prevArticleInputs => { return {...prevArticleInputs, name: e.target.value} })}
                         />
 
-                        <div className="household-create-article-modal-checkbox-holder">
+                        {!isList ? <div className="household-create-article-modal-checkbox-holder">
                             <input
                                 type="checkbox"
                                 name="create-article-perishable"
@@ -63,10 +69,10 @@ const HouseholdCreateArticleModal = ({ household, disableHouseholdModal }) => {
                             />
 
                             <label htmlFor="create-article-perishable">perishable</label>
-                        </div>
+                        </div> : <></>}
                     </fieldset>
 
-                    <fieldset id={!isPerishable ? "create-article-modal-fieldset-disabled" : ""}>
+                    {!isList ? <fieldset id={!isPerishable ? "create-article-modal-fieldset-disabled" : ""}>
                         <label htmlFor="create-article-modal-expiration">expiration date</label>
                         
                         <input
@@ -76,14 +82,14 @@ const HouseholdCreateArticleModal = ({ household, disableHouseholdModal }) => {
                             ref={expirationInputRef}
                             onChange={e => setArticleInputs(prevArticleInputs => { return {...prevArticleInputs, expirationDate: e.target.value} })}
                         />
-                    </fieldset>
+                    </fieldset> : <></>}
                 </form>
 
-                <div className="button-holder">
+                {!isList ? <div className="button-holder">
                     {buttons.map((button, index) => {
                         return <button key={index}>{button}</button>;
                     })}
-                </div>
+                </div> : <></>}
             </div>
 
             <button
