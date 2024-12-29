@@ -11,24 +11,6 @@
         text-transform: none;
     }
 
-    .household-tag-holder {
-        width: 100%;
-        @include center;
-        justify-content: flex-start;
-        border-bottom: 1px solid black;
-        padding: 10px;
-        gap: 5px;
-
-        p {
-            color: black;
-            font-size: 15px;
-            background-color: lightgrey;
-            border-radius: 10px;
-            text-transform: capitalize;
-            padding: 5px 15px;
-        }
-    }
-
     .article-holder {
         height: 100%;
         width: 100vw;

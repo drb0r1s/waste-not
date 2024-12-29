@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import HouseholdArticleModalUseModal from "./HouseholdArticleModalUseModal";
-import HouseholdArticleModalRecipeModal from "./HouseholdArticleModalRecipeModal";
+import HouseholdArticleModalRecipesModal from "./householdArticleModalRecipesModal/Index";
 import { images } from "../../../../data/images";
 import { ExtendedDate } from "../../../../functions/ExtendedDate";
 import { Storage } from "../../../../functions/Storage";
@@ -120,7 +120,7 @@ const HouseholdArticleModal = ({ activeArticle, disableHouseholdArticleModal }) 
     return(
         <>
             {isModalActive === "use" ? <HouseholdArticleModalUseModal activeArticle={article} useModalRef={useModalRef} disableModal={disableModal} substractAmount={substractAmount} />
-            : isModalActive === "recipe" ? <HouseholdArticleModalRecipeModal recipesModalRef={recipesModalRef} disableModal={disableModal} /> : <></>}
+            : isModalActive === "recipe" ? <HouseholdArticleModalRecipesModal recipesModalRef={recipesModalRef} disableModal={disableModal} /> : <></>}
             
             <img
                 src={images.returnIcon}

@@ -1,0 +1,27 @@
+.household-article-modal-recipes-modal-recipe {
+    @include center;
+    gap: 20px;
+    padding: 10px 20px;
+
+    .household-article-modal-recipes-modal-recipe-image {
+        height: 100px;
+        width: 100px;
+        object-fit: contain;
+    }
+
+    .household-article-modal-recipes-modal-recipe-content-holder {
+        @include center(column);
+        align-items: flex-start;
+
+        strong {
+            color: $primary;
+            font-size: 25px;
+        }
+
+        p {
+            color: black;
+            font-size: 20px;
+            margin: 0;
+        }
+    }
+}

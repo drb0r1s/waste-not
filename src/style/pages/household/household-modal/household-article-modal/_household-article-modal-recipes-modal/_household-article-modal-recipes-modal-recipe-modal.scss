@@ -1,0 +1,83 @@
+.household-article-modal-recipes-modal-recipe-modal {
+    height: 100vh;
+    width: 100vw;
+    @include center(column);
+    justify-content: flex-start;
+    background-color: white;
+    position: fixed;
+    left: 100%;
+    transition: 300ms;
+    z-index: 1;
+
+    .household-article-modal-recipes-modal-recipe-modal-return {
+        height: 30px;
+        width: 30px;
+        object-fit: contain;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+    }
+
+    .household-article-modal-recipes-modal-recipe-modal-background {
+        height: 30%;
+        width: 100%;
+        background-image: url("../images/image-icon.png");
+        background-size: cover;
+        border-bottom: 5px solid $secondary;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .household-article-modal-recipes-modal-recipe-modal-content-holder {
+        width: 100%;
+        @include center(column);
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 10px;
+        padding: 10px 20px;
+        overflow: scroll;
+
+        h2 {
+            color: $primary;
+            font-size: 40px;
+        }
+
+        .household-rating img {
+            height: 30px;
+            width: 30px;
+        }
+
+        p {
+            color: black;
+            font-size: 20px;
+            margin: 0;
+        }
+
+        .household-article-modal-recipes-modal-recipe-modal-ingredients-holder {
+            @include center(column);
+            justify-content: flex-start;
+            padding: 10px 0;
+            
+            strong {
+                color: $secondary;
+                font-size: 30px;
+                text-transform: capitalize;
+            }
+
+            ul {
+                padding: 5px;
+                padding-left: 50px;
+
+                li {
+                    color: grey;
+                    font-size: 20px;
+                    font-style: italic;
+                }
+            }
+        }
+    }
+}
+
+#household-article-modal-recipes-modal-recipe-modal-active {
+    left: 0;   
+}

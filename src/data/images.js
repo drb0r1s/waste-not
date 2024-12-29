@@ -9,5 +9,7 @@ import bellIcon from "../images/bell-icon.png";
 import settingsIcon from "../images/settings-icon.png";
 import noAvatarIcon from "../images/no-avatar-icon.png";
 import qrCodeIcon from "../images/qr-code-icon.png";
+import starIcon from "../images/star-icon.png";
+import fullStarIcon from "../images/full-star-icon.png";
 
-export const images = { personIcon, plusIcon, xIcon, imageIcon, returnIcon, searchIcon, todoIcon, bellIcon, settingsIcon, noAvatarIcon, qrCodeIcon };
+export const images = { personIcon, plusIcon, xIcon, imageIcon, returnIcon, searchIcon, todoIcon, bellIcon, settingsIcon, noAvatarIcon, qrCodeIcon, starIcon, fullStarIcon };

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import HouseholdHeader from "../../components/HouseholdHeader";
+import HouseholdTagHolder from "../../components/HouseholdTagHolder";
 import HouseholdMenu from "./HouseholdMenu";
 import HouseholdArticle from "./HouseholdArticle";
 import HouseholdModal from "./householdModal/Index";
@@ -100,11 +101,7 @@ const Household = () => {
                 className="household-main-header"
             />
 
-            <div className="household-tag-holder">
-                {tags.map((tag, index) => {
-                    return <p key={index} className="household-tag">{tag}</p>
-                })}
-            </div>
+            <HouseholdTagHolder tags={tags} setFilter={() => {}} />
 
             <div
                 className="article-holder"

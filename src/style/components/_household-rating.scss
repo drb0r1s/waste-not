@@ -1,0 +1,11 @@
+.household-rating {
+    @include center;
+    gap: 10px;
+    padding: 10px 0;
+            
+    img {
+        height: 15px;
+        width: 15px;
+        object-fit: contain;
+    }
+}

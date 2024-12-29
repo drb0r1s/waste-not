@@ -72,6 +72,46 @@
   text-transform: capitalize;
 }
 
+.household-tag-holder {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-start;
+  border-bottom: 1px solid black;
+  padding: 10px;
+  gap: 5px;
+}
+.household-tag-holder p {
+  color: black;
+  font-size: 15px;
+  background-color: lightgrey;
+  border-radius: 10px;
+  text-transform: capitalize;
+  padding: 5px 15px;
+  transition: 300ms;
+}
+.household-tag-holder #household-tag-active {
+  background-color: #4682B4;
+  color: white;
+}
+
+.household-rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
+  padding: 10px 0;
+}
+.household-rating img {
+  height: 15px;
+  width: 15px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -439,18 +479,139 @@
   border-radius: 5px;
   padding: 10px 0;
 }
-.household .household-article-modal .household-article-modal-recipe-modal {
+.household .household-article-modal .household-article-modal-recipes-modal {
   height: 100vh;
   width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  justify-content: flex-start;
   background-color: white;
   position: absolute;
   left: 100%;
   transition: 300ms;
+  padding: 10px 0;
   z-index: 1;
+}
+.household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipe-modal {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: white;
+  position: fixed;
+  left: 100%;
+  transition: 300ms;
+  z-index: 1;
+}
+.household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipe-modal .household-article-modal-recipes-modal-recipe-modal-return {
+  height: 30px;
+  width: 30px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
+.household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipe-modal .household-article-modal-recipes-modal-recipe-modal-background {
+  height: 30%;
+  width: 100%;
+  background-image: url("../images/image-icon.png");
+  background-size: cover;
+  border-bottom: 5px solid #4682B4;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipe-modal .household-article-modal-recipes-modal-recipe-modal-content-holder {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 10px 20px;
+  overflow: scroll;
+}
+.household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipe-modal .household-article-modal-recipes-modal-recipe-modal-content-holder h2 {
+  color: #add8e6;
+  font-size: 40px;
+}
+.household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipe-modal .household-article-modal-recipes-modal-recipe-modal-content-holder .household-rating img {
+  height: 30px;
+  width: 30px;
+}
+.household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipe-modal .household-article-modal-recipes-modal-recipe-modal-content-holder p {
+  color: black;
+  font-size: 20px;
+  margin: 0;
+}
+.household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipe-modal .household-article-modal-recipes-modal-recipe-modal-content-holder .household-article-modal-recipes-modal-recipe-modal-ingredients-holder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 10px 0;
+}
+.household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipe-modal .household-article-modal-recipes-modal-recipe-modal-content-holder .household-article-modal-recipes-modal-recipe-modal-ingredients-holder strong {
+  color: #4682B4;
+  font-size: 30px;
+  text-transform: capitalize;
+}
+.household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipe-modal .household-article-modal-recipes-modal-recipe-modal-content-holder .household-article-modal-recipes-modal-recipe-modal-ingredients-holder ul {
+  padding: 5px;
+  padding-left: 50px;
+}
+.household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipe-modal .household-article-modal-recipes-modal-recipe-modal-content-holder .household-article-modal-recipes-modal-recipe-modal-ingredients-holder ul li {
+  color: grey;
+  font-size: 20px;
+  font-style: italic;
+}
+.household .household-article-modal .household-article-modal-recipes-modal #household-article-modal-recipes-modal-recipe-modal-active {
+  left: 0;
+}
+.household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipes-holder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+.household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipes-holder .household-article-modal-recipes-modal-recipe {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 20px;
+  padding: 10px 20px;
+}
+.household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipes-holder .household-article-modal-recipes-modal-recipe .household-article-modal-recipes-modal-recipe-image {
+  height: 100px;
+  width: 100px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipes-holder .household-article-modal-recipes-modal-recipe .household-article-modal-recipes-modal-recipe-content-holder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipes-holder .household-article-modal-recipes-modal-recipe .household-article-modal-recipes-modal-recipe-content-holder strong {
+  color: #add8e6;
+  font-size: 25px;
+}
+.household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipes-holder .household-article-modal-recipes-modal-recipe .household-article-modal-recipes-modal-recipe-content-holder p {
+  color: black;
+  font-size: 20px;
+  margin: 0;
 }
 .household .household-article-modal #household-article-modal-modal-active {
   left: 0;
@@ -1015,25 +1176,6 @@
 }
 .household .household-main-header h2 {
   text-transform: none;
-}
-.household .household-tag-holder {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  justify-content: flex-start;
-  border-bottom: 1px solid black;
-  padding: 10px;
-  gap: 5px;
-}
-.household .household-tag-holder p {
-  color: black;
-  font-size: 15px;
-  background-color: lightgrey;
-  border-radius: 10px;
-  text-transform: capitalize;
-  padding: 5px 15px;
 }
 .household .article-holder {
   height: 100%;
