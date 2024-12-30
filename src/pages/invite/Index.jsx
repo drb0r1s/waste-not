@@ -11,7 +11,7 @@ const Invite = () => {
     const navigate = useNavigate();
 
     const location = useLocation();
-    const household = location.state;
+    const household = location.state.household;
 
     useEffect(() => setCode(getInviteCode()), []);
 
@@ -28,7 +28,7 @@ const Invite = () => {
                 src={images.returnIcon}
                 alt="RETURN"
                 className="return"
-                onClick={() => navigate("/household", { state: household })}
+                onClick={() => navigate(`/${location.state.returnHome ? "" : "household"}`, { state: location.state.returnHome ? {} : { household } })}
             />
             
             <h2>invite people</h2>

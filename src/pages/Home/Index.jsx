@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import HouseholdButton from "./HouseholdButton";
 import HomeModal from "./HomeModal";
 import HouseholdModal from "./HouseholdModal";
+import NewHouseholdModal from "./NewHouseholdModal";
 import PlusButton from "../../components/PlusButton";
 import { Storage } from "../../functions/Storage";
 
@@ -11,9 +12,14 @@ const Home = () => {
     const [isHomeModalActive, setIsHomeModalActive] = useState(false);
     const [householdModals, setHouseholdModals] = useState({ create: false, join: false, scan: false });
     const [createHouseholdInput, setCreateHouseholdInput] = useState("");
+    const [joinHouseholdInput, setJoinHouseholdInput] = useState("");
+    const [isNewHouseholdModalActive, setIsNewHouseholdModalActive] = useState(false);
+    const [isHouseholdModalLoading, setIsHouseholdModalLoading] = useState(false);
 
     const homeModalRef = useRef(null);
     const householdModalRef = useRef(null);
+    const newHouseholdModalRef = useRef(null);
+    const joinHouseholdInputRef = useRef(null);
 
     const navigate = useNavigate();
 
@@ -26,6 +32,10 @@ const Home = () => {
             homeModalRef.current.id = "home-modal-active";
         }, 1);
     }, [isHomeModalActive]);
+
+    useEffect(() => {
+        if(isNewHouseholdModalActive) setTimeout(() => { newHouseholdModalRef.current.id = "new-household-modal-active" }, 10);
+    }, [isNewHouseholdModalActive]);
 
     function disableHomeModal() {
         homeModalRef.current.id = "";
@@ -43,11 +53,16 @@ const Home = () => {
         householdModalRef.current.id = "";
         setTimeout(() => { setHouseholdModals(prevHouseholdModals => { return {...prevHouseholdModals, [key]: false} }) }, 300);
     }
+
+    function disableNewHouseholdModal() {
+        newHouseholdModalRef.current.id = "";
+        setTimeout(() => setIsNewHouseholdModalActive(false), 300);
+    }
     
     function createButtonClicked(key) {
         switch(key) {
             case "invite":
-
+                navigate("/invite", { state: { household: {}, returnHome: true } });
                 break;
             case "done":
                 const householdNextId = parseInt(localStorage.getItem("HOUSEHOLDS_NEXT_ID"));
@@ -56,7 +71,7 @@ const Home = () => {
                 const household = {
                     name: householdName,
                     icon: "",
-                    members: 1
+                    members: [Storage.get("PROFILE")]
                 };
 
                 Storage.add("HOUSEHOLDS", household);
@@ -70,11 +85,41 @@ const Home = () => {
     }
 
     function joinButtonClicked() {
+        const code = joinHouseholdInput;
+        
+        setJoinHouseholdInput("");
+        setIsHouseholdModalLoading(true);
 
+        const loadingTime = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+
+        setTimeout(() => {
+            setIsHouseholdModalLoading(false);
+            
+            setTimeout(() => {
+                if(code[0].toLowerCase() !== "a") return joinHouseholdInputRef.current.style.border = "3px solid red";
+                setIsNewHouseholdModalActive(true);
+            }, 1);
+        }, loadingTime * 1000);
+    }
+
+    function scanButtonClicked() {
+        setIsHouseholdModalLoading(true);
+
+        const loadingTime = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+
+        setTimeout(() => {
+            setIsHouseholdModalLoading(false);
+            setTimeout(() => setIsNewHouseholdModalActive(true), 1);
+        }, loadingTime * 1000);
     }
 
     return(
         <div className="home">
+            {isNewHouseholdModalActive ? <NewHouseholdModal
+                newHouseholdModalRef={newHouseholdModalRef}
+                disableNewHouseholdModal={disableNewHouseholdModal}
+            /> : <></>}
+            
             <h1 className="floating-title">WasteNot</h1>
 
             <div className="household-holder">
@@ -83,7 +128,7 @@ const Home = () => {
                         key={index}
                         index={index}
                         household={household}
-                        onClick={() => navigate("/household", { state: household })}
+                        onClick={() => navigate("/household", { state: { household: household } })}
                     />;
                 })}
             </div>
@@ -97,8 +142,8 @@ const Home = () => {
             /> : <></>}
 
             {householdModals.create ? <HouseholdModal type="create" householdModalRef={householdModalRef} disableHouseholdModal={disableHouseholdModal} createButtonClicked={createButtonClicked} createHouseholdInput={createHouseholdInput} setCreateHouseholdInput={setCreateHouseholdInput} />
-            : householdModals.join ? <HouseholdModal type="join" householdModalRef={householdModalRef} disableHouseholdModal={disableHouseholdModal} joinButtonClicked={joinButtonClicked} />
-            : householdModals.scan ? <HouseholdModal type="scan" householdModalRef={householdModalRef} disableHouseholdModal={disableHouseholdModal} /> : <></>}
+            : householdModals.join ? <HouseholdModal type="join" householdModalRef={householdModalRef} disableHouseholdModal={disableHouseholdModal} joinButtonClicked={joinButtonClicked} joinHouseholdInput={joinHouseholdInput} setJoinHouseholdInput={setJoinHouseholdInput} joinHouseholdInputRef={joinHouseholdInputRef} isHouseholdModalLoading={isHouseholdModalLoading} />
+            : householdModals.scan ? <HouseholdModal type="scan" householdModalRef={householdModalRef} disableHouseholdModal={disableHouseholdModal} scanButtonClicked={scanButtonClicked} isHouseholdModalLoading={isHouseholdModalLoading} /> : <></>}
         </div>
     );
 }

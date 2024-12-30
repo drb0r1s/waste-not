@@ -1,3 +1,5 @@
+@import "./household-create-article-modal-scan";
+
 .household-header {
     justify-content: center;
     position: absolute;
@@ -10,18 +12,18 @@
     @include center(column);
     justify-content: flex-start;
     gap: 100px;
-    margin-top: 150px;
+    margin-top: 100px;
     
     form {
         width: 100%;
         @include center(column);
-        gap: 20px;
+        gap: 5px;
     
         fieldset {
             width: 80%;
             @include center(column);
             align-items: flex-start;
-            gap: 10px;
+            gap: 5px;
             border: none;
             position: relative;
             top: 0;
@@ -33,7 +35,7 @@
                 text-transform: capitalize;
             }
     
-            input {
+            input, select {
                 width: 100%;
                 color: black;
                 font-size: 20px;
@@ -52,6 +54,10 @@
                 }
             }
 
+            select {
+                text-transform: capitalize
+            }
+
             .household-create-article-modal-checkbox-holder {
                 @include center;
                 gap: 5px;
@@ -67,7 +73,7 @@
     .button-holder {
         width: 100%;
         @include center(column);
-        gap: 15px;
+        gap: 10px;
     
         button {
             @include default-button;
@@ -78,5 +84,5 @@
 .household-create-article-modal-button {
     @include default-button;
     position: absolute;
-    top: 80%;
+    top: 90%;
 }

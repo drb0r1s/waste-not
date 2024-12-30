@@ -4,6 +4,7 @@ import HouseholdArticleModalRecipesModal from "./householdArticleModalRecipesMod
 import { images } from "../../../../data/images";
 import { ExtendedDate } from "../../../../functions/ExtendedDate";
 import { Storage } from "../../../../functions/Storage";
+import { cutText } from "../../../../functions/cutText";
 
 const HouseholdArticleModal = ({ activeArticle, disableHouseholdArticleModal }) => {
     const [article, setArticle] = useState(activeArticle);
@@ -60,8 +61,9 @@ const HouseholdArticleModal = ({ activeArticle, disableHouseholdArticleModal }) 
                     name: article.name,
                     icon: article.icon,
                     date: ExtendedDate.defaultFormat(),
-                    isMarked: false
-                });    
+                    isMarked: false,
+                    addedBy: Storage.get("PROFILE")
+                });
 
                 break;
             case "remove":
@@ -136,7 +138,7 @@ const HouseholdArticleModal = ({ activeArticle, disableHouseholdArticleModal }) 
                     placeholder={article.name}
                     value={editInputs.name}
                     onChange={e => setEditInputs(prevEditInputs => { return {...prevEditInputs, name: e.target.value} })}
-                /> : <h2>{article.name}</h2>}
+                /> : <h2>{cutText(article.name, 20)}</h2>}
             </div>
 
             <div className="household-article-modal-info-holder">

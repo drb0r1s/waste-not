@@ -3,9 +3,9 @@ import { images } from "../../../../data/images";
 
 const HouseholdMembersModalMember = ({ member, enableHouseholdMemberModal }) => {
     return(
-        <div className="household-members-modal-member" onClick={enableHouseholdMemberModal}>
+        <div className="household-members-modal-member" onClick={() => enableHouseholdMemberModal(member)}>
             <img src={images.noAvatarIcon} alt="AVATAR" />
-            <p>You</p>
+            <p>{member.name}</p>
         </div>
     );
 }

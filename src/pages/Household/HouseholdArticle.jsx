@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { images } from "../../data/images";
 import { ExtendedDate } from "../../functions/ExtendedDate";
+import { cutText } from "../../functions/cutText";
 
 const HouseholdArticle = ({ article, onClick }) => {
     const [daysLeft, setDaysLeft] = useState("");
@@ -17,7 +18,7 @@ const HouseholdArticle = ({ article, onClick }) => {
             <img src={images.imageIcon} alt="ARTICLE" />
 
             <div className="household-article-content">
-                <strong>{article.name}</strong>
+                <strong>{cutText(article.name, 15)}</strong>
                 {article.expirationDate ? <p style={ExtendedDate.getDayDifference(article.expirationDate) < 0 ? { color: "red" } : {}}>{daysLeft}</p> : <></>}
             </div>
         </div>

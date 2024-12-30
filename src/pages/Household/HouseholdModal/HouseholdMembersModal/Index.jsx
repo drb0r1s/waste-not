@@ -15,10 +15,16 @@ const HouseholdMembersModal = ({ household, disableHouseholdModal, enableHouseho
                 onClick={disableHouseholdModal}
             />
         
-            <button onClick={() => navigate("/invite", { state: household })}>invite people</button>
+            <button onClick={() => navigate("/invite", { state: { household: household, returnHome: false } })}>invite people</button>
 
             <div className="member-holder">
-                <HouseholdMembersModalMember enableHouseholdMemberModal={enableHouseholdMemberModal} />
+                {household.members.map((member, index) => {
+                    return <HouseholdMembersModalMember
+                        key={index}
+                        member={member}
+                        enableHouseholdMemberModal={enableHouseholdMemberModal}
+                    />;
+                })}
             </div>
         </>
     );

@@ -10,14 +10,15 @@ import { Storage } from "../../functions/Storage";
 
 const Household = () => {
     const location = useLocation();
-    const household = location.state;
+    const household = location.state.household;
 
     const navigate = useNavigate();
 
-    const filter = { key: "householdId", value: household.id };
+    const storageFilter = { key: "householdId", value: household.id };
 
-    const [articles, setArticles] = useState(Storage.get("ARTICLES", filter));
-
+    const [articles, setArticles] = useState(Storage.get("ARTICLES", storageFilter));
+    const [filteredArticles, setFilteredArticles] = useState(articles);
+    const [filter, setFilter] = useState("");
     const [isHouseholdModalActive, setIsHouseholdModalActive] = useState(false);
     const [isHouseholdMemberModalActive, setIsHouseholdMemberModalActive] = useState(false);
     const [activeArticle, setActiveArticle] = useState(false);
@@ -29,13 +30,15 @@ const Household = () => {
     const tags = ["fridge", "freezer", "pantry"];
 
     useEffect(() => {
-        setArticles(Storage.get("ARTICLES", filter));
+        setArticles(Storage.get("ARTICLES", storageFilter));
 
         if(activeArticle) {
             const newActiveArticle = Storage.get("ARTICLES", { key: "id", value: activeArticle.id });
             setActiveArticle(newActiveArticle);
         }
     }, [localStorage.getItem("ARTICLES")]);
+
+    useEffect(updateFilter, [filter, articles]);
 
     function enableHouseholdModal(type) {
         setIsHouseholdModalActive(type);
@@ -57,8 +60,8 @@ const Household = () => {
         setTimeout(() => setActiveArticle(false), 300);
     }
 
-    function enableHouseholdMemberModal() {
-        setIsHouseholdMemberModalActive(true);
+    function enableHouseholdMemberModal(member) {
+        setIsHouseholdMemberModalActive(member);
         
         setTimeout(() => {
             householdMemberModalHolderRef.current.id = "household-member-modal-holder-active";
@@ -73,6 +76,19 @@ const Household = () => {
         householdMemberModalRef.current.id = "";
         
         setTimeout(() => setIsHouseholdMemberModalActive(false), 300);
+    }
+
+    function updateFilter() {
+        if(!filter && articles.length !== filteredArticles.length && articles.length) return setFilteredArticles(articles);
+        else if(!filter || !articles.length) return;
+
+        const newArticles = [];
+
+        for(let i = 0; i < articles.length; i++) {
+            if(articles[i].tag === filter) newArticles.push(articles[i]);
+        }
+
+        setFilteredArticles(newArticles);
     }
     
     return(
@@ -89,6 +105,7 @@ const Household = () => {
             /> : <></>}
 
             {isHouseholdMemberModalActive ? <HouseholdMemberModal
+                activeMember={isHouseholdMemberModalActive}
                 householdMemberModalHolderRef={householdMemberModalHolderRef}
                 householdMemberModalRef={householdMemberModalRef}
                 disableHouseholdMemberModal={disableHouseholdMemberModal}
@@ -101,13 +118,13 @@ const Household = () => {
                 className="household-main-header"
             />
 
-            <HouseholdTagHolder tags={tags} setFilter={() => {}} />
+            <HouseholdTagHolder tags={tags} setFilter={setFilter} />
 
             <div
                 className="article-holder"
-                style={!articles.length ? { alignItems: "center", justifyContent: "center" } : {}}
+                style={!filteredArticles.length ? { alignItems: "center", justifyContent: "center" } : {}}
             >
-                {!articles.length ? <span>There are no articles.</span> : articles.map((article, index) => {
+                {!filteredArticles.length ? <span>There are no articles.</span> : filteredArticles.map((article, index) => {
                     return <HouseholdArticle
                         key={index}
                         article={article}

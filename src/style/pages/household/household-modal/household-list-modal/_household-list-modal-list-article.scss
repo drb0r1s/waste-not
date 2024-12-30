@@ -35,6 +35,7 @@
     }
 
     .household-list-modal-list-article-user-holder {
+        width: 30%;
         @include center(column);
         
         img {
@@ -46,6 +47,7 @@
         p {
             color: black;
             font-size: 20px;
+            text-align: center;
             margin: 0;
         }
     }

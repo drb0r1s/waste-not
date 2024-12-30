@@ -1,19 +1,34 @@
 import React, { useState, useEffect, useRef } from "react";
-import HouseholdHeader from "../../../components/HouseholdHeader";
-import { Storage } from "../../../functions/Storage";
-import { ExtendedDate } from "../../../functions/ExtendedDate";
+import HouseholdHeader from "../../../../components/HouseholdHeader";
+import HouseholdCreateArticleModalScan from "./HouseholdCreateArticleModalScan";
+import { Storage } from "../../../../functions/Storage";
+import { ExtendedDate } from "../../../../functions/ExtendedDate";
 
 const HouseholdCreateArticleModal = ({ household, disableHouseholdModal, isList }) => {
-    const [articleInputs, setArticleInputs] = useState({ name: "", icon: "", expirationDate: "" });
+    const [articleInputs, setArticleInputs] = useState({ name: "", icon: "", expirationDate: "", tag: "fridge" });
     const [isPerishable, setIsPerishable] = useState(true);
+    const [isScanModalActive, setIsScanModalActive] = useState(false);
 
     const expirationInputRef = useRef(null);
+    const scanModalRef = useRef(null);
     
     const buttons = ["scan barcode", "scan expiration date"];
 
     useEffect(() => {
         if(!isPerishable && articleInputs.expirationDate) setArticleInputs(prevArticleInputs => { return {...prevArticleInputs, expirationDate: ""} });
     }, [isPerishable]);
+
+    function buttonClicked(key) {
+        switch(key) {
+            case "barcode":
+                enableScanModal(key);
+                break;
+            case "expiration":
+                enableScanModal(key);
+                break;
+            default:
+        }
+    }
 
     function createArticle() {
         if(isPerishable && !articleInputs.expirationDate && !isList) return expirationInputRef.current.style.border = "3px solid red";
@@ -27,7 +42,8 @@ const HouseholdCreateArticleModal = ({ household, disableHouseholdModal, isList 
             name: articleInputs.name,
             icon: articleInputs.icon,
             date: ExtendedDate.defaultFormat(),
-            isMarked: false
+            isMarked: false,
+            addedBy: Storage.get("PROFILE")
         });
         
         else Storage.add("ARTICLES", {
@@ -37,12 +53,30 @@ const HouseholdCreateArticleModal = ({ household, disableHouseholdModal, isList 
             lastUsed: null
         });
         
-        setArticleInputs({ name: "", icon: "", expirationDate: "" });
+        setArticleInputs({ name: "", icon: "", expirationDate: "", tag: "fridge" });
         disableHouseholdModal();
+    }
+
+    function enableScanModal(key) {
+        setIsScanModalActive(key);
+        setTimeout(() => { scanModalRef.current.id = "household-create-artical-modal-scan-active" }, 1);
+    }
+
+    function disableScanModal() {
+        scanModalRef.current.id = "";
+        setTimeout(() => setIsScanModalActive(false), 300);
     }
     
     return(
         <>
+            {isScanModalActive ? <HouseholdCreateArticleModalScan
+                scanModalRef={scanModalRef}
+                isScanModalActive={isScanModalActive}
+                disableScanModal={disableScanModal}
+                disableHouseholdModal={disableHouseholdModal}
+                household={household}
+            /> : <></>}
+            
             <HouseholdHeader title="add article" returnFunction={disableHouseholdModal} />
 
             <div className="household-create-article-modal-content-holder">
@@ -72,6 +106,21 @@ const HouseholdCreateArticleModal = ({ household, disableHouseholdModal, isList 
                         </div> : <></>}
                     </fieldset>
 
+                    {!isList ? <fieldset>
+                        <label htmlFor="create-article-modal-storage">store in</label>
+
+                        <select
+                            name="create-article-modal-storage"
+                            id="create-article-modal-storage"
+                            value={articleInputs.tag}
+                            onChange={e => setArticleInputs(prevArticleInputs => { return {...prevArticleInputs, tag: e.target.value} })}
+                        >
+                            <option value="fridge">fridge</option>
+                            <option value="freezer">freezer</option>
+                            <option value="pantry">pantry</option>
+                        </select>
+                    </fieldset> : <></>}
+
                     {!isList ? <fieldset id={!isPerishable ? "create-article-modal-fieldset-disabled" : ""}>
                         <label htmlFor="create-article-modal-expiration">expiration date</label>
                         
@@ -87,7 +136,10 @@ const HouseholdCreateArticleModal = ({ household, disableHouseholdModal, isList 
 
                 {!isList ? <div className="button-holder">
                     {buttons.map((button, index) => {
-                        return <button key={index}>{button}</button>;
+                        return <button
+                            key={index}
+                            onClick={() => buttonClicked(button.split(" ")[1])}
+                        >{button}</button>;
                     })}
                 </div> : <></>}
             </div>

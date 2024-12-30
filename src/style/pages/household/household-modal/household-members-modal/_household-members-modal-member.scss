@@ -1,16 +1,18 @@
 .household-members-modal-member {
+    width: 100%;
     @include center;
+    justify-content: flex-start;
     gap: 20px;
 
     img {
-        height: 60px;
-        width: 60px;
+        height: 40px;
+        width: 40px;
         object-fit: contain;
     }
 
     p {
         color: black;
-        font-size: 40px;
+        font-size: 30px;
         text-transform: capitalize;
         margin: 0;
     }

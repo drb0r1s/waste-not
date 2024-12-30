@@ -4,8 +4,8 @@ export const ExtendedDate = {
         return `${day}.${month}.${year}.`;
     },
 
-    defaultFormat: () => {
-        const currentDate = new Date();
+    defaultFormat: date => {
+        const currentDate = date ? date : new Date();
 
         const year = currentDate.getFullYear();
         const month = String(currentDate.getMonth() + 1).padStart(2, '0');
@@ -46,5 +46,13 @@ export const ExtendedDate = {
         else if(dayDifference < -1) content = `${Math.abs(dayDifference)} days ago`;
     
         return content;
+    },
+
+    getRandom: (start, end) => {
+        const startDate = new Date(start).getTime();
+        const endDate = new Date(end).getTime();
+
+        const randomTime = Math.floor(Math.random() * (endDate - startDate + 1)) + startDate;
+        return ExtendedDate.defaultFormat(new Date(randomTime));
     }
 }

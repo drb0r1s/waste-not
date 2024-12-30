@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import Loading from "../../../../../components/Loading";
 import HouseholdHeader from "../../../../../components/HouseholdHeader";
 import HouseholdTagHolder from "../../../../../components/HouseholdTagHolder";
 import HouseholdArticleModalRecipesModalRecipe from "./HouseholdArticleModalRecipesModalRecipe";
@@ -6,6 +7,7 @@ import HouseholdArticleModalRecipesModalRecipeModal from "./HouseholdArticleModa
 import { recipes } from "../../../../../data/recipes";
 
 const HouseholdArticleModalRecipesModal = ({ recipesModalRef, disableModal }) => {
+    const [isLoading, setIsLoading] = useState(true);
     const [chosenRecipes, setChosenRecipes] = useState([]);
     const [filteredRecipes, setFilteredRecipes] = useState([]);
     const [filter, setFilter] = useState("");
@@ -16,10 +18,15 @@ const HouseholdArticleModalRecipesModal = ({ recipesModalRef, disableModal }) =>
 
     const tags = ["main dish", "dessert", "appetizer", "snack"];
 
-    useEffect(getRandomRecipes, []);
+    useEffect(() => {
+        getRandomRecipes();
+
+        const loadingTime = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+        setTimeout(() => setIsLoading(false), loadingTime * 1000);
+    }, []);
 
     useEffect(() => {
-        if(!filter && chosenRecipes.length != filteredRecipes.length && chosenRecipes.length) return setFilteredRecipes(chosenRecipes);
+        if(!filter && chosenRecipes.length !== filteredRecipes.length && chosenRecipes.length) return setFilteredRecipes(chosenRecipes);
         else if(!chosenRecipes.length) return;
 
         const newRecipes = [];
@@ -78,32 +85,39 @@ const HouseholdArticleModalRecipesModal = ({ recipesModalRef, disableModal }) =>
     }
     
     return(
-        <div className="household-article-modal-recipes-modal" ref={recipesModalRef}>
-            {activeRecipe ? <HouseholdArticleModalRecipesModalRecipeModal
-                activeRecipe={activeRecipe}
-                activeRating={activeRating}
-                recipeModalRef={recipeModalRef}
-                disableRecipeModal={disableRecipeModal}
-            /> : <></>}
+        <>
+            {isLoading ? <div
+                className="household-article-modal-recipes-modal household-article-modal-recipes-modal-loading"
+                ref={recipesModalRef}
+            >
+                <Loading />
+            </div> : <div className="household-article-modal-recipes-modal" ref={recipesModalRef}>
+                {activeRecipe ? <HouseholdArticleModalRecipesModalRecipeModal
+                    activeRecipe={activeRecipe}
+                    activeRating={activeRating}
+                    recipeModalRef={recipeModalRef}
+                    disableRecipeModal={disableRecipeModal}
+                /> : <></>}
             
-            <HouseholdHeader
-                title="recipes"
-                returnFunction={disableModal}
-                searchFunction={true}
-            />
+                <HouseholdHeader
+                    title="recipes"
+                    returnFunction={disableModal}
+                    searchFunction={true}
+                />
 
-            <HouseholdTagHolder tags={tags} setFilter={setFilter} />
+                <HouseholdTagHolder tags={tags} setFilter={setFilter} />
 
-            <div className="household-article-modal-recipes-modal-recipes-holder">
-                {filteredRecipes.map((recipe, index) => {
-                    return <HouseholdArticleModalRecipesModalRecipe
-                        key={index}
-                        recipe={recipe}
-                        onClick={enableRecipeModal}
-                    />;
-                })}
-            </div>
-        </div>
+                <div className="household-article-modal-recipes-modal-recipes-holder">
+                    {filteredRecipes.map((recipe, index) => {
+                        return <HouseholdArticleModalRecipesModalRecipe
+                            key={index}
+                            recipe={recipe}
+                            onClick={enableRecipeModal}
+                        />;
+                    })}
+                </div>
+            </div>}
+        </>
     );
 }
 

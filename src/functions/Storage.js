@@ -1,13 +1,32 @@
+import { users } from "../data/users";
+
 export const Storage = {
     initialization: () => {
-        const items = ["HOUSEHOLDS", "ARTICLES", "LIST_ARTICLES"];
+        const items = ["HOUSEHOLDS", "ARTICLES", "LIST_ARTICLES", "USERS"];
         
         for(let i = 0; i < items.length; i++) {
             if(localStorage.getItem(items[i])) continue;
 
             localStorage.setItem(items[i], JSON.stringify([]));
-            localStorage.setItem(`${items[i]}_NEXT_ID`, 0);
+            
+            if(items[i] !== "USERS") localStorage.setItem(`${items[i]}_NEXT_ID`, 0);
+            else Storage.loadUsers();
         }
+
+        Storage.initializeProfile();
+    },
+
+    initializeProfile: () => {
+        if(!localStorage.getItem("PROFILE")) return;
+        
+        const profile = {
+            name: "You",
+            nickname: "",
+            icon: "",
+            isOwner: true
+        };
+
+        localStorage.setItem("PROFILE", JSON.stringify(profile));
     },
     
     add: (key, value) => {
@@ -69,5 +88,33 @@ export const Storage = {
         }
 
         localStorage.setItem(key, JSON.stringify(newItem));
+    },
+
+    selectRandom: (key, bounds) => {
+        const item = JSON.parse(localStorage.getItem(key));
+        const selected = [];
+
+        const [min, max] = bounds;
+        const amount = Math.floor(Math.random() * (max - min + 1)) + min;
+
+        for(let i = 0; i < amount; i++) selected.push(select());
+
+        function select() {
+            const selection = item[Math.floor(Math.random() * item.length)];
+            let exists = false;
+
+            for(let i = 0; i < selected.length; i++) {
+                if(selected[i].name === selection.name) exists = true;
+            }
+
+            if(exists) return select();
+            return selection;
+        }
+
+        return selected;
+    },
+
+    loadUsers: () => {
+        localStorage.setItem("USERS", JSON.stringify(users));
     }
 }

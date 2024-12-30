@@ -112,6 +112,30 @@
      object-fit: contain;
 }
 
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.loading .loading-element {
+  height: 100px;
+  width: 100px;
+  border: 10px solid transparent;
+  border-top: 10px solid #4682B4;
+  border-radius: 50%;
+  transform: rotate(0);
+  animation: rotation 3s linear infinite;
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -248,7 +272,8 @@
   transition: 300ms;
 }
 .home .household-modal .household-modal-create,
-.home .household-modal .household-modal-join {
+.home .household-modal .household-modal-join,
+.home .household-modal .household-modal-scan {
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -259,7 +284,8 @@
   position: relative;
 }
 .home .household-modal .household-modal-create .modal-x,
-.home .household-modal .household-modal-join .modal-x {
+.home .household-modal .household-modal-join .modal-x,
+.home .household-modal .household-modal-scan .modal-x {
   height: 30px;
   width: 30px;
   position: absolute;
@@ -267,7 +293,8 @@
   right: 30px;
 }
 .home .household-modal .household-modal-create h2,
-.home .household-modal .household-modal-join h2 {
+.home .household-modal .household-modal-join h2,
+.home .household-modal .household-modal-scan h2 {
   color: black;
   font-size: 50px;
   text-transform: capitalize;
@@ -276,7 +303,8 @@
   font-weight: normal;
 }
 .home .household-modal .household-modal-create fieldset,
-.home .household-modal .household-modal-join fieldset {
+.home .household-modal .household-modal-join fieldset,
+.home .household-modal .household-modal-scan fieldset {
   width: 80%;
   display: flex;
   align-items: center;
@@ -288,13 +316,15 @@
   margin-top: 50px;
 }
 .home .household-modal .household-modal-create fieldset label,
-.home .household-modal .household-modal-join fieldset label {
+.home .household-modal .household-modal-join fieldset label,
+.home .household-modal .household-modal-scan fieldset label {
   color: #4682B4;
   font-size: 15px;
   text-transform: capitalize;
 }
 .home .household-modal .household-modal-create fieldset input,
-.home .household-modal .household-modal-join fieldset input {
+.home .household-modal .household-modal-join fieldset input,
+.home .household-modal .household-modal-scan fieldset input {
   width: 100%;
   color: black;
   font-size: 20px;
@@ -304,18 +334,27 @@
   transition: 300ms;
 }
 .home .household-modal .household-modal-create fieldset input:focus,
-.home .household-modal .household-modal-join fieldset input:focus {
+.home .household-modal .household-modal-join fieldset input:focus,
+.home .household-modal .household-modal-scan fieldset input:focus {
   border: 3px solid #4682B4;
 }
-.home .household-modal .household-modal-create fieldset input::-moz-placeholder, .home .household-modal .household-modal-join fieldset input::-moz-placeholder {
+.home .household-modal .household-modal-create fieldset input::-moz-placeholder, .home .household-modal .household-modal-join fieldset input::-moz-placeholder, .home .household-modal .household-modal-scan fieldset input::-moz-placeholder {
   color: gray;
 }
 .home .household-modal .household-modal-create fieldset input::placeholder,
-.home .household-modal .household-modal-join fieldset input::placeholder {
+.home .household-modal .household-modal-join fieldset input::placeholder,
+.home .household-modal .household-modal-scan fieldset input::placeholder {
   color: gray;
 }
+.home .household-modal .household-modal-create video,
+.home .household-modal .household-modal-join video,
+.home .household-modal .household-modal-scan video {
+  width: 90%;
+  border: 3px solid #4682B4;
+}
 .home .household-modal .household-modal-create .household-modal-create-icon-button,
-.home .household-modal .household-modal-join .household-modal-create-icon-button {
+.home .household-modal .household-modal-join .household-modal-create-icon-button,
+.home .household-modal .household-modal-scan .household-modal-create-icon-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -325,20 +364,23 @@
   border: none;
 }
 .home .household-modal .household-modal-create .household-modal-create-icon-button img,
-.home .household-modal .household-modal-join .household-modal-create-icon-button img {
+.home .household-modal .household-modal-join .household-modal-create-icon-button img,
+.home .household-modal .household-modal-scan .household-modal-create-icon-button img {
   height: 100px;
   width: 100px;
   -o-object-fit: contain;
      object-fit: contain;
 }
 .home .household-modal .household-modal-create .household-modal-create-icon-button span,
-.home .household-modal .household-modal-join .household-modal-create-icon-button span {
+.home .household-modal .household-modal-join .household-modal-create-icon-button span,
+.home .household-modal .household-modal-scan .household-modal-create-icon-button span {
   color: #4682B4;
   font-size: 15px;
   text-transform: capitalize;
 }
 .home .household-modal .household-modal-create .button-holder,
-.home .household-modal .household-modal-join .button-holder {
+.home .household-modal .household-modal-join .button-holder,
+.home .household-modal .household-modal-scan .button-holder {
   width: 100%;
   display: flex;
   align-items: center;
@@ -349,7 +391,8 @@
   top: 85%;
 }
 .home .household-modal .household-modal-create .button-holder button,
-.home .household-modal .household-modal-join .button-holder button {
+.home .household-modal .household-modal-join .button-holder button,
+.home .household-modal .household-modal-scan .button-holder button {
   width: 70%;
   color: black;
   font-size: 15px;
@@ -361,6 +404,100 @@
 }
 .home #household-modal-active {
   left: 0;
+}
+.home .new-household-modal {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: white;
+  border-top: 5px solid #add8e6;
+  position: absolute;
+  top: 100%;
+  padding: 30px 0;
+  transition: 300ms;
+  z-index: 1;
+}
+.home .new-household-modal .new-household-modal-return {
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
+.home .new-household-modal .new-household-modal-title-holder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  position: absolute;
+  top: 20%;
+  padding: 0 30px;
+}
+.home .new-household-modal .new-household-modal-title-holder h2 {
+  color: #add8e6;
+  font-size: 45px;
+  text-align: center;
+}
+.home .new-household-modal .new-household-modal-title-holder button {
+  width: 70%;
+  color: black;
+  font-size: 15px;
+  text-transform: capitalize;
+  background: transparent;
+  border: 2px solid #add8e6;
+  border-radius: 5px;
+  padding: 10px 0;
+  font-size: 20px;
+}
+.home .new-household-modal .new-household-modal-member-holder {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 20px;
+  border-top: 3px solid #4682B4;
+  padding: 40px 0;
+  position: absolute;
+  bottom: 0;
+  overflow: scroll;
+}
+.home .new-household-modal .new-household-modal-member-holder .new-household-modal-member {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 20px;
+}
+.home .new-household-modal .new-household-modal-member-holder .new-household-modal-member img {
+  height: 60px;
+  width: 60px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.home .new-household-modal .new-household-modal-member-holder .new-household-modal-member .new-household-modal-member-star {
+  height: 30px;
+  width: 30px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  position: absolute;
+  left: 15px;
+}
+.home .new-household-modal .new-household-modal-member-holder .new-household-modal-member p {
+  color: black;
+  font-size: 30px;
+  margin: 0;
+}
+.home #new-household-modal-active {
+  top: 0;
 }
 
 .household {
@@ -613,6 +750,9 @@
   font-size: 20px;
   margin: 0;
 }
+.household .household-article-modal .household-article-modal-recipes-modal-loading {
+  justify-content: center;
+}
 .household .household-article-modal #household-article-modal-modal-active {
   left: 0;
 }
@@ -645,6 +785,7 @@
   width: 60%;
   color: #add8e6;
   font-size: 45px;
+  word-wrap: break-word;
 }
 .household .household-article-modal .household-article-modal-title-holder input {
   width: 60%;
@@ -737,6 +878,54 @@
   opacity: 0.5;
   transition: 300ms;
 }
+.household .household-create-article-modal .household-create-article-modal-scan {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: white;
+  position: absolute;
+  left: 100%;
+  transition: 300ms;
+  z-index: 1;
+}
+.household .household-create-article-modal .household-create-article-modal-scan img {
+  height: 30px;
+  width: 30px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
+.household .household-create-article-modal .household-create-article-modal-scan h2 {
+  color: black;
+  font-size: 50px;
+  text-transform: capitalize;
+  position: absolute;
+  top: 10%;
+  font-size: 50px;
+}
+.household .household-create-article-modal .household-create-article-modal-scan video {
+  width: 90%;
+}
+.household .household-create-article-modal .household-create-article-modal-scan button {
+  width: 70%;
+  color: black;
+  font-size: 15px;
+  text-transform: capitalize;
+  background: transparent;
+  border: 2px solid #add8e6;
+  border-radius: 5px;
+  padding: 10px 0;
+  position: absolute;
+  top: 80%;
+}
+.household .household-create-article-modal #household-create-artical-modal-scan-active {
+  left: 0;
+}
 .household .household-create-article-modal .household-header {
   justify-content: center;
   position: absolute;
@@ -751,7 +940,7 @@
   flex-direction: column;
   justify-content: flex-start;
   gap: 100px;
-  margin-top: 150px;
+  margin-top: 100px;
 }
 .household .household-create-article-modal .household-create-article-modal-content-holder form {
   width: 100%;
@@ -759,7 +948,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 20px;
+  gap: 5px;
 }
 .household .household-create-article-modal .household-create-article-modal-content-holder form fieldset {
   width: 80%;
@@ -768,7 +957,7 @@
   justify-content: center;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+  gap: 5px;
   border: none;
   position: relative;
   top: 0;
@@ -779,7 +968,7 @@
   font-size: 15px;
   text-transform: capitalize;
 }
-.household .household-create-article-modal .household-create-article-modal-content-holder form fieldset input {
+.household .household-create-article-modal .household-create-article-modal-content-holder form fieldset input, .household .household-create-article-modal .household-create-article-modal-content-holder form fieldset select {
   width: 100%;
   color: black;
   font-size: 20px;
@@ -789,14 +978,17 @@
   padding: 10px;
   transition: 300ms;
 }
-.household .household-create-article-modal .household-create-article-modal-content-holder form fieldset input:focus {
+.household .household-create-article-modal .household-create-article-modal-content-holder form fieldset input:focus, .household .household-create-article-modal .household-create-article-modal-content-holder form fieldset select:focus {
   border: 3px solid #4682B4;
 }
-.household .household-create-article-modal .household-create-article-modal-content-holder form fieldset input::-moz-placeholder {
+.household .household-create-article-modal .household-create-article-modal-content-holder form fieldset input::-moz-placeholder, .household .household-create-article-modal .household-create-article-modal-content-holder form fieldset select::-moz-placeholder {
   color: gray;
 }
-.household .household-create-article-modal .household-create-article-modal-content-holder form fieldset input::placeholder {
+.household .household-create-article-modal .household-create-article-modal-content-holder form fieldset input::placeholder, .household .household-create-article-modal .household-create-article-modal-content-holder form fieldset select::placeholder {
   color: gray;
+}
+.household .household-create-article-modal .household-create-article-modal-content-holder form fieldset select {
+  text-transform: capitalize;
 }
 .household .household-create-article-modal .household-create-article-modal-content-holder form fieldset .household-create-article-modal-checkbox-holder {
   display: flex;
@@ -815,7 +1007,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
 }
 .household .household-create-article-modal .household-create-article-modal-content-holder .button-holder button {
   width: 70%;
@@ -837,7 +1029,7 @@
   border-radius: 5px;
   padding: 10px 0;
   position: absolute;
-  top: 80%;
+  top: 90%;
 }
 .household .household-members-modal {
   width: 90vw;
@@ -877,21 +1069,23 @@
   padding-left: 30px;
 }
 .household .household-members-modal .member-holder .household-members-modal-member {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
+  justify-content: flex-start;
   gap: 20px;
 }
 .household .household-members-modal .member-holder .household-members-modal-member img {
-  height: 60px;
-  width: 60px;
+  height: 40px;
+  width: 40px;
   -o-object-fit: contain;
      object-fit: contain;
 }
 .household .household-members-modal .member-holder .household-members-modal-member p {
   color: black;
-  font-size: 40px;
+  font-size: 30px;
   text-transform: capitalize;
   margin: 0;
 }
@@ -981,6 +1175,7 @@
   justify-content: flex-start;
   gap: 10px;
   padding: 15px 0;
+  overflow: scroll;
 }
 .household .household-list-modal .household-list-modal-list-article-holder .household-list-modal-article-holder-no-span {
   color: grey;
@@ -1027,6 +1222,7 @@
   font-weight: bold;
 }
 .household .household-list-modal .household-list-modal-list-article-holder .household-list-modal-list-article .household-list-modal-list-article-user-holder {
+  width: 30%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1041,6 +1237,7 @@
 .household .household-list-modal .household-list-modal-list-article-holder .household-list-modal-list-article .household-list-modal-list-article-user-holder p {
   color: black;
   font-size: 20px;
+  text-align: center;
   margin: 0;
 }
 .household .household-list-modal .household-list-modal-list-article-holder .household-list-modal-list-article-marked {
@@ -1147,7 +1344,7 @@
 .household .household-member-modal-holder .household-member-modal strong {
   color: #add8e6;
   font-size: 40px;
-  margin-top: 5px;
+  margin-top: 80px;
 }
 .household .household-member-modal-holder .household-member-modal .household-member-modal-button-holder {
   width: 100%;

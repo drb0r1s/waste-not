@@ -1,7 +1,7 @@
 import React from "react";
 import { images } from "../../data/images";
 
-const HouseholdMemberModal = ({ householdMemberModalHolderRef, householdMemberModalRef, disableHouseholdMemberModal }) => {
+const HouseholdMemberModal = ({ activeMember, householdMemberModalHolderRef, householdMemberModalRef, disableHouseholdMemberModal }) => {
     const buttons = ["add nickname", "transfer household", "remove"];
 
     return(
@@ -11,7 +11,7 @@ const HouseholdMemberModal = ({ householdMemberModalHolderRef, householdMemberMo
                     <img src={images.noAvatarIcon} alt="AVATAR" />
                 </div>
 
-                <strong>Name...</strong>
+                <strong>{activeMember.name}</strong>
                 
                 <div className="household-member-modal-button-holder">
                     {buttons.map((button, index) => {

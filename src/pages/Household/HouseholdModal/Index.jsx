@@ -1,6 +1,6 @@
 import React from "react";
 import HouseholdArticleModal from "./householdArticleModal/Index";
-import HouseholdCreateArticleModal from "./HouseholdCreateArticleModal";
+import HouseholdCreateArticleModal from "./householdCreateArticleModal/Index";
 import HouseholdMembersModal from "./householdMembersModal/Index";
 import HouseholdListModal from "./householdListModal/Index";
 import HouseholdNotificationsModal from "./HouseholdNotificationsModal";

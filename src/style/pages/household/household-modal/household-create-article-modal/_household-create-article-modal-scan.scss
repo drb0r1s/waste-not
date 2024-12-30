@@ -1,0 +1,38 @@
+.household-create-article-modal-scan {
+    height: 100vh;
+    width: 100vw;
+    @include center(column);
+    background-color: white;
+    position: absolute;
+    left: 100%;
+    transition: 300ms;
+    z-index: 1;
+
+    img {
+        height: 30px;
+        width: 30px;
+        object-fit: contain;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+    }
+
+    h2 {
+        @include floating-title;
+        font-size: 50px;
+    }
+
+    video {
+        width: 90%;
+    }
+
+    button {
+        @include default-button;
+        position: absolute;
+        top: 80%;
+    }
+}
+
+#household-create-artical-modal-scan-active {
+    left: 0;
+}

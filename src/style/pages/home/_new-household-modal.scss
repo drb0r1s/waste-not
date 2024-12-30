@@ -1,0 +1,83 @@
+.new-household-modal {
+    height: 100vh;
+    width: 100vw;
+    @include center(column);
+    background-color: white;
+    border-top: 5px solid $primary;
+    position: absolute;
+    top: 100%;
+    padding: 30px 0;
+    transition: 300ms;
+    z-index: 1;
+
+    .new-household-modal-return {
+        height: 30px;
+        width: 30px;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+    }
+
+    .new-household-modal-title-holder {
+        @include center(column);
+        gap: 10px;
+        position: absolute;
+        top: 20%;
+        padding: 0 30px;
+
+        h2 {
+            color: $primary;
+            font-size: 45px;
+            text-align: center;
+        }
+
+        button {
+            @include default-button;
+            font-size: 20px;
+        }
+    }
+
+    .new-household-modal-member-holder {
+        height: 50%;
+        width: 100%;
+        @include center(column);
+        justify-content: flex-start;
+        gap: 20px;
+        border-top: 3px solid $secondary;
+        padding: 40px 0;
+        position: absolute;
+        bottom: 0;
+        overflow: scroll;
+
+        .new-household-modal-member {
+            width: 70%;
+            @include center;
+            justify-content: flex-start;
+            gap: 20px;
+            
+            img {
+                height: 60px;
+                width: 60px;
+                object-fit: contain;
+            }
+
+            .new-household-modal-member-star {
+                height: 30px;
+                width: 30px;
+                object-fit: contain;
+                position: absolute;
+                left: 15px;
+            }
+
+            p {
+                color: black;
+                font-size: 30px;
+                margin: 0;
+            }
+        }
+    }
+}
+
+#new-household-modal-active {
+    top: 0;
+}

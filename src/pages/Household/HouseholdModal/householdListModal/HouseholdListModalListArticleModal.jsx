@@ -1,6 +1,7 @@
 import React from "react";
 import { images } from "../../../../data/images";
 import { Storage } from "../../../../functions/Storage";
+import { cutText } from "../../../../functions/cutText";
 
 const HouseholdListModalListArticleModal = ({ activeListArticle, listArticleModalRef, disableListArticleModal }) => {
     const buttons = ["make as bought", "remove item"];
@@ -29,7 +30,7 @@ const HouseholdListModalListArticleModal = ({ activeListArticle, listArticleModa
         >
             <div className="household-list-modal-list-article-modal">
                 <img src={images.imageIcon} alt="ARTICLE" />
-                <strong>{activeListArticle.name}</strong>
+                <strong>{cutText(activeListArticle.name, 15)}</strong>
 
                 <div className="household-list-modal-list-article-modal-button-holder">
                     {buttons.map((button, index) => {
