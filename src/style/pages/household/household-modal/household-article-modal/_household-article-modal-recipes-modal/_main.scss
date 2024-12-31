@@ -10,13 +10,13 @@
     padding: 10px 0;
     z-index: 1;
 
-    @import "./modal-recipes-modal-recipe-modal";
+    @import "./household-article-modal-recipe-modal";
 
     .household-article-modal-recipes-modal-recipes-holder {
         @include center(column);
         gap: 10px;
 
-        @import "./household-article-modal-recipes-modal-recipe";
+        @import "./household-article-modal-recipe";
     }
 }
 

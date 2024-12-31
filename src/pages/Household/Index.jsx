@@ -21,6 +21,7 @@ const Household = () => {
     const [isHouseholdModalActive, setIsHouseholdModalActive] = useState(false);
     const [isHouseholdMemberModalActive, setIsHouseholdMemberModalActive] = useState(false);
     const [activeArticle, setActiveArticle] = useState(false);
+    const [searchInput, setSearchInput] = useState("");
 
     const householdModalRef = useRef(null);
     const householdMemberModalHolderRef = useRef(null);
@@ -39,7 +40,40 @@ const Household = () => {
         }
     }, [localStorage.getItem("ARTICLES")]);
 
-    useEffect(updateFilter, [filter, articles]);
+    useEffect(() => setFilteredArticles(updateFilter()), [filter, articles]);
+
+    useEffect(() => {
+        const currentFilteredArticles = updateFilter();
+        const newFilteredArticles = search(currentFilteredArticles);
+
+        setFilteredArticles(newFilteredArticles);
+    }, [searchInput]);
+
+    function updateFilter() {
+        if(!filter && articles.length) return search(articles);
+        else if(!filter || !articles.length) return [];
+
+        const newArticles = [];
+
+        for(let i = 0; i < articles.length; i++) {
+            if(
+                articles[i].tag === filter &&
+                (!searchInput || articles[i].name.toLowerCase().includes(searchInput.toLowerCase()))
+            ) newArticles.push(articles[i]);
+        }
+
+        return newArticles;
+    }
+
+    function search(currentFilteredArticles) {
+        const newFilteredArticles = [];
+
+        for(let i = 0; i < currentFilteredArticles.length; i++) {
+            if(currentFilteredArticles[i].name.toLowerCase().includes(searchInput.toLowerCase())) newFilteredArticles.push(currentFilteredArticles[i]);
+        }
+
+        return newFilteredArticles;
+    }
 
     function enableHouseholdModal(type) {
         setIsHouseholdModalActive(type);
@@ -78,19 +112,6 @@ const Household = () => {
         
         setTimeout(() => setIsHouseholdMemberModalActive(false), 300);
     }
-
-    function updateFilter() {
-        if(!filter && articles.length) return setFilteredArticles(articles);
-        else if(!filter || !articles.length) return;
-
-        const newArticles = [];
-
-        for(let i = 0; i < articles.length; i++) {
-            if(articles[i].tag === filter) newArticles.push(articles[i]);
-        }
-
-        setFilteredArticles(newArticles);
-    }
     
     return(
         <div className="household">
@@ -116,7 +137,9 @@ const Household = () => {
             <HouseholdHeader
                 title={household.name}
                 returnFunction={() => navigate("/")}
-                searchFunction={true}
+                searchData={filteredArticles}
+                searchInput={searchInput}
+                setSearchInput={setSearchInput}
                 className="household-main-header"
             />
 

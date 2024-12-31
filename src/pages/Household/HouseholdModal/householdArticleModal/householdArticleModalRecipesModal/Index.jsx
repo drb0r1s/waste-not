@@ -13,6 +13,7 @@ const HouseholdArticleModalRecipesModal = ({ recipesModalRef, disableModal }) =>
     const [filter, setFilter] = useState("");
     const [activeRecipe, setActiveRecipe] = useState(false);
     const [activeRating, setActiveRating] = useState(false);
+    const [searchInput, setSearchInput] = useState("");
 
     const recipeModalRef = useRef(null);
 
@@ -25,18 +26,42 @@ const HouseholdArticleModalRecipesModal = ({ recipesModalRef, disableModal }) =>
         setTimeout(() => setIsLoading(false), loadingTime * 1000);
     }, []);
 
+    useEffect(() => { if(chosenRecipes.length) setFilteredRecipes(updateFilter()) }, [filter]);
+
     useEffect(() => {
-        if(!filter && chosenRecipes.length !== filteredRecipes.length && chosenRecipes.length) return setFilteredRecipes(chosenRecipes);
-        else if(!chosenRecipes.length) return;
+        if(!chosenRecipes.length) return;
+        
+        const currentFilteredRecipes = updateFilter();
+        const newFilteredRecipes = search(currentFilteredRecipes);
+
+        setFilteredRecipes(newFilteredRecipes);
+    }, [searchInput]);
+
+    function updateFilter() {
+        if(!filter && chosenRecipes.length) return search(chosenRecipes);
+        else if(!chosenRecipes.length) return [];
 
         const newRecipes = [];
 
         for(let i = 0; i < chosenRecipes.length; i++) {
-            if(chosenRecipes[i].tag === filter) newRecipes.push(chosenRecipes[i]);
+            if(
+                chosenRecipes[i].tag === filter &&
+                (!searchInput || chosenRecipes[i].name.toLowerCase().includes(searchInput.toLowerCase()))
+            ) newRecipes.push(chosenRecipes[i]);
         }
 
-        setFilteredRecipes(newRecipes);
-    }, [filter]);
+        return newRecipes;
+    }
+
+    function search(currentFilteredRecipes) {
+        const newFilteredRecipes = [];
+
+        for(let i = 0; i < currentFilteredRecipes.length; i++) {
+            if(currentFilteredRecipes[i].name.toLowerCase().includes(searchInput.toLowerCase())) newFilteredRecipes.push(currentFilteredRecipes[i]);
+        }
+
+        return newFilteredRecipes;
+    }
 
     function getRandomRecipes() {
         const randomRecipes = [];
@@ -102,7 +127,9 @@ const HouseholdArticleModalRecipesModal = ({ recipesModalRef, disableModal }) =>
                 <HouseholdHeader
                     title="recipes"
                     returnFunction={disableModal}
-                    searchFunction={true}
+                    searchData={filteredRecipes}
+                    searchInput={searchInput}
+                    setSearchInput={setSearchInput}
                 />
 
                 <HouseholdTagHolder tags={tags} setFilter={setFilter} />

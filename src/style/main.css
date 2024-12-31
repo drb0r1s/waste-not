@@ -71,6 +71,18 @@
   font-size: 40px;
   text-transform: capitalize;
 }
+.household-header input {
+  width: 70%;
+  color: black;
+  font-size: 30px;
+  outline: 0;
+  border: 1px solid black;
+  padding: 5px 10px;
+  transition: 300ms;
+}
+.household-header input:focus {
+  border: 1px solid #4682B4;
+}
 
 .household-tag-holder {
   width: 100%;

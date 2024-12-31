@@ -25,4 +25,18 @@
         font-size: 40px;
         text-transform: capitalize;
     }
+
+    input {
+        width: 70%;
+        color: black;
+        font-size: 30px;
+        outline: 0;
+        border: 1px solid black;
+        padding: 5px 10px;
+        transition: 300ms;
+
+        &:focus {
+            border: 1px solid $secondary;
+        }
+    }
 }
