@@ -1,6 +1,7 @@
 {
   "name": "waste-not",
   "version": "0.1.0",
+  "homepage": "https://drb0r1s.github.io/waste-not",
   "private": true,
   "dependencies": {
     "cra-template": "1.2.0",
@@ -12,6 +13,8 @@
     "web-vitals": "^4.2.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -36,6 +39,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "gh-pages": "^6.2.0"
   }
 }

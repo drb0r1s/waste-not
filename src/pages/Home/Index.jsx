@@ -28,9 +28,7 @@ const Home = () => {
     }, [localStorage.getItem("HOUSEHOLDS")]);
     
     useEffect(() => {
-        if(isHomeModalActive) setTimeout(() => {
-            homeModalRef.current.id = "home-modal-active";
-        }, 1);
+        if(isHomeModalActive) setTimeout(() => { homeModalRef.current.id = "home-modal-active" }, 1);
     }, [isHomeModalActive]);
 
     useEffect(() => {
@@ -67,15 +65,31 @@ const Home = () => {
             case "done":
                 const householdNextId = parseInt(localStorage.getItem("HOUSEHOLDS_NEXT_ID"));
                 const householdName = createHouseholdInput ? createHouseholdInput : `Household ${householdNextId + 1}`;
-
+                
                 const household = {
                     name: householdName,
                     icon: "",
-                    members: [Storage.get("PROFILE")]
+                    members: [Storage.get("PROFILE").id],
+                    owner: Storage.get("PROFILE").id
                 };
 
                 Storage.add("HOUSEHOLDS", household);
 
+                if(householdName[0].toLowerCase() === "a") {
+                    const users = Storage.selectRandom("USERS", [2, 8]);
+                    const userIds = [];
+                    
+                    for(let i = 0; i < users.length; i++) userIds.push(users[i].id);
+
+                    const randomTime = Math.floor(Math.random() * (10 - 5 + 1)) + 5;
+                    setTimeout(() => {
+                        Storage.update("HOUSEHOLDS", householdNextId, { members: [...household.members, ...userIds] });
+                        setHouseholds(Storage.get("HOUSEHOLDS"));
+                        localStorage.setItem("UPDATE", 123);
+                    }, randomTime * 1000);
+                }
+
+                setHouseholds(Storage.get("HOUSEHOLDS"));
                 setCreateHouseholdInput("");
                 disableHouseholdModal("create");
 

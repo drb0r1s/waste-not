@@ -43,7 +43,7 @@ const HouseholdCreateArticleModal = ({ household, disableHouseholdModal, isList 
             icon: articleInputs.icon,
             date: ExtendedDate.defaultFormat(),
             isMarked: false,
-            addedBy: Storage.get("PROFILE")
+            addedBy: Storage.get("PROFILE").id
         });
         
         else Storage.add("ARTICLES", {

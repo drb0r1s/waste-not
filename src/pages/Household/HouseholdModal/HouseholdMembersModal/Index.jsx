@@ -21,7 +21,8 @@ const HouseholdMembersModal = ({ household, disableHouseholdModal, enableHouseho
                 {household.members.map((member, index) => {
                     return <HouseholdMembersModalMember
                         key={index}
-                        member={member}
+                        memberId={member}
+                        household={household}
                         enableHouseholdMemberModal={enableHouseholdMemberModal}
                     />;
                 })}

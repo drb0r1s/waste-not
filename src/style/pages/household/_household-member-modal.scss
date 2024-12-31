@@ -44,10 +44,22 @@
             }
         }
 
-        strong {
+        strong, input {
             color: $primary;
             font-size: 40px;
             margin-top: 80px;
+        }
+
+        input {
+            width: 70%;
+            outline: none;
+            border: 3px solid $primary;
+            padding: 5px 10px;
+            transition: 300ms;
+
+            &:focus {
+                border: 3px solid $secondary;
+            }
         }
 
         .household-member-modal-button-holder {

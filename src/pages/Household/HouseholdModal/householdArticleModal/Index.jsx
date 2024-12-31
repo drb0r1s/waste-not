@@ -62,7 +62,7 @@ const HouseholdArticleModal = ({ activeArticle, disableHouseholdArticleModal }) 
                     icon: article.icon,
                     date: ExtendedDate.defaultFormat(),
                     isMarked: false,
-                    addedBy: Storage.get("PROFILE")
+                    addedBy: Storage.get("PROFILE").id
                 });
 
                 break;

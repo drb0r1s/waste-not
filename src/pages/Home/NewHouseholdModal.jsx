@@ -9,31 +9,18 @@ import { ExtendedDate } from "../../functions/ExtendedDate";
 const NewHouseholdModal = ({ newHouseholdModalRef, disableNewHouseholdModal }) => {
     const [householdName, setHouseholdName] = useState("");
     const [members, setMembers] = useState([]);
+    const [owner, setOwner] = useState({});
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        const [newMembers, owner] = setOwner(Storage.selectRandom("USERS", [1, 7]));
+        const newMembers = Storage.selectRandom("USERS", [2, 8]);
+        const newOwner = newMembers[Math.floor(Math.random() * newMembers.length)];
         
-        setHouseholdName(getHouseholdName(owner));
+        setHouseholdName(getHouseholdName(newOwner));
         setMembers(newMembers);
+        setOwner(newOwner);
     }, []);
-    
-    function setOwner(membersArray) {
-        const randomMember = membersArray[Math.floor(Math.random() * membersArray.length)];
-        const newMembers = [];
-
-        for(let i = 0; i < membersArray.length; i++) {
-            if(randomMember.name === membersArray[i].name) {
-                newMembers.push({...randomMember, isOwner: true});
-                continue;
-            }
-
-            newMembers.push(membersArray[i]);
-        }
-
-        return [newMembers, randomMember];
-    }
 
     function getHouseholdName(owner) {
         const randomHouseholdName = householdNames[Math.floor(Math.random() * householdNames.length)];
@@ -44,10 +31,13 @@ const NewHouseholdModal = ({ newHouseholdModalRef, disableNewHouseholdModal }) =
     }
 
     function joinHousehold() {
+        const memberIds = getMemberIds();
+        
         const household = {
             name: householdName,
             icon: "",
-            members: [Storage.get("PROFILE"), ...members]
+            members: [Storage.get("PROFILE").id, ...memberIds],
+            owner: owner.id
         };
 
         Storage.add("HOUSEHOLDS", household);
@@ -73,11 +63,18 @@ const NewHouseholdModal = ({ newHouseholdModalRef, disableNewHouseholdModal }) =
             icon: newListArticles[i].icon,
             date: ExtendedDate.getRandom("2024-12-01", "2024-12-30"),
             isMarked: false,
-            addedBy: members[Math.floor(Math.random() * members.length)]
+            addedBy: members[Math.floor(Math.random() * members.length)].id
         });
         
         disableNewHouseholdModal();
         navigate("/household", { state: { household: {...household, id: householdId} } });
+    }
+
+    function getMemberIds() {
+        const memberIds = [];
+        for(let i = 0; i < members.length; i++) memberIds.push(members[i].id);
+
+        return memberIds;
     }
 
     function getArticles() {
@@ -119,14 +116,14 @@ const NewHouseholdModal = ({ newHouseholdModalRef, disableNewHouseholdModal }) =
             <div className="new-household-modal-member-holder">
                 {members.map((member, index) => {
                     return <div key={index} className="new-household-modal-member">
-                        {member.isOwner ? <img
+                        {member.id === owner.id ? <img
                             src={images.starIcon}
                             alt="STAR"
                             className="new-household-modal-member-star"
                         /> : <></>}
                         
                         <img src={images.noAvatarIcon} alt="AVATAR" />
-                        <p>{member.name}</p>
+                        <p>{member.nickname ? member.nickname : member.name}</p>
                     </div>;
                 })}
             </div>

@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { images } from "../../../../data/images";
 import { ExtendedDate } from "../../../../functions/ExtendedDate";
 import { cutText } from "../../../../functions/cutText";
+import { Storage } from "../../../../functions/Storage";
 
 const HouseholdListModalListArticle = ({ listArticle, onClick }) => {
+    const [member, setMember] = useState({});
+
+    useEffect(() => setMember(...Storage.get("USERS", { key: "id", value: listArticle.addedBy })), [localStorage.getItem("USERS")]);
+    
     return(
         <div
             className={`household-list-modal-list-article ${listArticle.isMarked ? "household-list-modal-list-article-marked" : ""}`}
@@ -18,7 +23,7 @@ const HouseholdListModalListArticle = ({ listArticle, onClick }) => {
 
             <div className="household-list-modal-list-article-user-holder">
                 <img src={images.noAvatarIcon} alt="AVATAR" />
-                <p>{listArticle.addedBy.name}</p>
+                <p>{member.nickname ? member.nickname : member.name}</p>
             </div>
         </div>
     );

@@ -10,7 +10,7 @@
     padding: 10px 0;
     z-index: 1;
 
-    @import "./household-article-modal-recipes-modal-recipe-modal";
+    @import "./modal-recipes-modal-recipe-modal";
 
     .household-article-modal-recipes-modal-recipes-holder {
         @include center(column);

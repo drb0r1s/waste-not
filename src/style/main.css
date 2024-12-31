@@ -1086,8 +1086,15 @@
 .household .household-members-modal .member-holder .household-members-modal-member p {
   color: black;
   font-size: 30px;
-  text-transform: capitalize;
   margin: 0;
+}
+.household .household-members-modal .member-holder .household-members-modal-member .household-members-modal-member-star {
+  height: 20px;
+  width: 20px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  position: absolute;
+  right: 10%;
 }
 .household .household-list-modal .household-list-modal-list-article-modal-holder {
   height: 100vh;
@@ -1341,10 +1348,20 @@
   bottom: 0;
   transform: translateY(50%);
 }
-.household .household-member-modal-holder .household-member-modal strong {
+.household .household-member-modal-holder .household-member-modal strong, .household .household-member-modal-holder .household-member-modal input {
   color: #add8e6;
   font-size: 40px;
   margin-top: 80px;
+}
+.household .household-member-modal-holder .household-member-modal input {
+  width: 70%;
+  outline: none;
+  border: 3px solid #add8e6;
+  padding: 5px 10px;
+  transition: 300ms;
+}
+.household .household-member-modal-holder .household-member-modal input:focus {
+  border: 3px solid #4682B4;
 }
 .household .household-member-modal-holder .household-member-modal .household-member-modal-button-holder {
   width: 100%;

@@ -10,12 +10,11 @@ import { Storage } from "../../functions/Storage";
 
 const Household = () => {
     const location = useLocation();
-    const household = location.state.household;
-
     const navigate = useNavigate();
+    
+    const storageFilter = { key: "householdId", value: location.state.household.id };
 
-    const storageFilter = { key: "householdId", value: household.id };
-
+    const [household, setHousehold] = useState(location.state.household);
     const [articles, setArticles] = useState(Storage.get("ARTICLES", storageFilter));
     const [filteredArticles, setFilteredArticles] = useState(articles);
     const [filter, setFilter] = useState("");
@@ -29,6 +28,8 @@ const Household = () => {
 
     const tags = ["fridge", "freezer", "pantry"];
 
+    useEffect(() => setHousehold(...Storage.get("HOUSEHOLDS", { key: "id", value: household.id })), [localStorage.getItem("HOUSEHOLDS")]);
+    
     useEffect(() => {
         setArticles(Storage.get("ARTICLES", storageFilter));
 
@@ -69,8 +70,8 @@ const Household = () => {
         }, 1);
     }
 
-    function disableHouseholdMemberModal(target) {
-        if(!target.classList.contains("household-member-modal-holder")) return;
+    function disableHouseholdMemberModal(target, force = false) {
+        if(!target?.classList.contains("household-member-modal-holder") && !force) return;
         
         householdMemberModalHolderRef.current.id = "";
         householdMemberModalRef.current.id = "";
@@ -79,7 +80,7 @@ const Household = () => {
     }
 
     function updateFilter() {
-        if(!filter && articles.length !== filteredArticles.length && articles.length) return setFilteredArticles(articles);
+        if(!filter && articles.length) return setFilteredArticles(articles);
         else if(!filter || !articles.length) return;
 
         const newArticles = [];
@@ -105,7 +106,8 @@ const Household = () => {
             /> : <></>}
 
             {isHouseholdMemberModalActive ? <HouseholdMemberModal
-                activeMember={isHouseholdMemberModalActive}
+                activeMemberId={isHouseholdMemberModalActive}
+                household={household}
                 householdMemberModalHolderRef={householdMemberModalHolderRef}
                 householdMemberModalRef={householdMemberModalRef}
                 disableHouseholdMemberModal={disableHouseholdMemberModal}

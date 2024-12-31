@@ -2,6 +2,8 @@ import { users } from "../data/users";
 
 export const Storage = {
     initialization: () => {
+        Storage.initializeProfile();
+        
         const items = ["HOUSEHOLDS", "ARTICLES", "LIST_ARTICLES", "USERS"];
         
         for(let i = 0; i < items.length; i++) {
@@ -12,18 +14,16 @@ export const Storage = {
             if(items[i] !== "USERS") localStorage.setItem(`${items[i]}_NEXT_ID`, 0);
             else Storage.loadUsers();
         }
-
-        Storage.initializeProfile();
     },
 
     initializeProfile: () => {
-        if(!localStorage.getItem("PROFILE")) return;
+        if(localStorage.getItem("PROFILE")) return;
         
         const profile = {
+            id: 1,
             name: "You",
             nickname: "",
-            icon: "",
-            isOwner: true
+            icon: ""
         };
 
         localStorage.setItem("PROFILE", JSON.stringify(profile));
@@ -92,6 +92,8 @@ export const Storage = {
 
     selectRandom: (key, bounds) => {
         const item = JSON.parse(localStorage.getItem(key));
+        if(key === "USERS") item.shift();
+
         const selected = [];
 
         const [min, max] = bounds;
@@ -115,6 +117,7 @@ export const Storage = {
     },
 
     loadUsers: () => {
-        localStorage.setItem("USERS", JSON.stringify(users));
+        const profile = JSON.parse(localStorage.getItem("PROFILE"));
+        localStorage.setItem("USERS", JSON.stringify([profile, ...users]));
     }
 }
