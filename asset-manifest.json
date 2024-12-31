@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/waste-not/static/css/main.cf6b1b5e.css",
+    "main.js": "/waste-not/static/js/main.ef787e0b.js",
+    "static/media/Oswald-SemiBold.ttf": "/waste-not/static/media/Oswald-SemiBold.ddc9cdcf259f8e6a1d35.ttf",
+    "static/media/Oswald-Bold.ttf": "/waste-not/static/media/Oswald-Bold.41669c1e4f6bdc605d26.ttf",
+    "static/media/Oswald-Medium.ttf": "/waste-not/static/media/Oswald-Medium.79e266089ef37332d7ae.ttf",
+    "static/media/Oswald-Light.ttf": "/waste-not/static/media/Oswald-Light.ba7a0a165ea1a69244a7.ttf",
+    "static/media/Oswald-Regular.ttf": "/waste-not/static/media/Oswald-Regular.31bce04a1ae8549b1464.ttf",
+    "static/media/Oswald-ExtraLight.ttf": "/waste-not/static/media/Oswald-ExtraLight.0525555534a2c5af6fe4.ttf",
+    "static/media/no-avatar-icon.png": "/waste-not/static/media/no-avatar-icon.61637315e740810e35de.png",
+    "static/media/settings-icon.png": "/waste-not/static/media/settings-icon.0e1d8aec7a8d7e02ae41.png",
+    "static/media/full-star-icon.png": "/waste-not/static/media/full-star-icon.19017541e5d6966ae158.png",
+    "static/media/image-icon.png": "/waste-not/static/media/image-icon.711b2f6db4d7424bd4fb.png",
+    "static/media/star-icon.png": "/waste-not/static/media/star-icon.190d870d386afd29523a.png",
+    "static/media/search-icon.png": "/waste-not/static/media/search-icon.a27091ef0c45faf8a66e.png",
+    "static/media/todo-icon.png": "/waste-not/static/media/todo-icon.ed7b1c334a2d2a8073db.png",
+    "static/media/person-icon.png": "/waste-not/static/media/person-icon.6deef6126d40d69d610f.png",
+    "static/media/bell-icon.png": "/waste-not/static/media/bell-icon.5846d4b1994ad4088108.png",
+    "index.html": "/waste-not/index.html",
+    "main.cf6b1b5e.css.map": "/waste-not/static/css/main.cf6b1b5e.css.map",
+    "main.ef787e0b.js.map": "/waste-not/static/js/main.ef787e0b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cf6b1b5e.css",
+    "static/js/main.ef787e0b.js"
+  ]
+}
