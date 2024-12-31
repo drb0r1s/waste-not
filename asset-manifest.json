@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/waste-not/static/css/main.cf6b1b5e.css",
-    "main.js": "/waste-not/static/js/main.4f87b994.js",
+    "main.css": "/waste-not/static/css/main.4c7c8009.css",
+    "main.js": "/waste-not/static/js/main.45101380.js",
     "static/media/Oswald-SemiBold.ttf": "/waste-not/static/media/Oswald-SemiBold.ddc9cdcf259f8e6a1d35.ttf",
     "static/media/Oswald-Bold.ttf": "/waste-not/static/media/Oswald-Bold.41669c1e4f6bdc605d26.ttf",
     "static/media/Oswald-Medium.ttf": "/waste-not/static/media/Oswald-Medium.79e266089ef37332d7ae.ttf",
@@ -18,11 +18,11 @@
     "static/media/person-icon.png": "/waste-not/static/media/person-icon.6deef6126d40d69d610f.png",
     "static/media/bell-icon.png": "/waste-not/static/media/bell-icon.5846d4b1994ad4088108.png",
     "index.html": "/waste-not/index.html",
-    "main.cf6b1b5e.css.map": "/waste-not/static/css/main.cf6b1b5e.css.map",
-    "main.4f87b994.js.map": "/waste-not/static/js/main.4f87b994.js.map"
+    "main.4c7c8009.css.map": "/waste-not/static/css/main.4c7c8009.css.map",
+    "main.45101380.js.map": "/waste-not/static/js/main.45101380.js.map"
   },
   "entrypoints": [
-    "static/css/main.cf6b1b5e.css",
-    "static/js/main.4f87b994.js"
+    "static/css/main.4c7c8009.css",
+    "static/js/main.45101380.js"
   ]
 }
