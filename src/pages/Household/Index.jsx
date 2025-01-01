@@ -5,7 +5,7 @@ import HouseholdTagHolder from "../../components/HouseholdTagHolder";
 import HouseholdMenu from "./HouseholdMenu";
 import HouseholdArticle from "./HouseholdArticle";
 import HouseholdModal from "./householdModal/Index";
-import HouseholdMemberModal from "./HouseholdMemberModal";
+import HouseholdMemberModal from "./householdModal/HouseholdMemberModal";
 import { Storage } from "../../functions/Storage";
 
 const Household = () => {
@@ -29,7 +29,7 @@ const Household = () => {
 
     const tags = ["fridge", "freezer", "pantry"];
 
-    useEffect(() => setHousehold(...Storage.get("HOUSEHOLDS", { key: "id", value: household.id })), [localStorage.getItem("HOUSEHOLDS")]);
+    useEffect(() => setHousehold(...Storage.get("HOUSEHOLDS", { key: "id", value: household.id })), [localStorage.getItem("WASTENOT_HOUSEHOLDS")]);
     
     useEffect(() => {
         setArticles(Storage.get("ARTICLES", storageFilter));
@@ -38,7 +38,7 @@ const Household = () => {
             const newActiveArticle = Storage.get("ARTICLES", { key: "id", value: activeArticle.id });
             setActiveArticle(newActiveArticle);
         }
-    }, [localStorage.getItem("ARTICLES")]);
+    }, [localStorage.getItem("WASTENOT_ARTICLES")]);
 
     useEffect(() => setFilteredArticles(updateFilter()), [filter, articles]);
 

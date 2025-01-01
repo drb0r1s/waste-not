@@ -5,11 +5,11 @@ import { Storage } from "../../../../functions/Storage";
 const HouseholdMembersModalMember = ({ memberId, household, enableHouseholdMemberModal }) => {
     const [member, setMember] = useState({});
 
-    useEffect(() => setMember(...Storage.get("USERS", { key: "id", value: memberId })), [localStorage.getItem("USERS"), household]);
+    useEffect(() => setMember(...Storage.get("USERS", { key: "id", value: memberId })), [localStorage.getItem("WASTENOT_USERS"), household]);
     
     return(
         <div className="household-members-modal-member" onClick={() => enableHouseholdMemberModal(memberId)}>
-            <img src={images.noAvatarIcon} alt="AVATAR" />
+            <img src={member.icon ? member.icon : images.noAvatarIcon} alt="AVATAR" />
             <p>{member.nickname ? member.nickname : member.name}</p>
 
             {member.id === household.owner ? <img

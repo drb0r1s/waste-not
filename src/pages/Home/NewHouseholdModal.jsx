@@ -43,7 +43,7 @@ const NewHouseholdModal = ({ newHouseholdModalRef, disableNewHouseholdModal }) =
         Storage.add("HOUSEHOLDS", household);
 
         const newArticles = getArticles();
-        const householdId = parseInt(localStorage.getItem("HOUSEHOLDS_NEXT_ID")) - 1;
+        const householdId = parseInt(localStorage.getItem("WASTENOT_HOUSEHOLDS_NEXT_ID")) - 1;
 
         for(let i = 0; i < newArticles.length; i++) Storage.add("ARTICLES", {
             householdId,
@@ -122,7 +122,7 @@ const NewHouseholdModal = ({ newHouseholdModalRef, disableNewHouseholdModal }) =
                             className="new-household-modal-member-star"
                         /> : <></>}
                         
-                        <img src={images.noAvatarIcon} alt="AVATAR" />
+                        <img src={member.icon ? member.icon : images.noAvatarIcon} alt="AVATAR" />
                         <p>{member.nickname ? member.nickname : member.name}</p>
                     </div>;
                 })}

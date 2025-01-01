@@ -5,7 +5,7 @@ import { Storage } from "../../../../functions/Storage";
 import { ExtendedDate } from "../../../../functions/ExtendedDate";
 
 const HouseholdCreateArticleModal = ({ household, disableHouseholdModal, isList }) => {
-    const [articleInputs, setArticleInputs] = useState({ name: "", icon: "", expirationDate: "", tag: "fridge" });
+    const [articleInputs, setArticleInputs] = useState({ name: "", expirationDate: "", tag: "fridge" });
     const [isPerishable, setIsPerishable] = useState(true);
     const [isScanModalActive, setIsScanModalActive] = useState(false);
 
@@ -40,7 +40,7 @@ const HouseholdCreateArticleModal = ({ household, disableHouseholdModal, isList 
         else if(isList) Storage.add("LIST_ARTICLES", {
             householdId: household.id,
             name: articleInputs.name,
-            icon: articleInputs.icon,
+            icon: "",
             date: ExtendedDate.defaultFormat(),
             isMarked: false,
             addedBy: Storage.get("PROFILE").id
@@ -49,11 +49,12 @@ const HouseholdCreateArticleModal = ({ household, disableHouseholdModal, isList 
         else Storage.add("ARTICLES", {
             householdId: household.id,
             ...articleInputs,
+            icon: "",
             amount: 1,
             lastUsed: null
         });
         
-        setArticleInputs({ name: "", icon: "", expirationDate: "", tag: "fridge" });
+        setArticleInputs({ name: "", expirationDate: "", tag: "fridge" });
         disableHouseholdModal();
     }
 

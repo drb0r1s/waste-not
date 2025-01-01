@@ -33,7 +33,7 @@ const HouseholdArticleModalUseModal = ({ activeArticle, useModalRef, disableModa
             />
             
             <div className="household-article-modal-use-modal-content-holder">
-                <img src={images.imageIcon} alt="ARTICLE" />
+                <img src={activeArticle.icon ? activeArticle.icon : images.imageIcon} alt="ARTICLE" />
                 <strong>{activeArticle.name}</strong>
             </div>
 

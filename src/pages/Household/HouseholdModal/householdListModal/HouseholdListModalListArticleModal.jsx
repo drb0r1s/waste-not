@@ -29,7 +29,7 @@ const HouseholdListModalListArticleModal = ({ activeListArticle, listArticleModa
             onClick={e => disableListArticleModal(e.target)}
         >
             <div className="household-list-modal-list-article-modal">
-                <img src={images.imageIcon} alt="ARTICLE" />
+                <img src={activeListArticle.icon ? activeListArticle.icon : images.imageIcon} alt="ARTICLE" />
                 <strong>{cutText(activeListArticle.name, 15)}</strong>
 
                 <div className="household-list-modal-list-article-modal-button-holder">

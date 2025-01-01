@@ -132,7 +132,7 @@ const HouseholdArticleModal = ({ activeArticle, disableHouseholdArticleModal }) 
             />
 
             <div className="household-article-modal-title-holder">
-                <img src={images.imageIcon} alt="IMAGE" />
+                <img src={activeArticle.icon ? activeArticle.icon : images.imageIcon} alt="IMAGE" />
                 {isEditActive ? <input
                     type="text"
                     placeholder={article.name}

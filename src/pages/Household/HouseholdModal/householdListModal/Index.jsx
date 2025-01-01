@@ -18,7 +18,7 @@ const HouseholdListModal = ({ household, disableHouseholdModal }) => {
     const listArticleModalRef = useRef(null);
     const activeListArticleRef = useRef(null);
 
-    useEffect(() => setListArticles(Storage.get("LIST_ARTICLES", filter)), [localStorage.getItem("LIST_ARTICLES")]);
+    useEffect(() => setListArticles(Storage.get("LIST_ARTICLES", filter)), [localStorage.getItem("WASTENOT_LIST_ARTICLES")]);
 
     function enableCreateArticleModal() {
         setIsCreateArticleModalActive(true);

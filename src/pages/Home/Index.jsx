@@ -25,7 +25,7 @@ const Home = () => {
 
     useEffect(() => {
         if(Storage.get("HOUSEHOLDS").length) setHouseholds(Storage.get("HOUSEHOLDS"));
-    }, [localStorage.getItem("HOUSEHOLDS")]);
+    }, [localStorage.getItem("WASTENOT_HOUSEHOLDS")]);
     
     useEffect(() => {
         if(isHomeModalActive) setTimeout(() => { homeModalRef.current.id = "home-modal-active" }, 1);
@@ -63,7 +63,7 @@ const Home = () => {
                 navigate("/invite", { state: { household: {}, returnHome: true } });
                 break;
             case "done":
-                const householdNextId = parseInt(localStorage.getItem("HOUSEHOLDS_NEXT_ID"));
+                const householdNextId = parseInt(localStorage.getItem("WASTENOT_HOUSEHOLDS_NEXT_ID"));
                 const householdName = createHouseholdInput ? createHouseholdInput : `Household ${householdNextId + 1}`;
                 
                 const household = {
@@ -85,7 +85,6 @@ const Home = () => {
                     setTimeout(() => {
                         Storage.update("HOUSEHOLDS", householdNextId, { members: [...household.members, ...userIds] });
                         setHouseholds(Storage.get("HOUSEHOLDS"));
-                        localStorage.setItem("UPDATE", 123);
                     }, randomTime * 1000);
                 }
 

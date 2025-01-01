@@ -11,5 +11,6 @@ import noAvatarIcon from "../images/no-avatar-icon.png";
 import qrCodeIcon from "../images/qr-code-icon.png";
 import starIcon from "../images/star-icon.png";
 import fullStarIcon from "../images/full-star-icon.png";
+import cameraIcon from "../images/camera-icon.png";
 
-export const images = { personIcon, plusIcon, xIcon, imageIcon, returnIcon, searchIcon, todoIcon, bellIcon, settingsIcon, noAvatarIcon, qrCodeIcon, starIcon, fullStarIcon };
+export const images = { personIcon, plusIcon, xIcon, imageIcon, returnIcon, searchIcon, todoIcon, bellIcon, settingsIcon, noAvatarIcon, qrCodeIcon, starIcon, fullStarIcon, cameraIcon };
