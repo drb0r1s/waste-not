@@ -735,6 +735,7 @@
   justify-content: flex-start;
   background-color: white;
   position: fixed;
+  top: 0;
   left: 100%;
   transition: 300ms;
   z-index: 1;
@@ -752,6 +753,7 @@
   height: 30%;
   width: 100%;
   background-image: url("../images/image-icon.png");
+  background-position: center;
   background-size: cover;
   border-bottom: 5px solid #4682B4;
   border-bottom-left-radius: 10px;
@@ -825,8 +827,9 @@
 .household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipes-holder .household-article-modal-recipes-modal-recipe .household-article-modal-recipes-modal-recipe-image {
   height: 100px;
   width: 100px;
-  -o-object-fit: contain;
-     object-fit: contain;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
 }
 .household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipes-holder .household-article-modal-recipes-modal-recipe .household-article-modal-recipes-modal-recipe-content-holder {
   display: flex;

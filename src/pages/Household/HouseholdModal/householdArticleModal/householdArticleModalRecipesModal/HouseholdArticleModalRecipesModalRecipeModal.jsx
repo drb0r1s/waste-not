@@ -12,7 +12,10 @@ const HouseholdArticleModalRecipesModalRecipeModal = ({ activeRecipe, activeRati
                 onClick={disableRecipeModal}
             />
 
-            <div className="household-article-modal-recipes-modal-recipe-modal-background"></div>
+            <div
+                className="household-article-modal-recipes-modal-recipe-modal-background"
+                style={{ backgroundImage: `url(${activeRecipe.icon})` }}
+            ></div>
 
             <div className="household-article-modal-recipes-modal-recipe-modal-content-holder">
                 <h2>{activeRecipe.name}</h2>

@@ -5,6 +5,7 @@
     justify-content: flex-start;
     background-color: white;
     position: fixed;
+    top: 0;
     left: 100%;
     transition: 300ms;
     z-index: 1;
@@ -22,6 +23,7 @@
         height: 30%;
         width: 100%;
         background-image: url("../images/image-icon.png");
+        background-position: center;
         background-size: cover;
         border-bottom: 5px solid $secondary;
         border-bottom-left-radius: 10px;

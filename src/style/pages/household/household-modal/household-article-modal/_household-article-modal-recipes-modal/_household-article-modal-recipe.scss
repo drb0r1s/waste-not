@@ -6,7 +6,8 @@
     .household-article-modal-recipes-modal-recipe-image {
         height: 100px;
         width: 100px;
-        object-fit: contain;
+        object-fit: cover;
+        border-radius: 50%
     }
 
     .household-article-modal-recipes-modal-recipe-content-holder {

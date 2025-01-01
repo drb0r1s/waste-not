@@ -1,3 +1,5 @@
+import { recipeImages } from "./recipeImages";
+
 export const recipes = [
     {
         name: "Pasta Primavera",
@@ -12,7 +14,8 @@ export const recipes = [
             "Olive oil",
             "Parmesan cheese"
         ],
-        tag: "main dish"
+        tag: "main dish",
+        icon: recipeImages.pastaPrimavera
     },
 
     {
@@ -28,7 +31,8 @@ export const recipes = [
             "Ginger",
             "Sesame oil"
         ],
-        tag: "main dish"
+        tag: "main dish",
+        icon: recipeImages.chickenStirFry
     },
 
     {
@@ -44,7 +48,8 @@ export const recipes = [
             "Lettuce",
             "Sour cream"
         ],
-        tag: "snack"
+        tag: "snack",
+        icon: recipeImages.vegetarianTacos
     },
 
     {
@@ -56,7 +61,8 @@ export const recipes = [
             "Cheddar cheese",
             "Butter"
         ],
-        tag: "snack"
+        tag: "snack",
+        icon: recipeImages.grilledCheeseSandwich
     },
 
     {
@@ -72,7 +78,8 @@ export const recipes = [
             "Thyme",
             "Bay leaf"
         ],
-        tag: "main dish"
+        tag: "main dish",
+        icon: recipeImages.beefStew
     },
 
     {
@@ -86,7 +93,8 @@ export const recipes = [
             "Vegetable broth",
             "Cream"
         ],
-        tag: "appetizer"
+        tag: "appetizer",
+        icon: recipeImages.tomatoBasilSoup
     },
 
     {
@@ -101,7 +109,8 @@ export const recipes = [
             "Oil",
             "Baking powder"
         ],
-        tag: "dessert"
+        tag: "dessert",
+        icon: recipeImages.chocolateMugCup
     },
 
     {
@@ -115,7 +124,8 @@ export const recipes = [
             "Garlic",
             "Parmesan cheese"
         ],
-        tag: "main dish"
+        tag: "main dish",
+        icon: recipeImages.shrimpAlfredo
     },
 
     {
@@ -129,7 +139,8 @@ export const recipes = [
             "Balsamic vinegar",
             "Olive oil"
         ],
-        tag: "appetizer"
+        tag: "appetizer",
+        icon: recipeImages.capreseSalad
     },
 
     {
@@ -143,7 +154,8 @@ export const recipes = [
             "Parmesan cheese",
             "Black pepper"
         ],
-        tag: "main dish"
+        tag: "main dish",
+        icon: recipeImages.spaghettiCarbonara
     },
 
     {
@@ -157,7 +169,8 @@ export const recipes = [
             "Butter",
             "Parsley"
         ],
-        tag: "main dish"
+        tag: "main dish",
+        icon: recipeImages.lemonGarlicSalmon
     },
 
     {
@@ -172,7 +185,8 @@ export const recipes = [
             "Green onions",
             "Eggs"
         ],
-        tag: "main dish"
+        tag: "main dish",
+        icon: recipeImages.veggieFriedRice
     },
 
     {
@@ -187,7 +201,8 @@ export const recipes = [
             "Mozzarella cheese",
             "Cilantro"
         ],
-        tag: "main dish"
+        tag: "main dish",
+        icon: recipeImages.bbqChickenPizza
     },
 
     {
@@ -200,7 +215,8 @@ export const recipes = [
             "Croutons",
             "Parmesan cheese"
         ],
-        tag: "appetizer"
+        tag: "appetizer",
+        icon: recipeImages.caesarSalad
     },
 
     {
@@ -216,7 +232,8 @@ export const recipes = [
             "Bread",
             "Gruyère cheese"
         ],
-        tag: "appetizer"
+        tag: "appetizer",
+        icon: recipeImages.frenchOnionSoup
     },
 
     {
@@ -232,7 +249,8 @@ export const recipes = [
             "Butter",
             "Blueberries"
         ],
-        tag: "dessert"
+        tag: "dessert",
+        icon: recipeImages.blueberryMuffins
     },
 
     {
@@ -249,7 +267,8 @@ export const recipes = [
             "Coconut milk",
             "Seasonal vegetables"
         ],
-        tag: "main dish"
+        tag: "main dish",
+        icon: recipeImages.vegetableCurry
     },
 
     {
@@ -263,7 +282,8 @@ export const recipes = [
             "Eggs",
             "Lemon juice"
         ],
-        tag: "dessert"
+        tag: "dessert",
+        icon: recipeImages.lemonBars
     },
 
     {
@@ -279,7 +299,8 @@ export const recipes = [
             "Coconut milk",
             "Cilantro"
         ],
-        tag: "main dish"
+        tag: "main dish",
+        icon: recipeImages.chickenCurry
     },
 
     {
@@ -294,7 +315,8 @@ export const recipes = [
             "Olive oil",
             "Balsamic vinegar"
         ],
-        tag: "snack"
+        tag: "snack",
+        icon: recipeImages.bruschetta
     },
 
     {
@@ -306,7 +328,8 @@ export const recipes = [
             "Oil",
             "Salt"
         ],
-        tag: "snack"
+        tag: "snack",
+        icon: recipeImages.popcorn
     },
 
     {
@@ -319,7 +342,8 @@ export const recipes = [
             "Salt",
             "Pepper"
         ],
-        tag: "snack"
+        tag: "snack",
+        icon: recipeImages.avocadoToast
     },
 
     {
@@ -332,7 +356,8 @@ export const recipes = [
             "Seeds",
             "Chocolate chips"
         ],
-        tag: "snack"
+        tag: "snack",
+        icon: recipeImages.trailMix
     },
 
     {
@@ -346,7 +371,8 @@ export const recipes = [
             "Cucumbers",
             "Bell peppers"
         ],
-        tag: "snack"
+        tag: "snack",
+        icon: recipeImages.hummusAndVeggies
     },
 
     {
@@ -359,7 +385,8 @@ export const recipes = [
             "Mustard",
             "Paprika"
         ],
-        tag: "snack"
+        tag: "snack",
+        icon: recipeImages.deviledEggs
     },
 
     {
@@ -371,7 +398,8 @@ export const recipes = [
             "Honey",
             "Lime juice"
         ],
-        tag: "snack"
+        tag: "snack",
+        icon: recipeImages.fruitSalad
     },
 
     {
@@ -387,7 +415,8 @@ export const recipes = [
             "Flour",
             "Cocoa powder"
         ],
-        tag: "dessert"
+        tag: "dessert",
+        icon: recipeImages.brownies
     },
 
     {
@@ -401,7 +430,8 @@ export const recipes = [
             "Gelatin",
             "Berries"
         ],
-        tag: "dessert"
+        tag: "dessert",
+        icon: recipeImages.pannaCotta
     },
 
     {
@@ -415,7 +445,8 @@ export const recipes = [
             "Cinnamon",
             "Nutmeg"
         ],
-        tag: "dessert"
+        tag: "dessert",
+        icon: recipeImages.applePie
     },
 
     {
@@ -429,7 +460,8 @@ export const recipes = [
             "Lemon juice",
             "Lemon zest"
         ],
-        tag: "dessert"
+        tag: "dessert",
+        icon: recipeImages.lemonTart
     },
 
     {
@@ -443,7 +475,8 @@ export const recipes = [
             "Sugar",
             "Cocoa powder"
         ],
-        tag: "dessert"
+        tag: "dessert",
+        icon: recipeImages.tiramisu
     },
 
     {
@@ -457,7 +490,8 @@ export const recipes = [
             "Garlic",
             "Herbs"
         ],
-        tag: "appetizer"
+        tag: "appetizer",
+        icon: recipeImages.stuffedMushrooms
     },
 
     {
@@ -470,7 +504,8 @@ export const recipes = [
             "Shrimp or chicken",
             "Dipping sauce"
         ],
-        tag: "appetizer"
+        tag: "appetizer",
+        icon: recipeImages.springRolls
     },
 
     {
@@ -484,7 +519,8 @@ export const recipes = [
             "Olive oil",
             "Balsamic glaze"
         ],
-        tag: "appetizer"
+        tag: "appetizer",
+        icon: recipeImages.capreseSkewers
     },
 
     {
@@ -498,7 +534,8 @@ export const recipes = [
             "Lemon juice",
             "Worcestershire sauce"
         ],
-        tag: "appetizer"
+        tag: "appetizer",
+        icon: recipeImages.shrimpCocktail
     },
 
     {
@@ -511,7 +548,8 @@ export const recipes = [
             "Cheese",
             "Vegetables or meat"
         ],
-        tag: "appetizer"
+        tag: "appetizer",
+        icon: recipeImages.miniQuiches
     },
 
     {
@@ -523,6 +561,7 @@ export const recipes = [
             "Toppings of choice",
             "Olive oil"
         ],
-        tag: "appetizer"
+        tag: "appetizer",
+        icon: recipeImages.crostini
     }
 ];
