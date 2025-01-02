@@ -532,7 +532,7 @@
   flex-direction: column;
   gap: 10px;
   position: absolute;
-  top: 90%;
+  top: 85%;
 }
 .home .household-modal .household-modal-create .button-holder button,
 .home .household-modal .household-modal-join .button-holder button,
@@ -551,6 +551,9 @@
 .home .household-modal .household-modal-join .button-holder .button-disabled,
 .home .household-modal .household-modal-scan .button-holder .button-disabled {
   opacity: 0.5;
+}
+.home .household-modal .household-modal-scan .button-holder {
+  top: 90%;
 }
 .home #household-modal-active {
   left: 0;
