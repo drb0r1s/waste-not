@@ -11,7 +11,7 @@ const ImageInput = ({ type, imageInputRef, disableImageInput, isProfile }) => {
         setImageName(image.value);
 
         const file = image.files[0];
-        const base64String = await toBase64(file);
+        const base64String = await toBase64(file).catch(err => console.log(err));
         setImagePreview(base64String);
 
         function toBase64(file) {
