@@ -17,7 +17,7 @@ const HouseholdHeader = ({
                 placeholder="Search..."
                 value={searchInput}
                 onChange={e => setSearchInput(e.target.value)}
-            /> : <h2>{cutText(title, 15)}</h2>}
+            /> : <h2>{cutText(title, 20)}</h2>}
             
             {searchData ? <img
                 src={isSearchActive ? images.xIcon : images.searchIcon}

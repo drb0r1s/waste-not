@@ -23,8 +23,8 @@
   src: url("../fonts/Oswald-SemiBold.ttf");
 }
 .plus-button {
-  height: 60px;
-  width: 60px;
+  height: 50px;
+  width: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,8 +37,8 @@
   padding: 30px;
 }
 .plus-button img {
-  height: 40px;
-  width: 40px;
+  height: 35px;
+  width: 35px;
   -o-object-fit: contain;
      object-fit: contain;
 }
@@ -54,30 +54,30 @@
   border-bottom: 3px solid #4682B4;
 }
 .household-header img {
-  height: 30px;
-  width: 30px;
+  height: 25px;
+  width: 25px;
   -o-object-fit: contain;
      object-fit: contain;
   position: absolute;
 }
 .household-header img:first-child {
-  left: 30px;
+  left: 20px;
 }
 .household-header img:last-child {
-  right: 30px;
+  right: 20px;
 }
 .household-header h2 {
   color: black;
-  font-size: 40px;
+  font-size: 30px;
   text-transform: capitalize;
 }
 .household-header input {
   width: 70%;
   color: black;
-  font-size: 30px;
+  font-size: 25px;
   outline: 0;
   border: 1px solid black;
-  padding: 5px 10px;
+  padding: 3px 10px;
   transition: 300ms;
 }
 .household-header input:focus {
@@ -97,7 +97,7 @@
 }
 .household-tag-holder p {
   color: black;
-  font-size: 15px;
+  font-size: 13px;
   background-color: lightgrey;
   border-radius: 10px;
   text-transform: capitalize;
@@ -166,8 +166,8 @@
   z-index: 1;
 }
 .image-input .image-input-x {
-  height: 30px;
-  width: 30px;
+  height: 25px;
+  width: 25px;
   -o-object-fit: contain;
      object-fit: contain;
   position: absolute;
@@ -189,8 +189,8 @@
   padding: 10px 20px;
 }
 .image-input .image-input-content-holder img {
-  height: 120px;
-  width: 120px;
+  height: 100px;
+  width: 100px;
   -o-object-fit: contain;
      object-fit: contain;
 }
@@ -199,7 +199,7 @@
 }
 .image-input .image-input-content-holder strong {
   color: #add8e6;
-  font-size: 35px;
+  font-size: 30px;
   text-align: center;
 }
 .image-input input {
@@ -236,6 +236,31 @@
   padding: 0;
   box-sizing: border-box;
   font-family: WasteNot;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+.mobile-info {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.mobile-info h1 {
+  color: black;
+  font-size: 50px;
+  margin-bottom: 30px;
+}
+.mobile-info strong {
+  color: #add8e6;
+  font-size: 30px;
+}
+.mobile-info p {
+  color: black;
+  font-size: 20px;
 }
 
 .home {
@@ -247,6 +272,7 @@
   flex-direction: column;
   gap: 30px;
   position: relative;
+  overflow-x: hidden;
 }
 .home h1 {
   color: black;
@@ -263,12 +289,12 @@
   justify-content: center;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 5px;
+  gap: 10px;
   overflow: scroll;
 }
 .home .household-holder span {
   color: grey;
-  font-size: 30px;
+  font-size: 25px;
   font-style: italic;
 }
 .home .household-holder .household-button {
@@ -280,11 +306,11 @@
   justify-content: space-between;
   border: 3px solid #add8e6;
   border-radius: 5px;
-  padding: 10px 30px;
+  padding: 10px 15px;
 }
 .home .household-holder .household-button p {
   color: black;
-  font-size: 30px;
+  font-size: 25px;
   margin: 0;
 }
 .home .household-holder .household-button .household-person-holder {
@@ -295,8 +321,8 @@
   gap: 10px;
 }
 .home .household-holder .household-button .household-person-holder img {
-  height: 35px;
-  width: 35px;
+  height: 30px;
+  width: 30px;
   -o-object-fit: contain;
      object-fit: contain;
 }
@@ -382,8 +408,8 @@
 .home .household-modal .household-modal-create .modal-x,
 .home .household-modal .household-modal-join .modal-x,
 .home .household-modal .household-modal-scan .modal-x {
-  height: 30px;
-  width: 30px;
+  height: 25px;
+  width: 25px;
   position: absolute;
   top: 10px;
   right: 30px;
@@ -409,7 +435,8 @@
   align-items: flex-start;
   gap: 10px;
   border: none;
-  margin-top: 50px;
+  position: absolute;
+  top: 30%;
 }
 .home .household-modal .household-modal-create fieldset label,
 .home .household-modal .household-modal-join fieldset label,
@@ -523,8 +550,8 @@
   z-index: 1;
 }
 .home .new-household-modal .new-household-modal-return {
-  height: 30px;
-  width: 30px;
+  height: 25px;
+  width: 25px;
   position: absolute;
   top: 30px;
   left: 30px;
@@ -541,7 +568,7 @@
 }
 .home .new-household-modal .new-household-modal-title-holder h2 {
   color: #add8e6;
-  font-size: 45px;
+  font-size: 40px;
   text-align: center;
 }
 .home .new-household-modal .new-household-modal-title-holder button {
@@ -554,7 +581,7 @@
   border-radius: 5px;
   padding: 10px 0;
   transition: 300ms;
-  font-size: 20px;
+  font-size: 17px;
 }
 .home .new-household-modal .new-household-modal-member-holder {
   height: 50%;
@@ -581,22 +608,22 @@
   gap: 20px;
 }
 .home .new-household-modal .new-household-modal-member-holder .new-household-modal-member img {
-  height: 60px;
-  width: 60px;
+  height: 40px;
+  width: 40px;
   -o-object-fit: contain;
      object-fit: contain;
 }
 .home .new-household-modal .new-household-modal-member-holder .new-household-modal-member .new-household-modal-member-star {
-  height: 30px;
-  width: 30px;
+  height: 15px;
+  width: 15px;
   -o-object-fit: contain;
      object-fit: contain;
   position: absolute;
-  left: 15px;
+  left: 30px;
 }
 .home .new-household-modal .new-household-modal-member-holder .new-household-modal-member p {
   color: black;
-  font-size: 30px;
+  font-size: 20px;
   margin: 0;
 }
 .home #new-household-modal-active {
@@ -611,6 +638,7 @@
   justify-content: center;
   flex-direction: column;
   position: relative;
+  overflow-x: hidden;
 }
 .household .household-modal {
   height: 100vh;
@@ -735,7 +763,6 @@
   position: absolute;
   left: 100%;
   transition: 300ms;
-  padding: 10px 0;
   z-index: 1;
 }
 .household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipe-modal {
@@ -754,8 +781,8 @@
   z-index: 1;
 }
 .household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipe-modal .household-article-modal-recipes-modal-recipe-modal-return {
-  height: 30px;
-  width: 30px;
+  height: 25px;
+  width: 25px;
   -o-object-fit: contain;
      object-fit: contain;
   position: absolute;
@@ -789,12 +816,12 @@
   font-size: 40px;
 }
 .household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipe-modal .household-article-modal-recipes-modal-recipe-modal-content-holder .household-rating img {
-  height: 30px;
-  width: 30px;
+  height: 25px;
+  width: 25px;
 }
 .household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipe-modal .household-article-modal-recipes-modal-recipe-modal-content-holder p {
   color: black;
-  font-size: 20px;
+  font-size: 18px;
   margin: 0;
 }
 .household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipe-modal .household-article-modal-recipes-modal-recipe-modal-content-holder .household-article-modal-recipes-modal-recipe-modal-ingredients-holder {
@@ -838,8 +865,8 @@
   padding: 10px 20px;
 }
 .household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipes-holder .household-article-modal-recipes-modal-recipe .household-article-modal-recipes-modal-recipe-image {
-  height: 100px;
-  width: 100px;
+  height: 80px;
+  width: 80px;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
@@ -853,11 +880,11 @@
 }
 .household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipes-holder .household-article-modal-recipes-modal-recipe .household-article-modal-recipes-modal-recipe-content-holder strong {
   color: #add8e6;
-  font-size: 25px;
+  font-size: 22px;
 }
 .household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipes-holder .household-article-modal-recipes-modal-recipe .household-article-modal-recipes-modal-recipe-content-holder p {
   color: black;
-  font-size: 20px;
+  font-size: 16px;
   margin: 0;
 }
 .household .household-article-modal .household-article-modal-recipes-modal-loading {
@@ -867,8 +894,8 @@
   left: 0;
 }
 .household .household-article-modal .household-article-modal-return {
-  height: 30px;
-  width: 30px;
+  height: 25px;
+  width: 25px;
   position: absolute;
   top: 30px;
   left: 30px;
@@ -884,8 +911,8 @@
   top: 10%;
 }
 .household .household-article-modal .household-article-modal-title-holder img {
-  height: 100px;
-  width: 100px;
+  height: 80px;
+  width: 80px;
   -o-object-fit: contain;
      object-fit: contain;
   border: 3px solid #add8e6;
@@ -894,13 +921,13 @@
 .household .household-article-modal .household-article-modal-title-holder h2 {
   width: 60%;
   color: #add8e6;
-  font-size: 45px;
+  font-size: 40px;
   word-wrap: break-word;
 }
 .household .household-article-modal .household-article-modal-title-holder input {
   width: 60%;
   color: #add8e6;
-  font-size: 45px;
+  font-size: 35px;
   outline: none;
   background-color: white;
   border: 3px solid #add8e6;
@@ -930,25 +957,28 @@
   gap: 5px;
 }
 .household .household-article-modal .household-article-modal-info-holder .household-article-modal-info .household-article-modal-info-content {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
+  justify-content: flex-start;
   gap: 10px;
 }
 .household .household-article-modal .household-article-modal-info-holder .household-article-modal-info .household-article-modal-info-content p {
   color: black;
-  font-size: 25px;
+  font-size: 20px;
   text-transform: capitalize;
   margin: 0;
 }
 .household .household-article-modal .household-article-modal-info-holder .household-article-modal-info .household-article-modal-info-content span {
   color: #add8e6;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: bold;
   text-transform: none;
 }
 .household .household-article-modal .household-article-modal-info-holder .household-article-modal-info .household-article-modal-info-content input {
+  width: 50%;
   color: black;
   font-size: 20px;
   outline: none;
@@ -962,7 +992,7 @@
 }
 .household .household-article-modal .household-article-modal-info-holder .household-article-modal-info strong {
   color: #4682B4;
-  font-size: 20px;
+  font-size: 15px;
 }
 .household .household-article-modal .household-article-modal-button-holder {
   width: 100%;
@@ -1003,8 +1033,8 @@
   z-index: 1;
 }
 .household .household-create-article-modal .household-create-article-modal-scan img {
-  height: 30px;
-  width: 30px;
+  height: 25px;
+  width: 25px;
   -o-object-fit: contain;
      object-fit: contain;
   position: absolute;
@@ -1017,7 +1047,7 @@
   text-transform: capitalize;
   position: absolute;
   top: 10%;
-  font-size: 50px;
+  font-size: 35px;
 }
 .household .household-create-article-modal .household-create-article-modal-scan video {
   width: 90%;
@@ -1061,7 +1091,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
 }
 .household .household-create-article-modal .household-create-article-modal-content-holder form fieldset {
   width: 80%;
@@ -1086,9 +1116,9 @@
   color: black;
   font-size: 20px;
   background-color: white;
-  border: 3px solid #add8e6;
+  border: 2px solid #add8e6;
   outline: none;
-  padding: 10px;
+  padding: 5px 10px;
   transition: 300ms;
 }
 .household .household-create-article-modal .household-create-article-modal-content-holder form fieldset input:focus, .household .household-create-article-modal .household-create-article-modal-content-holder form fieldset select:focus {
@@ -1158,8 +1188,8 @@
   padding-top: 100px;
 }
 .household .household-members-modal .household-members-modal-return {
-  height: 30px;
-  width: 30px;
+  height: 25px;
+  width: 25px;
   position: absolute;
   top: 30px;
   left: 30px;
@@ -1174,7 +1204,7 @@
   border-radius: 5px;
   padding: 10px 0;
   transition: 300ms;
-  font-size: 30px;
+  font-size: 20px;
 }
 .household .household-members-modal .member-holder {
   width: 100%;
@@ -1183,7 +1213,7 @@
   justify-content: center;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+  gap: 15px;
   padding-left: 20px 0;
   padding-left: 30px;
 }
@@ -1197,15 +1227,15 @@
   gap: 20px;
 }
 .household .household-members-modal .member-holder .household-members-modal-member img {
-  height: 40px;
-  width: 40px;
+  height: 35px;
+  width: 35px;
   -o-object-fit: contain;
      object-fit: contain;
   border-radius: 50%;
 }
 .household .household-members-modal .member-holder .household-members-modal-member p {
   color: black;
-  font-size: 30px;
+  font-size: 25px;
   margin: 0;
 }
 .household .household-members-modal .member-holder .household-members-modal-member .household-members-modal-member-star {
@@ -1247,8 +1277,8 @@
   transition: 300ms;
 }
 .household .household-list-modal .household-list-modal-list-article-modal-holder .household-list-modal-list-article-modal img {
-  height: 100px;
-  width: 100px;
+  height: 90px;
+  width: 90px;
   -o-object-fit: contain;
      object-fit: contain;
   background-color: white;
@@ -1261,7 +1291,7 @@
 }
 .household .household-list-modal .household-list-modal-list-article-modal-holder .household-list-modal-list-article-modal strong {
   color: #add8e6;
-  font-size: 45px;
+  font-size: 40px;
 }
 .household .household-list-modal .household-list-modal-list-article-modal-holder .household-list-modal-list-article-modal .household-list-modal-list-article-modal-button-holder {
   width: 100%;
@@ -1307,9 +1337,10 @@
 }
 .household .household-list-modal .household-list-modal-list-article-holder .household-list-modal-article-holder-no-span {
   color: grey;
-  font-size: 30px;
-  font-style: italic;
   font-size: 25px;
+  font-style: italic;
+  text-align: center;
+  padding: 0 30px;
 }
 .household .household-list-modal .household-list-modal-list-article-holder .household-list-modal-list-article {
   width: 100%;
@@ -1318,11 +1349,11 @@
   justify-content: center;
   flex-direction: row;
   justify-content: space-between;
-  padding: 5px 30px;
+  padding: 5px 20px;
 }
 .household .household-list-modal .household-list-modal-list-article-holder .household-list-modal-list-article .household-list-modal-list-article-image {
-  height: 80px;
-  width: 80px;
+  height: 60px;
+  width: 60px;
   -o-object-fit: contain;
      object-fit: contain;
 }
@@ -1337,11 +1368,11 @@
 }
 .household .household-list-modal .household-list-modal-list-article-holder .household-list-modal-list-article .household-list-modal-list-article-content-holder strong {
   color: #add8e6;
-  font-size: 35px;
+  font-size: 30px;
 }
 .household .household-list-modal .household-list-modal-list-article-holder .household-list-modal-list-article .household-list-modal-list-article-content-holder p {
   color: black;
-  font-size: 20px;
+  font-size: 15px;
   text-transform: capitalize;
   margin: 0;
 }
@@ -1357,15 +1388,15 @@
   flex-direction: column;
 }
 .household .household-list-modal .household-list-modal-list-article-holder .household-list-modal-list-article .household-list-modal-list-article-user-holder img {
-  height: 30px;
-  width: 30px;
+  height: 25px;
+  width: 25px;
   -o-object-fit: contain;
      object-fit: contain;
   border-radius: 50%;
 }
 .household .household-list-modal .household-list-modal-list-article-holder .household-list-modal-list-article .household-list-modal-list-article-user-holder p {
   color: black;
-  font-size: 20px;
+  font-size: 15px;
   text-align: center;
   margin: 0;
 }
@@ -1379,7 +1410,7 @@
 }
 .household .household-notifications-modal span {
   color: grey;
-  font-size: 30px;
+  font-size: 25px;
   font-style: italic;
 }
 .household .household-settings-modal {
@@ -1404,7 +1435,7 @@
 }
 .household .household-settings-modal .household-settings-modal-button-holder button {
   color: black;
-  font-size: 23px;
+  font-size: 20px;
   text-transform: capitalize;
   background-color: transparent;
   border: none;
@@ -1460,8 +1491,8 @@
   position: relative;
 }
 .household .household-member-modal-holder .household-member-modal .household-member-modal-background img {
-  height: 120px;
-  width: 120px;
+  height: 100px;
+  width: 100px;
   -o-object-fit: contain;
      object-fit: contain;
   background-color: white;
@@ -1474,14 +1505,15 @@
 }
 .household .household-member-modal-holder .household-member-modal strong, .household .household-member-modal-holder .household-member-modal input {
   color: #add8e6;
-  font-size: 40px;
+  font-size: 35px;
   margin-top: 80px;
 }
 .household .household-member-modal-holder .household-member-modal input {
   width: 70%;
+  font-size: 25px;
   outline: none;
   border: 3px solid #add8e6;
-  padding: 5px 10px;
+  padding: 3px 10px;
   transition: 300ms;
 }
 .household .household-member-modal-holder .household-member-modal input:focus {
@@ -1530,7 +1562,7 @@
 }
 .household .article-holder span {
   color: grey;
-  font-size: 30px;
+  font-size: 25px;
   font-style: italic;
 }
 .household .article-holder .household-article {
@@ -1541,11 +1573,11 @@
   flex-direction: row;
   justify-content: flex-start;
   gap: 20px;
-  padding: 20px;
+  padding: 15px 20px;
 }
 .household .article-holder .household-article img {
-  height: 80px;
-  width: 80px;
+  height: 60px;
+  width: 60px;
   -o-object-fit: contain;
      object-fit: contain;
 }
@@ -1558,11 +1590,11 @@
 }
 .household .article-holder .household-article .household-article-content strong {
   color: #add8e6;
-  font-size: 35px;
+  font-size: 30px;
 }
 .household .article-holder .household-article .household-article-content p {
   color: black;
-  font-size: 20px;
+  font-size: 15px;
   margin: 0;
 }
 .household .household-menu {
@@ -1578,15 +1610,16 @@
   position: sticky;
   bottom: 0;
 }
-.household .household-menu img {
-  height: 40px;
-  width: 40px;
+.household .household-menu .household-menu-image {
+  height: 30px;
+  width: 30px;
   -o-object-fit: contain;
      object-fit: contain;
 }
 .household .household-menu .plus-button {
   position: relative;
   top: 0;
+  padding: 25px;
 }
 
 .invite {
@@ -1599,8 +1632,8 @@
   position: relative;
 }
 .invite .return {
-  height: 30px;
-  width: 30px;
+  height: 25px;
+  width: 25px;
   position: absolute;
   top: 30px;
   left: 30px;
@@ -1612,6 +1645,7 @@
   text-transform: capitalize;
   position: absolute;
   top: 10%;
+  font-size: 40px;
 }
 .invite .invite-code-holder {
   width: 100%;
@@ -1620,6 +1654,7 @@
   justify-content: center;
   flex-direction: column;
   gap: 10px;
+  margin-top: 30px;
 }
 .invite .invite-code-holder p {
   width: 70%;
@@ -1650,8 +1685,8 @@
   font-size: 20px;
 }
 .invite img {
-  height: 300px;
-  width: 300px;
+  height: 270px;
+  width: 270px;
   -o-object-fit: contain;
      object-fit: contain;
   margin-top: 80px;

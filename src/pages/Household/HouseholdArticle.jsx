@@ -18,7 +18,7 @@ const HouseholdArticle = ({ article, onClick }) => {
             <img src={article.icon ? article.icon : images.articleIcon} alt="ARTICLE" />
 
             <div className="household-article-content">
-                <strong>{cutText(article.name, 15)}</strong>
+                <strong>{cutText(article.name, 17)}</strong>
                 {article.expirationDate ? <p style={ExtendedDate.getDayDifference(article.expirationDate) < 0 ? { color: "red" } : {}}>{daysLeft}</p> : <></>}
             </div>
         </div>

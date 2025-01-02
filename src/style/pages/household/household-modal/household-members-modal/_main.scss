@@ -1,6 +1,6 @@
 .household-members-modal-return {
-    height: 30px;
-    width: 30px;
+    height: 25px;
+    width: 25px;
     position: absolute;
     top: 30px;
     left: 30px;
@@ -8,14 +8,14 @@
 
 button {
     @include default-button;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .member-holder {
     width: 100%;
     @include center(column);
     align-items: flex-start;
-    gap: 10px;
+    gap: 15px;
     padding-left: 20px 0;
     padding-left: 30px;
 

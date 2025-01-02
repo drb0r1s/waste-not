@@ -5,8 +5,8 @@
     position: relative;
 
     .return {
-        height: 30px;
-        width: 30px;
+        height: 25px;
+        width: 25px;
         position: absolute;
         top: 30px;
         left: 30px;
@@ -15,12 +15,14 @@
 
     h2 {
         @include floating-title;
+        font-size: 40px;
     }
 
     .invite-code-holder {
         width: 100%;
         @include center(column);
         gap: 10px;
+        margin-top: 30px;
         
         p {
             width: 70%;
@@ -47,8 +49,8 @@
     }
 
     img {
-        height: 300px;
-        width: 300px;
+        height: 270px;
+        width: 270px;
         object-fit: contain;
         margin-top: 80px;
     }

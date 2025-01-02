@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import ImageInput from "../../../components/ImageInput";
 import { images } from "../../../data/images";
 import { Storage } from "../../../functions/Storage";
+import { cutText } from "../../../functions/cutText";
 
 const HouseholdMemberModal = ({ activeMemberId, household, householdMemberModalHolderRef, householdMemberModalRef, disableHouseholdMemberModal }) => {
     const [activeMember, setActiveMember] = useState({});
@@ -91,11 +92,11 @@ const HouseholdMemberModal = ({ activeMemberId, household, householdMemberModalH
                     placeholder={activeMember.name}
                     value={nicknameInput}
                     onChange={e => setNicknameInput(e.target.value)}
-                /> : <strong>{activeMember.nickname ? activeMember.nickname : activeMember.name}</strong>}
+                /> : <strong>{activeMember.nickname ? cutText(activeMember.nickname, 20) : activeMember.name}</strong>}
                 
                 <div className="household-member-modal-button-holder">
                     {buttons.map((button, index) => {
-                        if(household.owner !== 1 && button === "transfer household") return <React.Fragment key={index} />;
+                        if((activeMember.id === 1 || household.owner !== 1) && button === "transfer household") return <React.Fragment key={index} />;
                         if((activeMember.id === 1 || household.owner !== 1) && button === "remove") return <React.Fragment key={index} />;
                         
                         if(button === "add nickname") return <button

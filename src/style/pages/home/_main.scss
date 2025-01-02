@@ -1,9 +1,12 @@
+@import "./mobile-info";
+
 .home {
     height: 100vh;
     width: 100vw;
     @include center(column);
     gap: 30px;
     position: relative;
+    overflow-x: hidden;
 
     h1 {
         @include floating-title;
@@ -14,7 +17,7 @@
         width: 90%;
         @include center(column);
         justify-content: flex-start;
-        gap: 5px;
+        gap: 10px;
         overflow: scroll;
 
         span {

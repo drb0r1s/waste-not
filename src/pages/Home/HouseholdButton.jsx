@@ -5,7 +5,7 @@ import { cutText } from "../../functions/cutText";
 const HouseholdButton = ({ household, onClick }) => {
     return(
         <div className="household-button" onClick={onClick}>
-            <p>{cutText(household.name, 20)}</p>
+            <p>{cutText(household.name, 23)}</p>
             
             <div className="household-person-holder">
                 <img src={images.personIcon} alt="PERSON" />

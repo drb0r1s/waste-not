@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import MobileInfo from "./MobileInfo";
 import HouseholdButton from "./HouseholdButton";
 import HomeModal from "./HomeModal";
 import HouseholdModal from "./HouseholdModal";
@@ -8,6 +9,7 @@ import PlusButton from "../../components/PlusButton";
 import { Storage } from "../../functions/Storage";
 
 const Home = () => {
+    const [width, setWidth] = useState(window.innerWidth);
     const [households, setHouseholds] = useState(Storage.get("HOUSEHOLDS"));
     const [isHomeModalActive, setIsHomeModalActive] = useState(false);
     const [householdModals, setHouseholdModals] = useState({ create: false, join: false, scan: false });
@@ -23,6 +25,15 @@ const Home = () => {
 
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const resize = () => setWidth(window.innerWidth);
+        window.addEventListener("resize", resize);
+
+        return () => {
+            window.removeEventListener("resize", resize);
+        }
+    }, []);
+    
     useEffect(() => {
         if(Storage.get("HOUSEHOLDS").length) setHouseholds(Storage.get("HOUSEHOLDS"));
     }, [localStorage.getItem("WASTENOT_HOUSEHOLDS")]);
@@ -129,37 +140,39 @@ const Home = () => {
     }
 
     return(
-        <div className="home">
-            {isNewHouseholdModalActive ? <NewHouseholdModal
-                newHouseholdModalRef={newHouseholdModalRef}
-                disableNewHouseholdModal={disableNewHouseholdModal}
-            /> : <></>}
-            
-            <h1 className="floating-title">WasteNot</h1>
+        <>
+            {width > 1024 ? <MobileInfo /> : <div className="home">
+                {isNewHouseholdModalActive ? <NewHouseholdModal
+                    newHouseholdModalRef={newHouseholdModalRef}
+                    disableNewHouseholdModal={disableNewHouseholdModal}
+                /> : <></>}
+                
+                <h1 className="floating-title">WasteNot</h1>
 
-            <div className="household-holder">
-                {!households.length ? <span>There are no households.</span> : households.map((household, index) => {
-                    return <HouseholdButton
-                        key={index}
-                        index={index}
-                        household={household}
-                        onClick={() => navigate("/household", { state: { household: household } })}
-                    />;
-                })}
-            </div>
+                <div className="household-holder">
+                    {!households.length ? <span>There are no households.</span> : households.map((household, index) => {
+                        return <HouseholdButton
+                            key={index}
+                            index={index}
+                            household={household}
+                            onClick={() => navigate("/household", { state: { household: household } })}
+                        />;
+                    })}
+                </div>
 
-            <PlusButton onClick={() => setIsHomeModalActive(true)} />
+                <PlusButton onClick={() => setIsHomeModalActive(true)} />
 
-            {isHomeModalActive ? <HomeModal
-                homeModalRef={homeModalRef}
-                disableHomeModal={disableHomeModal}
-                enableHouseholdModal={enableHouseholdModal}
-            /> : <></>}
+                {isHomeModalActive ? <HomeModal
+                    homeModalRef={homeModalRef}
+                    disableHomeModal={disableHomeModal}
+                    enableHouseholdModal={enableHouseholdModal}
+                /> : <></>}
 
-            {householdModals.create ? <HouseholdModal type="create" householdModalRef={householdModalRef} disableHouseholdModal={disableHouseholdModal} createButtonClicked={createButtonClicked} createHouseholdInput={createHouseholdInput} setCreateHouseholdInput={setCreateHouseholdInput} />
-            : householdModals.join ? <HouseholdModal type="join" householdModalRef={householdModalRef} disableHouseholdModal={disableHouseholdModal} joinButtonClicked={joinButtonClicked} joinHouseholdInput={joinHouseholdInput} setJoinHouseholdInput={setJoinHouseholdInput} joinHouseholdInputRef={joinHouseholdInputRef} isHouseholdModalLoading={isHouseholdModalLoading} />
-            : householdModals.scan ? <HouseholdModal type="scan" householdModalRef={householdModalRef} disableHouseholdModal={disableHouseholdModal} scanButtonClicked={scanButtonClicked} isHouseholdModalLoading={isHouseholdModalLoading} /> : <></>}
-        </div>
+                {householdModals.create ? <HouseholdModal type="create" householdModalRef={householdModalRef} disableHouseholdModal={disableHouseholdModal} createButtonClicked={createButtonClicked} createHouseholdInput={createHouseholdInput} setCreateHouseholdInput={setCreateHouseholdInput} />
+                : householdModals.join ? <HouseholdModal type="join" householdModalRef={householdModalRef} disableHouseholdModal={disableHouseholdModal} joinButtonClicked={joinButtonClicked} joinHouseholdInput={joinHouseholdInput} setJoinHouseholdInput={setJoinHouseholdInput} joinHouseholdInputRef={joinHouseholdInputRef} isHouseholdModalLoading={isHouseholdModalLoading} />
+                : householdModals.scan ? <HouseholdModal type="scan" householdModalRef={householdModalRef} disableHouseholdModal={disableHouseholdModal} scanButtonClicked={scanButtonClicked} isHouseholdModalLoading={isHouseholdModalLoading} /> : <></>}
+            </div>}
+        </>
     );
 }
 

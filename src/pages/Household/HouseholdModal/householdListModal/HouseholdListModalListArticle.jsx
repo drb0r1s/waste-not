@@ -17,13 +17,13 @@ const HouseholdListModalListArticle = ({ listArticle, onClick }) => {
             <img src={listArticle.icon ? listArticle.icon : images.articleIcon} alt="IMAGE" className="household-list-modal-list-article-image" />
 
             <div className="household-list-modal-list-article-content-holder">
-                <strong>{cutText(listArticle.name, 8)}</strong>
+                <strong>{cutText(listArticle.name, 12)}</strong>
                 <p>added: <span>{ExtendedDate.format(listArticle.date)}</span></p>
             </div>
 
             <div className="household-list-modal-list-article-user-holder">
                 <img src={member.icon ? member.icon : images.noAvatarIcon} alt="AVATAR" />
-                <p>{member.nickname ? member.nickname : member.name}</p>
+                <p>{member.nickname ? cutText(member.nickname, 17) : member.name}</p>
             </div>
         </div>
     );

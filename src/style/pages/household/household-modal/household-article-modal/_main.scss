@@ -6,8 +6,8 @@
 }
 
 .household-article-modal-return {
-    height: 30px;
-    width: 30px;
+    height: 25px;
+    width: 25px;
     position: absolute;
     top: 30px;
     left: 30px;
@@ -21,8 +21,8 @@
     top: 10%;
     
     img {
-        height: 100px;
-        width: 100px;
+        height: 80px;
+        width: 80px;
         object-fit: contain;
         border: 3px solid $primary;
         border-radius: 50%;
@@ -31,14 +31,14 @@
     h2 {
         width: 60%;
         color: $primary;
-        font-size: 45px;
+        font-size: 40px;
         word-wrap: break-word;
     }
 
     input {
         width: 60%;
         color: $primary;
-        font-size: 45px;
+        font-size: 35px;
         outline: none;
         background-color: white;
         border: 3px solid $primary;
@@ -65,24 +65,27 @@
         gap: 5px;
 
         .household-article-modal-info-content {
+            width: 100%;
             @include center;
+            justify-content: flex-start;
             gap: 10px;
             
             p {
                 color: black;
-                font-size: 25px;
+                font-size: 20px;
                 text-transform: capitalize;
                 margin: 0;
             }
     
             span {
                 color: $primary;
-                font-size: 25px;
+                font-size: 20px;
                 font-weight: bold;
                 text-transform: none;
             }
     
             input {
+                width: 50%;
                 color: black;
                 font-size: 20px;
                 outline: none;
@@ -99,7 +102,7 @@
 
         strong {
             color: $secondary;
-            font-size: 20px;
+            font-size: 15px;
         }
     }
 }

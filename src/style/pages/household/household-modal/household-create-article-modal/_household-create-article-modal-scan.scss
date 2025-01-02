@@ -9,8 +9,8 @@
     z-index: 1;
 
     img {
-        height: 30px;
-        width: 30px;
+        height: 25px;
+        width: 25px;
         object-fit: contain;
         position: absolute;
         top: 30px;
@@ -19,7 +19,7 @@
 
     h2 {
         @include floating-title;
-        font-size: 50px;
+        font-size: 35px;
     }
 
     video {

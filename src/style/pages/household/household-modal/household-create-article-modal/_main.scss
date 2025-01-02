@@ -17,7 +17,7 @@
     form {
         width: 100%;
         @include center(column);
-        gap: 5px;
+        gap: 10px;
     
         fieldset {
             width: 80%;
@@ -40,9 +40,9 @@
                 color: black;
                 font-size: 20px;
                 background-color: white;
-                border: 3px solid $primary;
+                border: 2px solid $primary;
                 outline: none;
-                padding: 10px;
+                padding: 5px 10px;
                 transition: 300ms;
     
                 &:focus {

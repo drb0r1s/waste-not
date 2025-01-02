@@ -8,14 +8,15 @@
     position: sticky;
     bottom: 0;
 
-    img {
-        height: 40px;
-        width: 40px;
+    .household-menu-image {
+        height: 30px;
+        width: 30px;
         object-fit: contain;
     }
 
     .plus-button {
         position: relative;
         top: 0;
+        padding: 25px;
     }
 }

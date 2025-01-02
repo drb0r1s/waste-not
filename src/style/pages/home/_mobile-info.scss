@@ -1,0 +1,21 @@
+.mobile-info {
+    height: 100vh;
+    width: 100vw;
+    @include center(column);
+
+    h1 {
+        color: black;
+        font-size: 50px;
+        margin-bottom: 30px;
+    }
+
+    strong {
+        color: $primary;
+        font-size: 30px;
+    }
+
+    p {
+        color: black;
+        font-size: 20px;
+    }
+}

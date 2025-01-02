@@ -3,6 +3,7 @@
     width: 100vw;
     @include center(column);
     position: relative;
+    overflow-x: hidden;
 
     @import "./household-modal/main";
     @import "./household-member-modal";

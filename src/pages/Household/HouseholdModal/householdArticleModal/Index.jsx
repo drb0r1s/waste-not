@@ -17,6 +17,8 @@ const HouseholdArticleModal = ({ activeArticle, disableHouseholdArticleModal }) 
 
     const useModalRef = useRef(null);
     const recipesModalRef = useRef(null);
+    const amountInputRef = useRef(null);
+    const lastUsedInputRef = useRef(null);
 
     const buttons = ["use", "edit", "recipe recommendations", "add to shopping list", "remove"];
 
@@ -72,13 +74,15 @@ const HouseholdArticleModal = ({ activeArticle, disableHouseholdArticleModal }) 
                 
                 break;
             case "done":
+                if(editInputs.amount && editInputs.amount < 1) return amountInputRef.current.style.border = "1px solid red";
+                if(editInputs.lastUsed && ExtendedDate.getDayDifference(editInputs.lastUsed) > 0) return lastUsedInputRef.current.style.border = "1px solid red";
                 setIsEditActive(false);
 
                 const updatedProps = {
                     name: editInputs.name ? editInputs.name : article.name,
                     expirationDate: editInputs.expirationDate ? editInputs.expirationDate : article.expirationDate,
                     amount: editInputs.amount ? editInputs.amount : article.amount,
-                    lastUsed: editInputs.lastUsed ? editInputs.lastUsed : article.lastUsed
+                    lastUsed: editInputs.lastUsed ? editInputs.lastUsed : article.lastUsed ? article.lastUsed : "Hasn't been used"
                 };
 
                 Storage.update("ARTICLES", article.id, updatedProps);
@@ -135,7 +139,7 @@ const HouseholdArticleModal = ({ activeArticle, disableHouseholdArticleModal }) 
                 <img src={activeArticle.icon ? activeArticle.icon : images.articleIcon} alt="IMAGE" />
                 {isEditActive ? <input
                     type="text"
-                    placeholder={article.name}
+                    placeholder={cutText(article.name, 12)}
                     value={editInputs.name}
                     onChange={e => setEditInputs(prevEditInputs => { return {...prevEditInputs, name: e.target.value} })}
                 /> : <h2>{cutText(article.name, 20)}</h2>}
@@ -164,6 +168,7 @@ const HouseholdArticleModal = ({ activeArticle, disableHouseholdArticleModal }) 
                             type="number"
                             placeholder={article.amount}
                             value={editInputs.amount}
+                            ref={amountInputRef}
                             onChange={e => setEditInputs(prevEditInputs => { return {...prevEditInputs, amount: e.target.value} })}
                         /> : <span>{article.amount}</span>}
                     </div>
@@ -176,6 +181,7 @@ const HouseholdArticleModal = ({ activeArticle, disableHouseholdArticleModal }) 
                         {isEditActive ? <input
                             type="date"
                             value={editInputs.lastUsed ? editInputs.lastUsed : ""}
+                            ref={lastUsedInputRef}
                             onChange={e => updateLastUsed(e.target.value)}
                         /> : <span>{lastUsed}</span>}
                     </div>

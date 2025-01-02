@@ -3,11 +3,11 @@
     @include center;
     justify-content: flex-start;
     gap: 20px;
-    padding: 20px;
+    padding: 15px 20px;
 
     img {
-        height: 80px;
-        width: 80px;
+        height: 60px;
+        width: 60px;
         object-fit: contain;
     }
 
@@ -17,12 +17,12 @@
 
         strong {
             color: $primary;
-            font-size: 35px;
+            font-size: 30px;
         }
 
         p {
             color: black;
-            font-size: 20px;
+            font-size: 15px;
             margin: 0;
         }
     }
