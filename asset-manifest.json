@@ -1,20 +1,13 @@
 {
   "files": {
     "main.css": "/waste-not/static/css/main.2cd331ec.css",
-    "main.js": "/waste-not/static/js/main.f20a89aa.js",
-    "static/media/banner-6.png": "/waste-not/static/media/banner-6.76f3e34e25a13a0ba3dd.png",
-    "static/media/banner-7.png": "/waste-not/static/media/banner-7.de5ae92a61cc875e234e.png",
-    "static/media/banner-2.png": "/waste-not/static/media/banner-2.4b0a9d621e9204b6622d.png",
-    "static/media/banner-11.png": "/waste-not/static/media/banner-11.5e106c085d0bb106c248.png",
-    "static/media/banner-4.png": "/waste-not/static/media/banner-4.9f520567e07c4454f9dd.png",
+    "main.js": "/waste-not/static/js/main.2b6df625.js",
     "static/media/chocolate-mug-cake.png": "/waste-not/static/media/chocolate-mug-cake.069c12eed5b683beae74.png",
     "static/media/brownies.png": "/waste-not/static/media/brownies.1051ee707a11c8b82342.png",
-    "static/media/banner-9.png": "/waste-not/static/media/banner-9.f589b5f9cbc082096390.png",
     "static/media/lemon-bars.png": "/waste-not/static/media/lemon-bars.aa647cc2d6f5429d6671.png",
     "static/media/avocado-toast.png": "/waste-not/static/media/avocado-toast.c63f50e5f7fe6efdac9c.png",
     "static/media/bruschetta.png": "/waste-not/static/media/bruschetta.e3c42e3401ff46ff733d.png",
     "static/media/panna-cotta.png": "/waste-not/static/media/panna-cotta.97e2c4de0207e580d581.png",
-    "static/media/banner-10.png": "/waste-not/static/media/banner-10.caabd12ca4f7df4fd332.png",
     "static/media/grilled-cheese-sandwich.png": "/waste-not/static/media/grilled-cheese-sandwich.101d678c1e6327b6422b.png",
     "static/media/bbq-chicken-pizza.png": "/waste-not/static/media/bbq-chicken-pizza.079f04098f7d952112b9.png",
     "static/media/chicken-curry.png": "/waste-not/static/media/chicken-curry.0c76b7e2f7dc57c61ab2.png",
@@ -22,6 +15,7 @@
     "static/media/crostini.png": "/waste-not/static/media/crostini.9f3c7ba9d1f3ca36b2cf.png",
     "static/media/french-onion-soup.png": "/waste-not/static/media/french-onion-soup.ed127cb7f433d5476d23.png",
     "static/media/pasta-primavera.png": "/waste-not/static/media/pasta-primavera.0310eb762a6ed296402e.png",
+    "static/media/banner-6.png": "/waste-not/static/media/banner-6.702c373a6133aec793f6.png",
     "static/media/chicken-stir-fry.png": "/waste-not/static/media/chicken-stir-fry.9090dc8da6a995911365.png",
     "static/media/spring-rolls.png": "/waste-not/static/media/spring-rolls.5d22f50715716ff889c5.png",
     "static/media/deviled-eggs.png": "/waste-not/static/media/deviled-eggs.50f21e675f9a20f90bf4.png",
@@ -39,10 +33,12 @@
     "static/media/caesar-salad.png": "/waste-not/static/media/caesar-salad.9f09357afc2bec8b556d.png",
     "static/media/apple-pie.png": "/waste-not/static/media/apple-pie.cbd4c91bc3b54f670e03.png",
     "static/media/tomato-basil-soup.png": "/waste-not/static/media/tomato-basil-soup.3436b24a9e99589fc159.png",
-    "static/media/banner-8.png": "/waste-not/static/media/banner-8.fc21a2278f3ae7589f0f.png",
     "static/media/hummus-and-veggies.png": "/waste-not/static/media/hummus-and-veggies.c138c4a74bdfce0ddb35.png",
     "static/media/vegetarian-tacos.png": "/waste-not/static/media/vegetarian-tacos.c2ab16b8a2eea1f33a9c.png",
+    "static/media/banner-2.png": "/waste-not/static/media/banner-2.da3a4c522d1000f0f18b.png",
     "static/media/tiramisu.png": "/waste-not/static/media/tiramisu.40172f6cf08d268cab55.png",
+    "static/media/banner-7.png": "/waste-not/static/media/banner-7.1a849d8e05c25751ecdb.png",
+    "static/media/banner-11.png": "/waste-not/static/media/banner-11.2c713a770056aa29f628.png",
     "static/media/shrimp-alfredo.png": "/waste-not/static/media/shrimp-alfredo.76881ba309405dd2717e.png",
     "static/media/banner-1.png": "/waste-not/static/media/banner-1.98a3b59388a5e97ba77d.png",
     "static/media/shrimp-cocktail.png": "/waste-not/static/media/shrimp-cocktail.60add79cb01ea62de3d1.png",
@@ -55,6 +51,7 @@
     "static/media/banner-3.png": "/waste-not/static/media/banner-3.1717f4eac3441c8b4e10.png",
     "static/media/ham.png": "/waste-not/static/media/ham.c38f781f56106d4b2662.png",
     "static/media/fish-fillets.png": "/waste-not/static/media/fish-fillets.4cd1614d64b66158168e.png",
+    "static/media/banner-4.png": "/waste-not/static/media/banner-4.7e156443787612109b31.png",
     "static/media/mini-quiches.png": "/waste-not/static/media/mini-quiches.b0b59be2737d817126dc.png",
     "static/media/bacon.png": "/waste-not/static/media/bacon.11d8b04e755e974bfd2c.png",
     "static/media/frozen-pizza.png": "/waste-not/static/media/frozen-pizza.da59107db9ff4301ab77.png",
@@ -62,6 +59,7 @@
     "static/media/lettuce.png": "/waste-not/static/media/lettuce.d2b8324e89abf77c9ab2.png",
     "static/media/broccoli.png": "/waste-not/static/media/broccoli.fd91abdc9d452cafff03.png",
     "static/media/f4.png": "/waste-not/static/media/f4.b2b0cf22057920c639a6.png",
+    "static/media/banner-9.png": "/waste-not/static/media/banner-9.2a2dd41143115f62ddc3.png",
     "static/media/m22.png": "/waste-not/static/media/m22.57d3a78f2ec416c3e590.png",
     "static/media/pasta.png": "/waste-not/static/media/pasta.d44e341858984f2be007.png",
     "static/media/popcorn.png": "/waste-not/static/media/popcorn.f1b9fe09b8f58cf8688e.png",
@@ -95,6 +93,7 @@
     "static/media/m14.png": "/waste-not/static/media/m14.5faf09a7795d28bf5a2b.png",
     "static/media/f6.png": "/waste-not/static/media/f6.b078755c3606be916daa.png",
     "static/media/f10.png": "/waste-not/static/media/f10.8864cfe4fdf2268dcf23.png",
+    "static/media/banner-10.png": "/waste-not/static/media/banner-10.1baaf7f03f53fe7a8e0e.png",
     "static/media/f3.png": "/waste-not/static/media/f3.0253ba0e4ab6e6b77c68.png",
     "static/media/f8.png": "/waste-not/static/media/f8.5e0700c349cb8e689103.png",
     "static/media/rice.png": "/waste-not/static/media/rice.01ac38cbe533017e441f.png",
@@ -128,6 +127,7 @@
     "static/media/ground-beef.png": "/waste-not/static/media/ground-beef.f1d8a8f1dc9833611793.png",
     "static/media/star-icon.png": "/waste-not/static/media/star-icon.190d870d386afd29523a.png",
     "static/media/camera-icon.png": "/waste-not/static/media/camera-icon.8863c1d2789825f76759.png",
+    "static/media/banner-8.png": "/waste-not/static/media/banner-8.3dc03e182b978864dfa0.png",
     "static/media/sugar.png": "/waste-not/static/media/sugar.b7d70c79f81857d156c9.png",
     "static/media/search-icon.png": "/waste-not/static/media/search-icon.a27091ef0c45faf8a66e.png",
     "static/media/todo-icon.png": "/waste-not/static/media/todo-icon.ed7b1c334a2d2a8073db.png",
@@ -135,10 +135,10 @@
     "static/media/bell-icon.png": "/waste-not/static/media/bell-icon.5846d4b1994ad4088108.png",
     "index.html": "/waste-not/index.html",
     "main.2cd331ec.css.map": "/waste-not/static/css/main.2cd331ec.css.map",
-    "main.f20a89aa.js.map": "/waste-not/static/js/main.f20a89aa.js.map"
+    "main.2b6df625.js.map": "/waste-not/static/js/main.2b6df625.js.map"
   },
   "entrypoints": [
     "static/css/main.2cd331ec.css",
-    "static/js/main.f20a89aa.js"
+    "static/js/main.2b6df625.js"
   ]
 }
