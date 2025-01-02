@@ -48,11 +48,14 @@ const ImageInput = ({ type, imageInputRef, disableImageInput, isProfile }) => {
             />
             
             <div className="image-input-content-holder">
-                <img
+                {type === "banner" ? <div
+                    className="image-input-banner-background"
+                    style={imageName ? { backgroundImage: `url(${imagePreview})` } : {}}
+                ></div> : <img
                     src={imageName ? imagePreview : images.imageIcon}
                     alt="IMAGE"
                     className={imageName ? "image-input-preview-image" : ""}
-                />
+                />}
                 
                 <strong>{imageName ? getImageName() : "Click to upload the image"}</strong>
             </div>

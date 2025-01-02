@@ -32,6 +32,15 @@
         transform: translate(-50%, -50%);
         padding: 10px 20px;
 
+        .image-input-banner-background {
+            height: 100px;
+            width: 100%;
+            background-image: url("../images/banners/banner-default.png");
+            background-position: center;
+            background-size: cover;
+            border: 3px solid $secondary;
+        }
+        
         img {
             height: 100px;
             width: 100px;

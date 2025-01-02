@@ -20,17 +20,28 @@
     h2 {
         @include floating-title;
         font-size: 35px;
+        top: 5%;
+    }
+
+    .loading {
+        position: absolute;
     }
 
     video {
         width: 90%;
         border: 3px solid $primary;
+        opacity: 0;
+        transition: 300ms;
+    }
+
+    .video-active {
+        opacity: 1;
     }
 
     button {
         @include default-button;
         position: absolute;
-        top: 80%;
+        top: 90%;
     }
 }
 

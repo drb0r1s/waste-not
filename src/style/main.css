@@ -188,6 +188,14 @@
   transform: translate(-50%, -50%);
   padding: 10px 20px;
 }
+.image-input .image-input-content-holder .image-input-banner-background {
+  height: 100px;
+  width: 100%;
+  background-image: url("../images/banners/banner-default.png");
+  background-position: center;
+  background-size: cover;
+  border: 3px solid #4682B4;
+}
 .image-input .image-input-content-holder img {
   height: 100px;
   width: 100px;
@@ -423,6 +431,7 @@
   position: absolute;
   top: 10%;
   font-weight: normal;
+  top: 5%;
 }
 .home .household-modal .household-modal-create fieldset,
 .home .household-modal .household-modal-join fieldset,
@@ -469,11 +478,23 @@
 .home .household-modal .household-modal-scan fieldset input::placeholder {
   color: gray;
 }
+.home .household-modal .household-modal-create .loading,
+.home .household-modal .household-modal-join .loading,
+.home .household-modal .household-modal-scan .loading {
+  position: absolute;
+}
 .home .household-modal .household-modal-create video,
 .home .household-modal .household-modal-join video,
 .home .household-modal .household-modal-scan video {
   width: 90%;
   border: 3px solid #4682B4;
+  opacity: 0;
+  transition: 300ms;
+}
+.home .household-modal .household-modal-create .video-active,
+.home .household-modal .household-modal-join .video-active,
+.home .household-modal .household-modal-scan .video-active {
+  opacity: 1;
 }
 .home .household-modal .household-modal-create .household-modal-create-icon-button,
 .home .household-modal .household-modal-join .household-modal-create-icon-button,
@@ -511,7 +532,7 @@
   flex-direction: column;
   gap: 10px;
   position: absolute;
-  top: 85%;
+  top: 90%;
 }
 .home .household-modal .household-modal-create .button-holder button,
 .home .household-modal .household-modal-join .button-holder button,
@@ -1048,10 +1069,19 @@
   position: absolute;
   top: 10%;
   font-size: 35px;
+  top: 5%;
+}
+.household .household-create-article-modal .household-create-article-modal-scan .loading {
+  position: absolute;
 }
 .household .household-create-article-modal .household-create-article-modal-scan video {
   width: 90%;
   border: 3px solid #add8e6;
+  opacity: 0;
+  transition: 300ms;
+}
+.household .household-create-article-modal .household-create-article-modal-scan .video-active {
+  opacity: 1;
 }
 .household .household-create-article-modal .household-create-article-modal-scan button {
   width: 70%;
@@ -1064,7 +1094,7 @@
   padding: 10px 0;
   transition: 300ms;
   position: absolute;
-  top: 80%;
+  top: 90%;
 }
 .household .household-create-article-modal #household-create-artical-modal-scan-active {
   left: 0;

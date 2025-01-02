@@ -89,6 +89,7 @@ const HouseholdMemberModal = ({ activeMemberId, household, householdMemberModalH
 
                 {isNicknameInputActive ? <input
                     type="text"
+                    maxLength="32"
                     placeholder={activeMember.name}
                     value={nicknameInput}
                     onChange={e => setNicknameInput(e.target.value)}

@@ -139,6 +139,7 @@ const HouseholdArticleModal = ({ activeArticle, disableHouseholdArticleModal }) 
                 <img src={activeArticle.icon ? activeArticle.icon : images.articleIcon} alt="IMAGE" />
                 {isEditActive ? <input
                     type="text"
+                    maxLength="32"
                     placeholder={cutText(article.name, 12)}
                     value={editInputs.name}
                     onChange={e => setEditInputs(prevEditInputs => { return {...prevEditInputs, name: e.target.value} })}

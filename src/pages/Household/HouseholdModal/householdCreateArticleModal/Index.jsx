@@ -43,7 +43,7 @@ const HouseholdCreateArticleModal = ({ household, disableHouseholdModal, isList 
 
     function createArticle() {
         if(!articleInputs.name) return;
-        if(isPerishable && !articleInputs.expirationDate && !isList) return expirationInputRef.current.style.border = "3px solid red";
+        if(isPerishable && !articleInputs.expirationDate && !isList) return expirationInputRef.current.style.border = "2px solid red";
         
         const [article] = Storage.get("ARTICLES", { key: "name", value: articleInputs.name });
 
@@ -96,8 +96,11 @@ const HouseholdCreateArticleModal = ({ household, disableHouseholdModal, isList 
                 scanModalRef={scanModalRef}
                 isScanModalActive={isScanModalActive}
                 disableScanModal={disableScanModal}
-                disableHouseholdModal={disableHouseholdModal}
-                household={household}
+                setName={newName => {
+                    setArticleInputs(prevArticleInputs => { return {...prevArticleInputs, name: newName} });
+                    updateName(newName);
+                }}
+                setExpirationDate={newDate => setArticleInputs(prevArticleInputs => { return {...prevArticleInputs, expirationDate: newDate} })}
             /> : <></>}
             
             <HouseholdHeader title="add article" returnFunction={disableHouseholdModal} />
@@ -112,6 +115,7 @@ const HouseholdCreateArticleModal = ({ household, disableHouseholdModal, isList 
                             name="create-article-modal-name"
                             id="create-article-modal-name"
                             placeholder="Pan..."
+                            maxLength="32"
                             ref={nameInputRef}
                             value={articleInputs.name}
                             onChange={e => updateName(e.target.value)}
@@ -153,6 +157,7 @@ const HouseholdCreateArticleModal = ({ household, disableHouseholdModal, isList 
                             name="create-article-modal-expiration"
                             id="create-article-modal-expiration"
                             ref={expirationInputRef}
+                            value={articleInputs.expirationDate}
                             onChange={e => setArticleInputs(prevArticleInputs => { return {...prevArticleInputs, expirationDate: e.target.value} })}
                         />
                     </fieldset> : <></>}

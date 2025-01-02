@@ -1,29 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Webcam from "react-webcam";
+import Loading from "../../../../components/Loading";
 import { articles } from "../../../../data/articles";
 import { images } from "../../../../data/images";
-import { Storage } from "../../../../functions/Storage";
 import { ExtendedDate } from "../../../../functions/ExtendedDate";
 
 const HouseholdCreateArticleModalScan = ({
     scanModalRef, isScanModalActive, disableScanModal,
-    disableHouseholdModal, household
+    setName, setExpirationDate
 }) => {
-    function scanArticle() {
-        const randomArticle = articles[Math.floor(Math.random() * articles.length)];
+    const [isVideoActive, setIsVideoActive] = useState(false);
 
-        Storage.add("ARTICLES", {
-            householdId: household.id,
-            name: randomArticle.name,
-            icon: randomArticle.icon,
-            expirationDate: ExtendedDate.getRandom("2025-01-01", "2027-01-01"),
-            tag: randomArticle.tag,
-            amount: Math.floor(Math.random() * (20 - 1 + 1)) + 1,
-            lastUsed: ExtendedDate.getRandom("2024-06-01", "2024-12-30")
-        });
+    useEffect(() => {
+        setTimeout(() => setIsVideoActive(true), 2000);
+    }, []);
+
+    function scanArticle() {
+        switch(isScanModalActive) {
+            case "barcode":
+                const randomArticle = articles[Math.floor(Math.random() * articles.length)];
+                setName(randomArticle.name);
+
+                break;
+            case "expiration":
+                setExpirationDate(ExtendedDate.getRandom("2025-01-01", "2025-03-01"));
+                break;
+            default:
+        }        
 
         disableScanModal();
-        disableHouseholdModal();
     }
     
     return(
@@ -35,7 +40,13 @@ const HouseholdCreateArticleModalScan = ({
             />
             
             <h2>scan {isScanModalActive === "barcode" ? "barcode" : "expiration date"}</h2>
-            <Webcam videoConstraints={{ facingMode: "environment" }} />
+            
+            {!isVideoActive ? <Loading /> : <></>}
+            
+            <Webcam
+                className={isVideoActive ? "video-active" : ""}
+                videoConstraints={{ facingMode: "environment" }}
+            />
 
             <button onClick={scanArticle}>scan</button>
         </div>

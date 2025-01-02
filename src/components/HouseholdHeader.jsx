@@ -15,6 +15,7 @@ const HouseholdHeader = ({
             {isSearchActive ? <input
                 type="text"
                 placeholder="Search..."
+                maxLength="32"
                 value={searchInput}
                 onChange={e => setSearchInput(e.target.value)}
             /> : <h2>{cutText(title, 20)}</h2>}

@@ -29,6 +29,7 @@
         h2 {
             @include floating-title;
             font-weight: normal;
+            top: 5%;
         }
 
         fieldset {
@@ -65,9 +66,19 @@
             }
         }
 
+        .loading {
+            position: absolute;
+        }
+
         video {
             width: 90%;
             border: 3px solid $secondary;
+            opacity: 0;
+            transition: 300ms;
+        }
+
+        .video-active {
+            opacity: 1;
         }
 
         .household-modal-create-icon-button {
@@ -94,7 +105,7 @@
             @include center(column);
             gap: 10px;
             position: absolute;
-            top: 85%;
+            top: 90%;
 
             button {
                 @include default-button;

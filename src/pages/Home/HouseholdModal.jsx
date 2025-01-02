@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Webcam from "react-webcam";
 import Loading from "../../components/Loading";
 import { images } from "../../data/images";
@@ -9,9 +9,14 @@ const HouseholdModal = ({
     createHouseholdInput, setCreateHouseholdInput, joinHouseholdInput,
     setJoinHouseholdInput, joinHouseholdInputRef, isHouseholdModalLoading
 }) => {
+    const [isVideoActive, setIsVideoActive] = useState(false);
     const joinButtonRef = useRef(null);
 
     const buttons = ["invite people", "done"];
+
+    useEffect(() => {
+        setTimeout(() => setIsVideoActive(true), 2000);
+    }, []);
 
     function updateJoinHouseholdInput(content) {
         if(content.length < 16) joinButtonRef.current.classList.add("button-disabled");
@@ -34,6 +39,7 @@ const HouseholdModal = ({
                         name="household-name"
                         id="household-name"
                         placeholder="Pan..."
+                        maxLength="32"
                         value={createHouseholdInput}
                         onChange={e => setCreateHouseholdInput(e.target.value)}
                     />
@@ -80,7 +86,12 @@ const HouseholdModal = ({
                     <img className="modal-x" src={images.xIcon} alt="X" onClick={() => disableHouseholdModal(type)} />
                     <h2>scan QR</h2>
 
-                    <Webcam videoConstraints={{ facingMode: "environment" }} />
+                    {!isVideoActive ? <Loading /> : <></>}
+                    
+                    <Webcam
+                        className={isVideoActive ? "video-active" : ""}
+                        videoConstraints={{ facingMode: "environment" }}
+                    />
 
                     <div className="button-holder">
                         <button onClick={scanButtonClicked}>scan</button>
