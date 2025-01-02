@@ -49,7 +49,7 @@ const NewHouseholdModal = ({ newHouseholdModalRef, disableNewHouseholdModal }) =
             householdId,
             name: newArticles[i].name,
             icon: newArticles[i].icon,
-            expirationDate: ExtendedDate.getRandom("2025-01-01", "2025-04-01"),
+            expirationDate: ExtendedDate.getRandom("2025-01-01", "2025-03-01"),
             tag: newArticles[i].tag,
             amount: Math.floor(Math.random() * (20 - 1 + 1)) + 1,
             lastUsed: ExtendedDate.getRandom("2024-06-01", "2024-12-30")

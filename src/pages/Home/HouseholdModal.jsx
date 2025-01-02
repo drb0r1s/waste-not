@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Webcam from "react-webcam";
 import Loading from "../../components/Loading";
 import { images } from "../../data/images";
@@ -9,7 +9,16 @@ const HouseholdModal = ({
     createHouseholdInput, setCreateHouseholdInput, joinHouseholdInput,
     setJoinHouseholdInput, joinHouseholdInputRef, isHouseholdModalLoading
 }) => {
+    const joinButtonRef = useRef(null);
+
     const buttons = ["invite people", "done"];
+
+    function updateJoinHouseholdInput(content) {
+        if(content.length < 16) joinButtonRef.current.classList.add("button-disabled");
+        else joinButtonRef.current.classList.remove("button-disabled");
+        
+        setJoinHouseholdInput(content);
+    }
     
     return(
         <div className="household-modal" ref={householdModalRef}>
@@ -29,11 +38,6 @@ const HouseholdModal = ({
                         onChange={e => setCreateHouseholdInput(e.target.value)}
                     />
                 </fieldset>
-
-                <button className="household-modal-create-icon-button" type="button">
-                    <img src={images.imageIcon} alt="ICON" />
-                    <span>icon</span>
-                </button>
 
                 <div className="button-holder">
                     {buttons.map((button, index) => {
@@ -59,12 +63,16 @@ const HouseholdModal = ({
                             maxLength="16"
                             ref={joinHouseholdInputRef}
                             value={joinHouseholdInput}
-                            onChange={e => setJoinHouseholdInput(e.target.value)}
+                            onChange={e => updateJoinHouseholdInput(e.target.value)}
                         />
                     </fieldset>
 
                     <div className="button-holder">
-                        <button onClick={joinButtonClicked}>join</button>
+                        <button
+                            className="button-disabled"
+                            onClick={joinButtonClicked}
+                            ref={joinButtonRef}
+                        >join</button>
                     </div>
                 </>}
             </div> : <div className="household-modal-scan">
@@ -72,7 +80,7 @@ const HouseholdModal = ({
                     <img className="modal-x" src={images.xIcon} alt="X" onClick={() => disableHouseholdModal(type)} />
                     <h2>scan QR</h2>
 
-                    <Webcam />
+                    <Webcam videoConstraints={{ facingMode: "environment" }} />
 
                     <div className="button-holder">
                         <button onClick={scanButtonClicked}>scan</button>

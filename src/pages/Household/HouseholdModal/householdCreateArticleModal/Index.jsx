@@ -1,22 +1,33 @@
 import React, { useState, useEffect, useRef } from "react";
 import HouseholdHeader from "../../../../components/HouseholdHeader";
 import HouseholdCreateArticleModalScan from "./HouseholdCreateArticleModalScan";
+import { articleImages } from "../../../../data/articleImages";
 import { Storage } from "../../../../functions/Storage";
 import { ExtendedDate } from "../../../../functions/ExtendedDate";
+import { toCamelCase } from "../../../../functions/toCamelCase";
 
 const HouseholdCreateArticleModal = ({ household, disableHouseholdModal, isList }) => {
     const [articleInputs, setArticleInputs] = useState({ name: "", expirationDate: "", tag: "fridge" });
     const [isPerishable, setIsPerishable] = useState(true);
     const [isScanModalActive, setIsScanModalActive] = useState(false);
 
+    const nameInputRef = useRef(null);
     const expirationInputRef = useRef(null);
     const scanModalRef = useRef(null);
+    const createArticleButtonRef = useRef(null);
     
     const buttons = ["scan barcode", "scan expiration date"];
 
     useEffect(() => {
         if(!isPerishable && articleInputs.expirationDate) setArticleInputs(prevArticleInputs => { return {...prevArticleInputs, expirationDate: ""} });
     }, [isPerishable]);
+
+    function updateName(content) {
+        if(!content) createArticleButtonRef.current.classList.add("button-disabled");
+        else createArticleButtonRef.current.classList.remove("button-disabled");
+
+        setArticleInputs(prevArticleInputs => { return {...prevArticleInputs, name: content} });
+    }
 
     function buttonClicked(key) {
         switch(key) {
@@ -31,6 +42,7 @@ const HouseholdCreateArticleModal = ({ household, disableHouseholdModal, isList 
     }
 
     function createArticle() {
+        if(!articleInputs.name) return;
         if(isPerishable && !articleInputs.expirationDate && !isList) return expirationInputRef.current.style.border = "3px solid red";
         
         const [article] = Storage.get("ARTICLES", { key: "name", value: articleInputs.name });
@@ -40,7 +52,7 @@ const HouseholdCreateArticleModal = ({ household, disableHouseholdModal, isList 
         else if(isList) Storage.add("LIST_ARTICLES", {
             householdId: household.id,
             name: articleInputs.name,
-            icon: "",
+            icon: getArticleIcon(articleInputs.name),
             date: ExtendedDate.defaultFormat(),
             isMarked: false,
             addedBy: Storage.get("PROFILE").id
@@ -49,13 +61,23 @@ const HouseholdCreateArticleModal = ({ household, disableHouseholdModal, isList 
         else Storage.add("ARTICLES", {
             householdId: household.id,
             ...articleInputs,
-            icon: "",
+            icon: getArticleIcon(articleInputs.name),
             amount: 1,
             lastUsed: null
         });
         
         setArticleInputs({ name: "", expirationDate: "", tag: "fridge" });
         disableHouseholdModal();
+
+        function getArticleIcon(name) {
+            let icon = "";
+            
+            Object.keys(articleImages).forEach((imageKey, index) => {
+                if(imageKey === toCamelCase(name)) icon = Object.values(articleImages)[index];
+            });
+
+            return icon;
+        }
     }
 
     function enableScanModal(key) {
@@ -90,8 +112,9 @@ const HouseholdCreateArticleModal = ({ household, disableHouseholdModal, isList 
                             name="create-article-modal-name"
                             id="create-article-modal-name"
                             placeholder="Pan..."
+                            ref={nameInputRef}
                             value={articleInputs.name}
-                            onChange={e => setArticleInputs(prevArticleInputs => { return {...prevArticleInputs, name: e.target.value} })}
+                            onChange={e => updateName(e.target.value)}
                         />
 
                         {!isList ? <div className="household-create-article-modal-checkbox-holder">
@@ -146,7 +169,8 @@ const HouseholdCreateArticleModal = ({ household, disableHouseholdModal, isList 
             </div>
 
             <button
-                className="household-create-article-modal-button"
+                className="household-create-article-modal-button button-disabled"
+                ref={createArticleButtonRef}
                 onClick={createArticle}
             >done</button>
         </>

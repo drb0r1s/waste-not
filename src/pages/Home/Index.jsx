@@ -98,6 +98,8 @@ const Home = () => {
     }
 
     function joinButtonClicked() {
+        if(joinHouseholdInput.length < 16) return;
+
         const code = joinHouseholdInput;
         
         setJoinHouseholdInput("");

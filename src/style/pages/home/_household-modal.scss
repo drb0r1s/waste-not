@@ -98,6 +98,10 @@
             button {
                 @include default-button;
             }
+
+            .button-disabled {
+                opacity: .5;
+            }
         }
     }
 }

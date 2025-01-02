@@ -3,9 +3,18 @@ import { images } from "../../../../data/images";
 
 const HouseholdArticleModalUseModal = ({ activeArticle, useModalRef, disableModal, substractAmount }) => {
     const [useValue, setUseValue] = useState("");
+    
     const inputRef = useRef(null);
+    const okButtonRef = useRef(null);
     
     const buttons = ["cancel", "ok"];
+
+    function updateUseValue(content) {
+        if(!content) okButtonRef.current.classList.add("button-disabled");
+        else okButtonRef.current.classList.remove("button-disabled");
+        
+        setUseValue(content);
+    }
 
     function buttonClicked(key) {
         switch(key) {
@@ -13,6 +22,8 @@ const HouseholdArticleModalUseModal = ({ activeArticle, useModalRef, disableModa
                 disableModal();
                 break;
             case "ok":
+                if(!useValue) return;
+
                 const newAmount = activeArticle.amount - parseInt(useValue);
                 if(newAmount < 0 || parseInt(useValue) < 1) return inputRef.current.style.border = "1px solid red";
                 
@@ -33,7 +44,7 @@ const HouseholdArticleModalUseModal = ({ activeArticle, useModalRef, disableModa
             />
             
             <div className="household-article-modal-use-modal-content-holder">
-                <img src={activeArticle.icon ? activeArticle.icon : images.imageIcon} alt="ARTICLE" />
+                <img src={activeArticle.icon ? activeArticle.icon : images.articleIcon} alt="ARTICLE" />
                 <strong>{activeArticle.name}</strong>
             </div>
 
@@ -45,11 +56,18 @@ const HouseholdArticleModalUseModal = ({ activeArticle, useModalRef, disableModa
                     placeholder="00.00"
                     ref={inputRef}
                     value={useValue}
-                    onChange={e => setUseValue(e.target.value)}
+                    onChange={e => updateUseValue(e.target.value)}
                 />
 
                 <div className="household-article-modal-use-modal-mini-modal-button-holder">
                     {buttons.map((button, index) => {
+                        if(button === "ok") return <button
+                            key={index}
+                            className="button-disabled"
+                            ref={okButtonRef}
+                            onClick={() => buttonClicked(button)}
+                        >{button}</button>
+                        
                         return <button
                             key={index}
                             onClick={() => buttonClicked(button)}

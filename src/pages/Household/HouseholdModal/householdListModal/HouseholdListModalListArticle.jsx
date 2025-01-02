@@ -14,7 +14,7 @@ const HouseholdListModalListArticle = ({ listArticle, onClick }) => {
             className={`household-list-modal-list-article ${listArticle.isMarked ? "household-list-modal-list-article-marked" : ""}`}
             onClick={() => onClick(listArticle)}
         >
-            <img src={listArticle.icon ? listArticle.icon : images.imageIcon} alt="IMAGE" className="household-list-modal-list-article-image" />
+            <img src={listArticle.icon ? listArticle.icon : images.articleIcon} alt="IMAGE" className="household-list-modal-list-article-image" />
 
             <div className="household-list-modal-list-article-content-holder">
                 <strong>{cutText(listArticle.name, 8)}</strong>

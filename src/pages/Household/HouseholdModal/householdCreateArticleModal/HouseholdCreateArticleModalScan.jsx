@@ -35,7 +35,7 @@ const HouseholdCreateArticleModalScan = ({
             />
             
             <h2>scan {isScanModalActive === "barcode" ? "barcode" : "expiration date"}</h2>
-            <Webcam />
+            <Webcam videoConstraints={{ facingMode: "environment" }} />
 
             <button onClick={scanArticle}>scan</button>
         </div>

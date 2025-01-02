@@ -216,6 +216,7 @@
   border: 2px solid #add8e6;
   border-radius: 5px;
   padding: 10px 0;
+  transition: 300ms;
   opacity: 0;
   position: absolute;
   bottom: 20px;
@@ -347,6 +348,7 @@
   border: 2px solid #add8e6;
   border-radius: 5px;
   padding: 10px 0;
+  transition: 300ms;
 }
 .home #home-modal-active {
   bottom: 0;
@@ -495,6 +497,12 @@
   border: 2px solid #add8e6;
   border-radius: 5px;
   padding: 10px 0;
+  transition: 300ms;
+}
+.home .household-modal .household-modal-create .button-holder .button-disabled,
+.home .household-modal .household-modal-join .button-holder .button-disabled,
+.home .household-modal .household-modal-scan .button-holder .button-disabled {
+  opacity: 0.5;
 }
 .home #household-modal-active {
   left: 0;
@@ -545,6 +553,7 @@
   border: 2px solid #add8e6;
   border-radius: 5px;
   padding: 10px 0;
+  transition: 300ms;
   font-size: 20px;
 }
 .home .new-household-modal .new-household-modal-member-holder {
@@ -709,6 +718,10 @@
   border: 2px solid #add8e6;
   border-radius: 5px;
   padding: 10px 0;
+  transition: 300ms;
+}
+.household .household-article-modal .household-article-modal-use-modal .household-article-modal-use-modal-mini-modal .household-article-modal-use-modal-mini-modal-button-holder .button-disabled {
+  opacity: 0.5;
 }
 .household .household-article-modal .household-article-modal-recipes-modal {
   height: 100vh;
@@ -970,6 +983,7 @@
   border: 2px solid #add8e6;
   border-radius: 5px;
   padding: 10px 0;
+  transition: 300ms;
 }
 .household .household-article-modal .household-article-modal-button-holder .household-article-modal-button-disabled {
   opacity: 0.5;
@@ -1007,6 +1021,7 @@
 }
 .household .household-create-article-modal .household-create-article-modal-scan video {
   width: 90%;
+  border: 3px solid #add8e6;
 }
 .household .household-create-article-modal .household-create-article-modal-scan button {
   width: 70%;
@@ -1017,6 +1032,7 @@
   border: 2px solid #add8e6;
   border-radius: 5px;
   padding: 10px 0;
+  transition: 300ms;
   position: absolute;
   top: 80%;
 }
@@ -1115,6 +1131,7 @@
   border: 2px solid #add8e6;
   border-radius: 5px;
   padding: 10px 0;
+  transition: 300ms;
 }
 .household .household-create-article-modal .household-create-article-modal-button {
   width: 70%;
@@ -1125,8 +1142,12 @@
   border: 2px solid #add8e6;
   border-radius: 5px;
   padding: 10px 0;
+  transition: 300ms;
   position: absolute;
   top: 90%;
+}
+.household .household-create-article-modal .button-disabled {
+  opacity: 0.5;
 }
 .household .household-members-modal {
   width: 90vw;
@@ -1152,6 +1173,7 @@
   border: 2px solid #add8e6;
   border-radius: 5px;
   padding: 10px 0;
+  transition: 300ms;
   font-size: 30px;
 }
 .household .household-members-modal .member-holder {
@@ -1260,6 +1282,7 @@
   border: 2px solid #add8e6;
   border-radius: 5px;
   padding: 10px 0;
+  transition: 300ms;
 }
 .household .household-list-modal #household-list-modal-list-article-modal-active {
   opacity: 1;
@@ -1482,6 +1505,7 @@
   border: 2px solid #add8e6;
   border-radius: 5px;
   padding: 10px 0;
+  transition: 300ms;
 }
 .household .household-member-modal-holder #household-member-modal-active {
   bottom: 0;
@@ -1622,6 +1646,7 @@
   border: 2px solid #add8e6;
   border-radius: 5px;
   padding: 10px 0;
+  transition: 300ms;
   font-size: 20px;
 }
 .invite img {

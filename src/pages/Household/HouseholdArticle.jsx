@@ -15,7 +15,7 @@ const HouseholdArticle = ({ article, onClick }) => {
     
     return(
         <div className="household-article" onClick={() => onClick(article)}>
-            <img src={article.icon ? article.icon : images.imageIcon} alt="ARTICLE" />
+            <img src={article.icon ? article.icon : images.articleIcon} alt="ARTICLE" />
 
             <div className="household-article-content">
                 <strong>{cutText(article.name, 15)}</strong>
