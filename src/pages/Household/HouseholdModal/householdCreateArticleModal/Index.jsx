@@ -45,9 +45,14 @@ const HouseholdCreateArticleModal = ({ household, disableHouseholdModal, isList 
         if(!articleInputs.name) return;
         if(isPerishable && !articleInputs.expirationDate && !isList) return expirationInputRef.current.style.border = "2px solid red";
         
-        const [article] = Storage.get("ARTICLES", { key: "name", value: articleInputs.name });
+        const householdArticles = Storage.get("ARTICLES", { key: "householdId", value: household.id });
+        let existingArticle = null;
 
-        if(article && !isList) Storage.update("ARTICLES", article.id, { amount: article.amount + 1 });
+        for(let i = 0; i < householdArticles.length; i++) {
+            if(householdArticles[i].name === articleInputs.name) existingArticle = householdArticles[i];
+        }
+
+        if(existingArticle && !isList) Storage.update("ARTICLES", existingArticle.id, { amount: existingArticle.amount + 1 });
         
         else if(isList) Storage.add("LIST_ARTICLES", {
             householdId: household.id,
