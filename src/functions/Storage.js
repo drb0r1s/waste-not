@@ -6,7 +6,7 @@ export const Storage = {
     initialization: () => {
         Storage.initializeProfile();
         
-        const items = ["HOUSEHOLDS", "ARTICLES", "LIST_ARTICLES", "USERS"];
+        const items = ["HOUSEHOLDS", "ARTICLES", "LIST_ARTICLES", "NOTIFICATIONS", "USERS"];
         
         for(let i = 0; i < items.length; i++) {
             if(localStorage.getItem(`WASTENOT_${items[i]}`)) continue;

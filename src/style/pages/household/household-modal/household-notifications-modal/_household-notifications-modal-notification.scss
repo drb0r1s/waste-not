@@ -1,0 +1,25 @@
+.household-notifications-modal-notification {
+    width: 100%;
+    @include center;
+    justify-content: flex-start;
+    gap: 15px;
+    padding: 0 15px;
+
+    img {
+        height: 60px;
+        width: 60px;
+        object-fit: contain;
+    }
+
+    p {
+        color: black;
+        font-size: 20px;
+        margin: 0;
+    }
+
+    span {
+        color: $secondary;
+        font-size: 15px;
+        font-style: italic;
+    }
+}

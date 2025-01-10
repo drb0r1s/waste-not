@@ -82,15 +82,15 @@ const HouseholdArticleModal = ({ activeArticle, disableHouseholdArticleModal }) 
                     name: editInputs.name ? editInputs.name : article.name,
                     expirationDate: editInputs.expirationDate ? editInputs.expirationDate : article.expirationDate,
                     amount: editInputs.amount ? editInputs.amount : article.amount,
-                    lastUsed: editInputs.lastUsed ? editInputs.lastUsed : article.lastUsed ? article.lastUsed : "Hasn't been used"
+                    lastUsed: editInputs.lastUsed ? editInputs.lastUsed : article.lastUsed
                 };
 
                 Storage.update("ARTICLES", article.id, updatedProps);
 
                 setArticle(prevArticle => { return {...prevArticle, ...updatedProps} });
-                setDaysLeft(ExtendedDate.getExpirationContent(updatedProps.expirationDate));
-                setLastUsed(ExtendedDate.getLastUsedContent(updatedProps.lastUsed));
-                setEditInputs({ name: "", expirationDate: updatedProps.expirationDate, amount: "", lastUsed: updatedProps.lastUsed });
+                if(updatedProps.expirationDate) setDaysLeft(ExtendedDate.getExpirationContent(updatedProps.expirationDate));
+                if(updatedProps.lastUsed) setLastUsed(ExtendedDate.getLastUsedContent(updatedProps.lastUsed));
+                setEditInputs({ name: "", expirationDate: updatedProps.expirationDate, amount: "", lastUsed: updatedProps.lastUsed ? updatedProps.lastUsed : "" });
 
                 break;
             default:

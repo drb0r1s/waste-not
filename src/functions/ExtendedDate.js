@@ -25,7 +25,7 @@ export const ExtendedDate = {
     },
 
     getExpirationContent: expirationDate => {
-        let content= "";
+        let content = "";
         const dayDifference = ExtendedDate.getDayDifference(expirationDate);
                 
         if(dayDifference < -1) content = `Expired ${Math.abs(dayDifference)} days ago`;

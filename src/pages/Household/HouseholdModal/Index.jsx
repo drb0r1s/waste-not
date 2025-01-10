@@ -3,7 +3,7 @@ import HouseholdArticleModal from "./householdArticleModal/Index";
 import HouseholdCreateArticleModal from "./householdCreateArticleModal/Index";
 import HouseholdMembersModal from "./householdMembersModal/Index";
 import HouseholdListModal from "./householdListModal/Index";
-import HouseholdNotificationsModal from "./HouseholdNotificationsModal";
+import HouseholdNotificationsModal from "./householdNotificationsModal/Index";
 import HouseholdSettingsModal from "./HouseholdSettingsModal";
 
 const HouseholdModal = ({

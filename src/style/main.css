@@ -50,6 +50,7 @@
   justify-content: center;
   flex-direction: row;
   justify-content: center;
+  background-color: #ebd9b4;
   padding: 10px 30px;
   border-bottom: 3px solid #638889;
 }
@@ -1441,15 +1442,62 @@
 .household .household-list-modal .household-list-modal-list-article-holder .household-list-modal-list-article-marked {
   opacity: 0.5;
 }
-.household .household-notifications-modal .household-header {
+.household .household-notifications-modal .household-notifications-modal-content-holder {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  position: absolute;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.household .household-notifications-modal .household-notifications-modal-content-holder .household-header {
+  justify-content: center;
+  position: sticky;
   top: 0;
 }
-.household .household-notifications-modal span {
+.household .household-notifications-modal .household-notifications-modal-content-holder .household-notifications-modal-notification-holder {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px 0;
+}
+.household .household-notifications-modal .household-notifications-modal-content-holder .household-notifications-modal-notification-holder .household-notifications-modal-notification {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 15px;
+  padding: 0 15px;
+}
+.household .household-notifications-modal .household-notifications-modal-content-holder .household-notifications-modal-notification-holder .household-notifications-modal-notification img {
+  height: 60px;
+  width: 60px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.household .household-notifications-modal .household-notifications-modal-content-holder .household-notifications-modal-notification-holder .household-notifications-modal-notification p {
+  color: black;
+  font-size: 20px;
+  margin: 0;
+}
+.household .household-notifications-modal .household-notifications-modal-content-holder .household-notifications-modal-notification-holder .household-notifications-modal-notification span {
+  color: #638889;
+  font-size: 15px;
+  font-style: italic;
+}
+.household .household-notifications-modal .household-notifications-modal-content-holder .household-notifications-modal-notification-holder .no-span {
   color: grey;
   font-size: 25px;
   font-style: italic;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .household .household-settings-modal {
   justify-content: flex-start;
@@ -1550,6 +1598,7 @@
   width: 70%;
   font-size: 25px;
   outline: none;
+  background-color: #ebd9b4;
   border: 3px solid #9dbc98;
   padding: 3px 10px;
   transition: 300ms;

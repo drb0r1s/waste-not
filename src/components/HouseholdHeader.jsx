@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useBrowserReturn } from "../hooks/useBrowserReturn";
 import { images } from "../data/images";
 import { cutText } from "../functions/cutText";
 

@@ -6,7 +6,9 @@ import HomeModal from "./HomeModal";
 import HouseholdModal from "./HouseholdModal";
 import NewHouseholdModal from "./NewHouseholdModal";
 import PlusButton from "../../components/PlusButton";
+import { useBrowserReturn } from "../../hooks/useBrowserReturn";
 import { Storage } from "../../functions/Storage";
+import { ExtendedDate } from "../../functions/ExtendedDate";
 
 const Home = () => {
     const [width, setWidth] = useState(window.innerWidth);
@@ -24,6 +26,8 @@ const Home = () => {
     const joinHouseholdInputRef = useRef(null);
 
     const navigate = useNavigate();
+
+    useBrowserReturn();
 
     useEffect(() => {
         const resize = () => setWidth(window.innerWidth);
@@ -94,6 +98,14 @@ const Home = () => {
 
                     const randomTime = Math.floor(Math.random() * (10 - 5 + 1)) + 5;
                     setTimeout(() => {
+                        for(let i = 0; i < users.length; i++) Storage.add("NOTIFICATIONS", {
+                            householdId: householdNextId,
+                            type: "userJoined",
+                            userId: users[i].id,
+                            date: ExtendedDate.defaultFormat(),
+                            unread: true
+                        });
+                        
                         Storage.update("HOUSEHOLDS", householdNextId, { members: [...household.members, ...userIds] });
                         setHouseholds(Storage.get("HOUSEHOLDS"));
                     }, randomTime * 1000);

@@ -52,7 +52,18 @@ const NewHouseholdModal = ({ newHouseholdModalRef, disableNewHouseholdModal }) =
             expirationDate: ExtendedDate.getRandom("2025-01-01", "2025-03-01"),
             tag: newArticles[i].tag,
             amount: Math.floor(Math.random() * (20 - 1 + 1)) + 1,
-            lastUsed: ExtendedDate.getRandom("2024-06-01", "2024-12-30")
+            lastUsed: ExtendedDate.getRandom("2024-12-01", "2024-12-30")
+        });
+
+        for(let i = 0; i < newArticles.length; i++) Storage.add("NOTIFICATIONS", {
+            householdId,
+            type: "articleAdded",
+            name: newArticles[i].name,
+            icon: newArticles[i].icon,
+            tag: newArticles[i].tag,
+            date: ExtendedDate.getRandom("2024-11-01", "2024-11-30"),
+            addedBy: members[Math.floor(Math.random() * members.length)].id,
+            unread: true
         });
 
         const newListArticles = getArticles();
@@ -65,6 +76,18 @@ const NewHouseholdModal = ({ newHouseholdModalRef, disableNewHouseholdModal }) =
             isMarked: false,
             addedBy: members[Math.floor(Math.random() * members.length)].id
         });
+
+        for(let i = 0; i < newListArticles.length; i++) Storage.add("NOTIFICATIONS", {
+            householdId,
+            type: "listArticleAdded",
+            name: newListArticles[i].name,
+            icon: newListArticles[i].icon,
+            date: ExtendedDate.getRandom("2024-11-01", "2024-11-30"),
+            addedBy: members[Math.floor(Math.random() * members.length)].id,
+            unread: true
+        });
+
+        //const notifications = getNotifications();
         
         disableNewHouseholdModal();
         navigate("/household", { state: { household: {...household, id: householdId} } });
@@ -98,6 +121,33 @@ const NewHouseholdModal = ({ newHouseholdModalRef, disableNewHouseholdModal }) =
             return randomArticle;
         }
     }
+
+    /*function getNotifications() {
+        const notifications = [];
+        
+        const types = [
+            "articleRanOut", "articleCloseToExpire", "articleUsed", "articleAdded", "articleEdited", "articleRemoved", "articleUnused",
+            "listArticleAdded", "listArticleRemoved", "listArticleMarked",
+            "userJoined", "userLeft", "userRemoved",
+            "householdTransfered"
+        ];
+
+        const amount = Math.floor(Math.random() * (20 - 5 + 1)) + 1;
+
+        for(let i = 0; i < amount.length; i++) {
+            const randomType = Math.floor(Math.random() * types.length);
+
+            switch(randomType) {
+                case "articleRanOut":
+                    notifications.push({
+                        type: randomType,
+                        
+                    });
+
+                    break;
+            }
+        }
+    }*/
     
     return(
         <div className="new-household-modal" ref={newHouseholdModalRef}>

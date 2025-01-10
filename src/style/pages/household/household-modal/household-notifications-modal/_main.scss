@@ -1,0 +1,28 @@
+.household-notifications-modal-content-holder {
+    height: 100%;
+    width: 100%;
+    @include center(column);
+    justify-content: flex-start;
+
+    .household-header {
+        justify-content: center;
+        position: sticky;
+        top: 0;
+    }
+    
+    .household-notifications-modal-notification-holder {
+        width: 100%;
+        @include center(column);
+        gap: 10px;
+        padding: 15px 0;
+        
+        @import "./household-notifications-modal-notification";
+        
+        .no-span {
+            @include no-span;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+}

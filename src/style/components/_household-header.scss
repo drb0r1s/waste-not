@@ -2,6 +2,7 @@
     width: 100%;
     @include center;
     justify-content: center;
+    background-color: $background-dark;
     padding: 10px 30px;
     border-bottom: 3px solid $secondary;
 
