@@ -12,7 +12,7 @@
     .household-list-modal-list-article-modal {
         width: 100%;
         @include center(column);
-        background-color: white;
+        background-color: $background-dark;
         border: 2px solid $secondary;
         border-bottom: 2px solid white;
         border-top-left-radius: 10px;
@@ -26,7 +26,7 @@
             height: 90px;
             width: 90px;
             object-fit: contain;
-            background-color: white;
+            background-color: $background;
             border: 3px solid $primary;
             border-radius: 50%;
             position: absolute;

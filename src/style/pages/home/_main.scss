@@ -5,6 +5,7 @@
     width: 100vw;
     @include center(column);
     gap: 30px;
+    background-color: $background;
     position: relative;
     overflow-x: hidden;
 

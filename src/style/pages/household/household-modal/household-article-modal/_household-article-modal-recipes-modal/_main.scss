@@ -3,7 +3,7 @@
     width: 100vw;
     @include center(column);
     justify-content: flex-start;
-    background-color: white;
+    background-color: $background;
     position: absolute;
     left: 100%;
     transition: 300ms;

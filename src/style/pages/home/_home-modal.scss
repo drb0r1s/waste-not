@@ -1,7 +1,7 @@
 .home-modal {
     width: 100%;
     @include center(column);
-    background-color: white;
+    background-color: $background;
     border-top: 5px solid $primary;
     position: absolute;
     bottom: -305px;

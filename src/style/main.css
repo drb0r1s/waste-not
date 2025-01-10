@@ -29,8 +29,8 @@
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  background-color: white;
-  border: 3px solid #add8e6;
+  background-color: #ebd9b4;
+  border: 3px solid #9dbc98;
   border-radius: 50%;
   position: absolute;
   top: 85%;
@@ -51,7 +51,7 @@
   flex-direction: row;
   justify-content: center;
   padding: 10px 30px;
-  border-bottom: 3px solid #4682B4;
+  border-bottom: 3px solid #638889;
 }
 .household-header img {
   height: 25px;
@@ -76,12 +76,13 @@
   color: black;
   font-size: 25px;
   outline: 0;
+  background-color: #ebd9b4;
   border: 1px solid black;
   padding: 3px 10px;
   transition: 300ms;
 }
 .household-header input:focus {
-  border: 1px solid #4682B4;
+  border: 1px solid #638889;
 }
 
 .household-tag-holder {
@@ -105,7 +106,7 @@
   transition: 300ms;
 }
 .household-tag-holder #household-tag-active {
-  background-color: #4682B4;
+  background-color: #638889;
   color: white;
 }
 
@@ -134,7 +135,7 @@
   height: 100px;
   width: 100px;
   border: 10px solid transparent;
-  border-top: 10px solid #4682B4;
+  border-top: 10px solid #638889;
   border-radius: 50%;
   transform: rotate(0);
   animation: rotation 3s linear infinite;
@@ -155,7 +156,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  background-color: white;
+  background-color: #ebd9b4;
   border: 3px solid black;
   position: absolute;
   top: 30%;
@@ -194,7 +195,7 @@
   background-image: url("../images/banners/banner-default.png");
   background-position: center;
   background-size: cover;
-  border: 3px solid #4682B4;
+  border: 3px solid #638889;
 }
 .image-input .image-input-content-holder img {
   height: 100px;
@@ -203,10 +204,10 @@
      object-fit: contain;
 }
 .image-input .image-input-content-holder .image-input-preview-image {
-  border: 3px solid #4682B4;
+  border: 3px solid #638889;
 }
 .image-input .image-input-content-holder strong {
-  color: #add8e6;
+  color: #9dbc98;
   font-size: 30px;
   text-align: center;
 }
@@ -221,7 +222,7 @@
   font-size: 15px;
   text-transform: capitalize;
   background: transparent;
-  border: 2px solid #add8e6;
+  border: 2px solid #9dbc98;
   border-radius: 5px;
   padding: 10px 0;
   transition: 300ms;
@@ -263,7 +264,7 @@
   margin-bottom: 30px;
 }
 .mobile-info strong {
-  color: #add8e6;
+  color: #9dbc98;
   font-size: 30px;
 }
 .mobile-info p {
@@ -279,6 +280,7 @@
   justify-content: center;
   flex-direction: column;
   gap: 30px;
+  background-color: #f9efdb;
   position: relative;
   overflow-x: hidden;
 }
@@ -312,7 +314,8 @@
   justify-content: center;
   flex-direction: row;
   justify-content: space-between;
-  border: 3px solid #add8e6;
+  background-color: #ebd9b4;
+  border: 3px solid #9dbc98;
   border-radius: 5px;
   padding: 10px 15px;
 }
@@ -340,8 +343,8 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: white;
-  border-top: 5px solid #add8e6;
+  background-color: #f9efdb;
+  border-top: 5px solid #9dbc98;
   position: absolute;
   bottom: -305px;
   padding: 30px 0;
@@ -379,7 +382,7 @@
   font-size: 15px;
   text-transform: capitalize;
   background: transparent;
-  border: 2px solid #add8e6;
+  border: 2px solid #9dbc98;
   border-radius: 5px;
   padding: 10px 0;
   transition: 300ms;
@@ -394,8 +397,8 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: white;
-  border-top: 5px solid #add8e6;
+  background-color: #f9efdb;
+  border-top: 5px solid #9dbc98;
   position: absolute;
   left: 100%;
   padding: 30px 0;
@@ -450,7 +453,7 @@
 .home .household-modal .household-modal-create fieldset label,
 .home .household-modal .household-modal-join fieldset label,
 .home .household-modal .household-modal-scan fieldset label {
-  color: #4682B4;
+  color: #638889;
   font-size: 15px;
   text-transform: capitalize;
 }
@@ -460,7 +463,8 @@
   width: 100%;
   color: black;
   font-size: 20px;
-  border: 3px solid #add8e6;
+  background-color: #ebd9b4;
+  border: 3px solid #9dbc98;
   outline: none;
   padding: 10px;
   transition: 300ms;
@@ -468,7 +472,7 @@
 .home .household-modal .household-modal-create fieldset input:focus,
 .home .household-modal .household-modal-join fieldset input:focus,
 .home .household-modal .household-modal-scan fieldset input:focus {
-  border: 3px solid #4682B4;
+  border: 3px solid #638889;
 }
 .home .household-modal .household-modal-create fieldset input::-moz-placeholder, .home .household-modal .household-modal-join fieldset input::-moz-placeholder, .home .household-modal .household-modal-scan fieldset input::-moz-placeholder {
   color: gray;
@@ -487,7 +491,7 @@
 .home .household-modal .household-modal-join video,
 .home .household-modal .household-modal-scan video {
   width: 90%;
-  border: 3px solid #4682B4;
+  border: 3px solid #638889;
   opacity: 0;
   transition: 300ms;
 }
@@ -518,7 +522,7 @@
 .home .household-modal .household-modal-create .household-modal-create-icon-button span,
 .home .household-modal .household-modal-join .household-modal-create-icon-button span,
 .home .household-modal .household-modal-scan .household-modal-create-icon-button span {
-  color: #4682B4;
+  color: #638889;
   font-size: 15px;
   text-transform: capitalize;
 }
@@ -542,7 +546,7 @@
   font-size: 15px;
   text-transform: capitalize;
   background: transparent;
-  border: 2px solid #add8e6;
+  border: 2px solid #9dbc98;
   border-radius: 5px;
   padding: 10px 0;
   transition: 300ms;
@@ -565,8 +569,8 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: white;
-  border-top: 5px solid #add8e6;
+  background-color: #f9efdb;
+  border-top: 5px solid #9dbc98;
   position: absolute;
   top: 100%;
   padding: 30px 0;
@@ -591,7 +595,7 @@
   padding: 0 30px;
 }
 .home .new-household-modal .new-household-modal-title-holder h2 {
-  color: #add8e6;
+  color: #9dbc98;
   font-size: 40px;
   text-align: center;
 }
@@ -601,7 +605,7 @@
   font-size: 15px;
   text-transform: capitalize;
   background: transparent;
-  border: 2px solid #add8e6;
+  border: 2px solid #9dbc98;
   border-radius: 5px;
   padding: 10px 0;
   transition: 300ms;
@@ -616,7 +620,7 @@
   flex-direction: column;
   justify-content: flex-start;
   gap: 20px;
-  border-top: 3px solid #4682B4;
+  border-top: 3px solid #638889;
   padding: 40px 0;
   position: absolute;
   bottom: 0;
@@ -661,6 +665,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  background-color: #f9efdb;
   position: relative;
   overflow-x: hidden;
 }
@@ -671,7 +676,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: white;
+  background-color: #f9efdb;
   position: absolute;
   left: 100%;
   transition: 300ms;
@@ -688,7 +693,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: white;
+  background-color: #f9efdb;
   position: absolute;
   left: 100%;
   transition: 300ms;
@@ -717,11 +722,11 @@
   width: 80px;
   -o-object-fit: contain;
      object-fit: contain;
-  border: 3px solid #add8e6;
+  border: 3px solid #9dbc98;
   border-radius: 50%;
 }
 .household .household-article-modal .household-article-modal-use-modal .household-article-modal-use-modal-content-holder strong {
-  color: #add8e6;
+  color: #9dbc98;
   font-size: 45px;
 }
 .household .household-article-modal .household-article-modal-use-modal .household-article-modal-use-modal-mini-modal {
@@ -731,7 +736,7 @@
   justify-content: center;
   flex-direction: column;
   gap: 20px;
-  border: 1px solid #add8e6;
+  border: 1px solid #9dbc98;
   padding: 10px 20px;
 }
 .household .household-article-modal .household-article-modal-use-modal .household-article-modal-use-modal-mini-modal p {
@@ -745,13 +750,13 @@
   color: black;
   font-size: 20px;
   outline: none;
-  background-color: white;
+  background-color: #ebd9b4;
   border: 1px solid black;
   padding: 5px 10px;
   transition: 300ms;
 }
 .household .household-article-modal .household-article-modal-use-modal .household-article-modal-use-modal-mini-modal input:focus {
-  border: 1px solid #4682B4;
+  border: 1px solid #638889;
 }
 .household .household-article-modal .household-article-modal-use-modal .household-article-modal-use-modal-mini-modal .household-article-modal-use-modal-mini-modal-button-holder {
   width: 80%;
@@ -767,7 +772,7 @@
   font-size: 15px;
   text-transform: capitalize;
   background: transparent;
-  border: 2px solid #add8e6;
+  border: 2px solid #9dbc98;
   border-radius: 5px;
   padding: 10px 0;
   transition: 300ms;
@@ -783,7 +788,7 @@
   justify-content: center;
   flex-direction: column;
   justify-content: flex-start;
-  background-color: white;
+  background-color: #f9efdb;
   position: absolute;
   left: 100%;
   transition: 300ms;
@@ -797,7 +802,7 @@
   justify-content: center;
   flex-direction: column;
   justify-content: flex-start;
-  background-color: white;
+  background-color: #f9efdb;
   position: fixed;
   top: 0;
   left: 100%;
@@ -819,7 +824,7 @@
   background-image: url("../images/image-icon.png");
   background-position: center;
   background-size: cover;
-  border-bottom: 5px solid #4682B4;
+  border-bottom: 5px solid #638889;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
@@ -836,7 +841,7 @@
   overflow: scroll;
 }
 .household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipe-modal .household-article-modal-recipes-modal-recipe-modal-content-holder h2 {
-  color: #add8e6;
+  color: #9dbc98;
   font-size: 40px;
 }
 .household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipe-modal .household-article-modal-recipes-modal-recipe-modal-content-holder .household-rating img {
@@ -857,7 +862,7 @@
   padding: 10px 0;
 }
 .household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipe-modal .household-article-modal-recipes-modal-recipe-modal-content-holder .household-article-modal-recipes-modal-recipe-modal-ingredients-holder strong {
-  color: #4682B4;
+  color: #638889;
   font-size: 30px;
   text-transform: capitalize;
 }
@@ -903,7 +908,7 @@
   align-items: flex-start;
 }
 .household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipes-holder .household-article-modal-recipes-modal-recipe .household-article-modal-recipes-modal-recipe-content-holder strong {
-  color: #add8e6;
+  color: #9dbc98;
   font-size: 22px;
 }
 .household .household-article-modal .household-article-modal-recipes-modal .household-article-modal-recipes-modal-recipes-holder .household-article-modal-recipes-modal-recipe .household-article-modal-recipes-modal-recipe-content-holder p {
@@ -939,27 +944,27 @@
   width: 80px;
   -o-object-fit: contain;
      object-fit: contain;
-  border: 3px solid #add8e6;
+  border: 3px solid #9dbc98;
   border-radius: 50%;
 }
 .household .household-article-modal .household-article-modal-title-holder h2 {
   width: 60%;
-  color: #add8e6;
+  color: #9dbc98;
   font-size: 40px;
   word-wrap: break-word;
 }
 .household .household-article-modal .household-article-modal-title-holder input {
   width: 60%;
-  color: #add8e6;
+  color: #9dbc98;
   font-size: 35px;
   outline: none;
-  background-color: white;
-  border: 3px solid #add8e6;
+  background-color: #ebd9b4;
+  border: 3px solid #9dbc98;
   padding: 3px 10px;
   transition: 300ms;
 }
 .household .household-article-modal .household-article-modal-title-holder input:focus {
-  border: 3px solid #4682B4;
+  border: 3px solid #638889;
 }
 .household .household-article-modal .household-article-modal-info-holder {
   width: 100%;
@@ -996,7 +1001,7 @@
   margin: 0;
 }
 .household .household-article-modal .household-article-modal-info-holder .household-article-modal-info .household-article-modal-info-content span {
-  color: #add8e6;
+  color: #9dbc98;
   font-size: 20px;
   font-weight: bold;
   text-transform: none;
@@ -1006,16 +1011,16 @@
   color: black;
   font-size: 20px;
   outline: none;
-  background-color: white;
+  background-color: #ebd9b4;
   border: 1px solid black;
   padding: 3px 5px;
   transition: 300ms;
 }
 .household .household-article-modal .household-article-modal-info-holder .household-article-modal-info .household-article-modal-info-content input:focus {
-  border: 1px solid #4682B4;
+  border: 1px solid #638889;
 }
 .household .household-article-modal .household-article-modal-info-holder .household-article-modal-info strong {
-  color: #4682B4;
+  color: #638889;
   font-size: 15px;
 }
 .household .household-article-modal .household-article-modal-button-holder {
@@ -1034,7 +1039,7 @@
   font-size: 15px;
   text-transform: capitalize;
   background: transparent;
-  border: 2px solid #add8e6;
+  border: 2px solid #9dbc98;
   border-radius: 5px;
   padding: 10px 0;
   transition: 300ms;
@@ -1050,7 +1055,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: white;
+  background-color: #f9efdb;
   position: absolute;
   left: 100%;
   transition: 300ms;
@@ -1079,7 +1084,7 @@
 }
 .household .household-create-article-modal .household-create-article-modal-scan video {
   width: 90%;
-  border: 3px solid #add8e6;
+  border: 3px solid #9dbc98;
   opacity: 0;
   transition: 300ms;
 }
@@ -1092,7 +1097,7 @@
   font-size: 15px;
   text-transform: capitalize;
   background: transparent;
-  border: 2px solid #add8e6;
+  border: 2px solid #9dbc98;
   border-radius: 5px;
   padding: 10px 0;
   transition: 300ms;
@@ -1140,7 +1145,7 @@
   transition: 300ms;
 }
 .household .household-create-article-modal .household-create-article-modal-content-holder form fieldset label {
-  color: #4682B4;
+  color: #638889;
   font-size: 15px;
   text-transform: capitalize;
 }
@@ -1148,14 +1153,14 @@
   width: 100%;
   color: black;
   font-size: 20px;
-  background-color: white;
-  border: 2px solid #add8e6;
+  background-color: #ebd9b4;
+  border: 2px solid #9dbc98;
   outline: none;
   padding: 5px 10px;
   transition: 300ms;
 }
 .household .household-create-article-modal .household-create-article-modal-content-holder form fieldset input:focus, .household .household-create-article-modal .household-create-article-modal-content-holder form fieldset select:focus {
-  border: 3px solid #4682B4;
+  border: 3px solid #638889;
 }
 .household .household-create-article-modal .household-create-article-modal-content-holder form fieldset input::-moz-placeholder, .household .household-create-article-modal .household-create-article-modal-content-holder form fieldset select::-moz-placeholder {
   color: gray;
@@ -1191,7 +1196,7 @@
   font-size: 15px;
   text-transform: capitalize;
   background: transparent;
-  border: 2px solid #add8e6;
+  border: 2px solid #9dbc98;
   border-radius: 5px;
   padding: 10px 0;
   transition: 300ms;
@@ -1202,7 +1207,7 @@
   font-size: 15px;
   text-transform: capitalize;
   background: transparent;
-  border: 2px solid #add8e6;
+  border: 2px solid #9dbc98;
   border-radius: 5px;
   padding: 10px 0;
   transition: 300ms;
@@ -1216,7 +1221,7 @@
   width: 90vw;
   justify-content: flex-start;
   gap: 50px;
-  border-right: 3px solid #add8e6;
+  border-right: 3px solid #9dbc98;
   left: -100%;
   padding-top: 100px;
 }
@@ -1233,7 +1238,7 @@
   font-size: 15px;
   text-transform: capitalize;
   background: transparent;
-  border: 2px solid #add8e6;
+  border: 2px solid #9dbc98;
   border-radius: 5px;
   padding: 10px 0;
   transition: 300ms;
@@ -1299,8 +1304,8 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: white;
-  border: 2px solid #4682B4;
+  background-color: #ebd9b4;
+  border: 2px solid #638889;
   border-bottom: 2px solid white;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -1314,8 +1319,8 @@
   width: 90px;
   -o-object-fit: contain;
      object-fit: contain;
-  background-color: white;
-  border: 3px solid #add8e6;
+  background-color: #f9efdb;
+  border: 3px solid #9dbc98;
   border-radius: 50%;
   position: absolute;
   top: 0;
@@ -1323,7 +1328,7 @@
   transform: translateY(-50%);
 }
 .household .household-list-modal .household-list-modal-list-article-modal-holder .household-list-modal-list-article-modal strong {
-  color: #add8e6;
+  color: #9dbc98;
   font-size: 40px;
 }
 .household .household-list-modal .household-list-modal-list-article-modal-holder .household-list-modal-list-article-modal .household-list-modal-list-article-modal-button-holder {
@@ -1342,7 +1347,7 @@
   font-size: 15px;
   text-transform: capitalize;
   background: transparent;
-  border: 2px solid #add8e6;
+  border: 2px solid #9dbc98;
   border-radius: 5px;
   padding: 10px 0;
   transition: 300ms;
@@ -1400,7 +1405,7 @@
   padding: 0 30px;
 }
 .household .household-list-modal .household-list-modal-list-article-holder .household-list-modal-list-article .household-list-modal-list-article-content-holder strong {
-  color: #add8e6;
+  color: #9dbc98;
   font-size: 30px;
 }
 .household .household-list-modal .household-list-modal-list-article-holder .household-list-modal-list-article .household-list-modal-list-article-content-holder p {
@@ -1410,7 +1415,7 @@
   margin: 0;
 }
 .household .household-list-modal .household-list-modal-list-article-holder .household-list-modal-list-article .household-list-modal-list-article-content-holder p span {
-  color: #4682B4;
+  color: #638889;
   font-weight: bold;
 }
 .household .household-list-modal .household-list-modal-list-article-holder .household-list-modal-list-article .household-list-modal-list-article-user-holder {
@@ -1502,8 +1507,8 @@
   justify-content: center;
   flex-direction: column;
   justify-content: flex-start;
-  background-color: white;
-  border: 2px solid #4682B4;
+  background-color: #f9efdb;
+  border: 2px solid #638889;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   position: absolute;
@@ -1529,7 +1534,7 @@
   -o-object-fit: contain;
      object-fit: contain;
   background-color: white;
-  border: 3px solid #add8e6;
+  border: 3px solid #9dbc98;
   border-radius: 50%;
   position: absolute;
   left: 30px;
@@ -1537,7 +1542,7 @@
   transform: translateY(50%);
 }
 .household .household-member-modal-holder .household-member-modal strong, .household .household-member-modal-holder .household-member-modal input {
-  color: #add8e6;
+  color: #9dbc98;
   font-size: 35px;
   margin-top: 80px;
 }
@@ -1545,12 +1550,12 @@
   width: 70%;
   font-size: 25px;
   outline: none;
-  border: 3px solid #add8e6;
+  border: 3px solid #9dbc98;
   padding: 3px 10px;
   transition: 300ms;
 }
 .household .household-member-modal-holder .household-member-modal input:focus {
-  border: 3px solid #4682B4;
+  border: 3px solid #638889;
 }
 .household .household-member-modal-holder .household-member-modal .household-member-modal-button-holder {
   width: 100%;
@@ -1567,7 +1572,7 @@
   font-size: 15px;
   text-transform: capitalize;
   background: transparent;
-  border: 2px solid #add8e6;
+  border: 2px solid #9dbc98;
   border-radius: 5px;
   padding: 10px 0;
   transition: 300ms;
@@ -1622,7 +1627,7 @@
   align-items: flex-start;
 }
 .household .article-holder .household-article .household-article-content strong {
-  color: #add8e6;
+  color: #9dbc98;
   font-size: 30px;
 }
 .household .article-holder .household-article .household-article-content p {
@@ -1637,7 +1642,7 @@
   justify-content: center;
   flex-direction: row;
   justify-content: space-between;
-  background-color: white;
+  background-color: #ebd9b4;
   border-top: 1px solid black;
   padding: 10px 20px;
   position: sticky;
@@ -1662,6 +1667,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  background-color: #f9efdb;
   position: relative;
 }
 .invite .return {
@@ -1691,7 +1697,7 @@
 }
 .invite .invite-code-holder p {
   width: 70%;
-  color: #add8e6;
+  color: #9dbc98;
   font-size: 20px;
   font-weight: bold;
   text-align: center;
@@ -1702,8 +1708,8 @@
   transition: 300ms;
 }
 .invite .invite-code-holder #invite-p-copied {
-  color: #4682B4;
-  border: 3px solid #add8e6;
+  color: #638889;
+  border: 3px solid #9dbc98;
 }
 .invite .invite-code-holder button {
   width: 70%;
@@ -1711,7 +1717,7 @@
   font-size: 15px;
   text-transform: capitalize;
   background: transparent;
-  border: 2px solid #add8e6;
+  border: 2px solid #9dbc98;
   border-radius: 5px;
   padding: 10px 0;
   transition: 300ms;

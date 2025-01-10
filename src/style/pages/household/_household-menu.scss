@@ -2,7 +2,7 @@
     width: 100%;
     @include center;
     justify-content: space-between;
-    background-color: white;
+    background-color: $background-dark;
     border-top: 1px solid black;
     padding: 10px 20px;
     position: sticky;

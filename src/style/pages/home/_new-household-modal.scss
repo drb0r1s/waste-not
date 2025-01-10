@@ -2,7 +2,7 @@
     height: 100vh;
     width: 100vw;
     @include center(column);
-    background-color: white;
+    background-color: $background;
     border-top: 5px solid $primary;
     position: absolute;
     top: 100%;
