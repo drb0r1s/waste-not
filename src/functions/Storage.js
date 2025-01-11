@@ -59,9 +59,12 @@ export const Storage = {
         return values;
     },
 
-    remove: (key, id, cascade) => {
+    remove: (key, id, cascade = []) => {
         removeItem(key, "id", id);
-        if(cascade) removeItem(cascade, `${key.substring(0, key.length - 1).toLowerCase()}Id`, id);
+        
+        if(cascade.length) {
+            for(let i = 0; i < cascade.length; i++) removeItem(cascade[i], `${key.substring(0, key.length - 1).toLowerCase()}Id`, id);
+        }
 
         function removeItem(key, property, value) {
             const item = JSON.parse(localStorage.getItem(`WASTENOT_${key}`));

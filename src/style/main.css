@@ -1450,6 +1450,7 @@
   justify-content: center;
   flex-direction: column;
   justify-content: flex-start;
+  overflow-y: scroll;
 }
 .household .household-notifications-modal .household-notifications-modal-content-holder .household-header {
   justify-content: center;
@@ -1462,7 +1463,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   padding: 15px 0;
 }
 .household .household-notifications-modal .household-notifications-modal-content-holder .household-notifications-modal-notification-holder .household-notifications-modal-notification {
@@ -1485,6 +1486,9 @@
   color: black;
   font-size: 20px;
   margin: 0;
+}
+.household .household-notifications-modal .household-notifications-modal-content-holder .household-notifications-modal-notification-holder .household-notifications-modal-notification p strong {
+  color: #638889;
 }
 .household .household-notifications-modal .household-notifications-modal-content-holder .household-notifications-modal-notification-holder .household-notifications-modal-notification span {
   color: #638889;

@@ -62,8 +62,7 @@ const NewHouseholdModal = ({ newHouseholdModalRef, disableNewHouseholdModal }) =
             icon: newArticles[i].icon,
             tag: newArticles[i].tag,
             date: ExtendedDate.getRandom("2024-11-01", "2024-11-30"),
-            addedBy: members[Math.floor(Math.random() * members.length)].id,
-            unread: true
+            addedBy: members[Math.floor(Math.random() * members.length)].id
         });
 
         const newListArticles = getArticles();
@@ -84,10 +83,14 @@ const NewHouseholdModal = ({ newHouseholdModalRef, disableNewHouseholdModal }) =
             icon: newListArticles[i].icon,
             date: ExtendedDate.getRandom("2024-11-01", "2024-11-30"),
             addedBy: members[Math.floor(Math.random() * members.length)].id,
-            unread: true
         });
 
-        //const notifications = getNotifications();
+        const notifications = getNotifications(newArticles);
+
+        for(let i = 0; i < notifications.length; i++) Storage.add("NOTIFICATIONS", {
+            householdId,
+            ...notifications[i]
+        });
         
         disableNewHouseholdModal();
         navigate("/household", { state: { household: {...household, id: householdId} } });
@@ -122,32 +125,136 @@ const NewHouseholdModal = ({ newHouseholdModalRef, disableNewHouseholdModal }) =
         }
     }
 
-    /*function getNotifications() {
+    function getNotifications(newArticles) {
         const notifications = [];
         
         const types = [
-            "articleRanOut", "articleCloseToExpire", "articleUsed", "articleAdded", "articleEdited", "articleRemoved", "articleUnused",
-            "listArticleAdded", "listArticleRemoved", "listArticleMarked",
-            "userJoined", "userLeft", "userRemoved",
-            "householdTransfered"
+            "articleRanOut", "articleUsed", "articleEdited", "articleRemoved",
+            "listArticleRemoved", "listArticleMarked",
+            "userJoined", "userLeft", "userRemoved"
         ];
 
-        const amount = Math.floor(Math.random() * (20 - 5 + 1)) + 1;
+        const amount = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
 
-        for(let i = 0; i < amount.length; i++) {
-            const randomType = Math.floor(Math.random() * types.length);
+        for(let i = 0; i < amount; i++) {
+            const randomType = types[Math.floor(Math.random() * types.length)];
+
+            const includedArticle = getIncludedArticle();
+            const excludedArticle = getExcludedArticle();
+
+            const includedMember = getIncludedMember();
+            const excludedMember = getExcludedMember();
 
             switch(randomType) {
                 case "articleRanOut":
                     notifications.push({
                         type: randomType,
-                        
+                        name: excludedArticle.name,
+                        icon: excludedArticle.icon,
+                        date: ExtendedDate.getRandom("2024-11-01", "2024-11-30")
                     });
 
                     break;
+                case "articleUsed":
+                    notifications.push({
+                        type: randomType,
+                        name: includedArticle.name,
+                        icon: includedArticle.icon,
+                        amount: includedArticle.amount,
+                        date: ExtendedDate.getRandom("2024-11-01", "2024-11-30"),
+                        usedBy: members[Math.floor(Math.random() * members.length)].id
+                    });
+
+                    break;
+                case "articleEdited":
+                    notifications.push({
+                        type: randomType,
+                        name: includedArticle.name,
+                        icon: includedArticle.icon,
+                        date: ExtendedDate.getRandom("2024-11-01", "2024-11-30"),
+                        editedBy: members[Math.floor(Math.random() * members.length)].id
+                    });
+
+                    break;
+                case "articleRemoved":
+                    notifications.push({
+                        type: randomType,
+                        name: excludedArticle.name,
+                        icon: excludedArticle.icon,
+                        date: ExtendedDate.getRandom("2024-11-01", "2024-11-30"),
+                        removedBy: members[Math.floor(Math.random() * members.length)].id
+                    });
+
+                    break;
+                case "listArticleRemoved":
+                    notifications.push({
+                        type: randomType,
+                        name: excludedArticle.name,
+                        icon: excludedArticle.icon,
+                        date: ExtendedDate.getRandom("2024-11-01", "2024-11-30"),
+                        removedBy: members[Math.floor(Math.random() * members.length)].id
+                    });
+
+                    break;
+                case "userJoined":
+                    notifications.push({
+                        type: randomType,
+                        userId: includedMember.id,
+                        date: ExtendedDate.getRandom("2024-11-01", "2024-11-30")
+                    });
+
+                    break;
+                case "userLeft":
+                case "userRemoved":
+                    notifications.push({
+                        type: randomType,
+                        userId: excludedMember.id,
+                        date: ExtendedDate.getRandom("2024-11-01", "2024-11-30")
+                    });
+
+                    break;
+                default:
             }
         }
-    }*/
+
+        return notifications;
+
+        function getIncludedArticle() {
+            const article = newArticles[Math.floor(Math.random() * newArticles.length)];
+            return article;
+        }
+        
+        function getExcludedArticle() {
+            const article = articles[Math.floor(Math.random() * articles.length)];
+            let exists = false;
+
+            for(let i = 0; i < newArticles.length; i++) {
+                if(newArticles[i].name === article.name) exists = true;
+            }
+
+            if(exists) return getExcludedArticle();
+            return article;
+        }
+
+        function getIncludedMember() {
+            const member = members[Math.floor(Math.random() * members.length)];
+            return member;
+        }
+
+        function getExcludedMember() {
+            const users = Storage.get("USERS");
+            const randomUser = users[Math.floor(Math.random() * users.length)];
+
+            let exists = false;
+
+            for(let i = 0; i < members.length; i++) {
+                if(members[i].id === randomUser.id) exists = true;
+            }
+
+            if(exists) return getExcludedMember();
+            return randomUser;
+        }
+    }
     
     return(
         <div className="new-household-modal" ref={newHouseholdModalRef}>

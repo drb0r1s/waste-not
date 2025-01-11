@@ -102,8 +102,7 @@ const Home = () => {
                             householdId: householdNextId,
                             type: "userJoined",
                             userId: users[i].id,
-                            date: ExtendedDate.defaultFormat(),
-                            unread: true
+                            date: ExtendedDate.defaultFormat()
                         });
                         
                         Storage.update("HOUSEHOLDS", householdNextId, { members: [...household.members, ...userIds] });

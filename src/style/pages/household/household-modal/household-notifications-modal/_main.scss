@@ -3,6 +3,7 @@
     width: 100%;
     @include center(column);
     justify-content: flex-start;
+    overflow-y: scroll;
 
     .household-header {
         justify-content: center;
@@ -13,7 +14,7 @@
     .household-notifications-modal-notification-holder {
         width: 100%;
         @include center(column);
-        gap: 10px;
+        gap: 15px;
         padding: 15px 0;
         
         @import "./household-notifications-modal-notification";

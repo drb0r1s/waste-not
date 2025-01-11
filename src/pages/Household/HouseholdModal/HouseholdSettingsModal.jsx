@@ -12,7 +12,7 @@ const HouseholdSettingsModal = ({ household, disableHouseholdModal }) => {
             case "household": break;
             case "notification": break;
             case "leave":
-                Storage.remove("HOUSEHOLDS", household.id, "ARTICLES");
+                Storage.remove("HOUSEHOLDS", household.id, ["ARTICLES", "LIST_ARTICLES", "NOTIFICATIONS"]);
                 navigate("/");
             default:
         }
