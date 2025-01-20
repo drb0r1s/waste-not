@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/waste-not/static/css/main.43926830.css",
-    "main.js": "/waste-not/static/js/main.f1ab03df.js",
+    "main.css": "/waste-not/static/css/main.df822600.css",
+    "main.js": "/waste-not/static/js/main.3f2028fe.js",
     "static/media/chocolate-mug-cake.png": "/waste-not/static/media/chocolate-mug-cake.069c12eed5b683beae74.png",
     "static/media/brownies.png": "/waste-not/static/media/brownies.1051ee707a11c8b82342.png",
     "static/media/lemon-bars.png": "/waste-not/static/media/lemon-bars.aa647cc2d6f5429d6671.png",
@@ -134,11 +134,11 @@
     "static/media/person-icon.png": "/waste-not/static/media/person-icon.6deef6126d40d69d610f.png",
     "static/media/bell-icon.png": "/waste-not/static/media/bell-icon.5846d4b1994ad4088108.png",
     "index.html": "/waste-not/index.html",
-    "main.43926830.css.map": "/waste-not/static/css/main.43926830.css.map",
-    "main.f1ab03df.js.map": "/waste-not/static/js/main.f1ab03df.js.map"
+    "main.df822600.css.map": "/waste-not/static/css/main.df822600.css.map",
+    "main.3f2028fe.js.map": "/waste-not/static/js/main.3f2028fe.js.map"
   },
   "entrypoints": [
-    "static/css/main.43926830.css",
-    "static/js/main.f1ab03df.js"
+    "static/css/main.df822600.css",
+    "static/js/main.3f2028fe.js"
   ]
 }
