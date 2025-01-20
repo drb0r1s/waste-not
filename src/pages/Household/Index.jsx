@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import HouseholdHeader from "../../components/HouseholdHeader";
 import HouseholdTagHolder from "../../components/HouseholdTagHolder";
+import InfoModal from "../../components/InfoModal";
 import HouseholdMenu from "./HouseholdMenu";
 import HouseholdArticle from "./HouseholdArticle";
 import HouseholdModal from "./householdModal/Index";
@@ -22,10 +23,12 @@ const Household = () => {
     const [isHouseholdMemberModalActive, setIsHouseholdMemberModalActive] = useState(false);
     const [activeArticle, setActiveArticle] = useState(false);
     const [searchInput, setSearchInput] = useState("");
+    const [info, setInfo] = useState("");
 
     const householdModalRef = useRef(null);
     const householdMemberModalHolderRef = useRef(null);
     const householdMemberModalRef = useRef(null);
+    const infoModalRef = useRef(null);
 
     const tags = ["fridge", "freezer", "pantry"];
 
@@ -39,6 +42,11 @@ const Household = () => {
             setActiveArticle(newActiveArticle);
         }
     }, [localStorage.getItem("WASTENOT_ARTICLES")]);
+
+    useEffect(() => {
+        if(!info) return;
+        setTimeout(() => { infoModalRef.current.id = "info-modal-active" }, 10);
+    }, [info]);
 
     useEffect(() => setFilteredArticles(updateFilter()), [filter, articles]);
 
@@ -115,6 +123,8 @@ const Household = () => {
     
     return(
         <div className="household">
+            {info ? <InfoModal info={info} setInfo={setInfo} infoModalRef={infoModalRef} /> : <></>}
+            
             {isHouseholdModalActive ? <HouseholdModal
                 type={isHouseholdModalActive}
                 household={household}
@@ -124,6 +134,7 @@ const Household = () => {
                 disableHouseholdArticleModal={disableHouseholdArticleModal}
                 enableHouseholdMemberModal={enableHouseholdMemberModal}
                 isList={false}
+                setInfo={setInfo}
             /> : <></>}
 
             {isHouseholdMemberModalActive ? <HouseholdMemberModal

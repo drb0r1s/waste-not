@@ -6,7 +6,7 @@ import HouseholdListModalListArticleModal from "./HouseholdListModalListArticleM
 import PlusButton from "../../../../components/PlusButton";
 import { Storage } from "../../../../functions/Storage";
 
-const HouseholdListModal = ({ household, disableHouseholdModal }) => {
+const HouseholdListModal = ({ household, disableHouseholdModal, setInfo }) => {
     const filter = { key: "householdId", value: household.id };
     
     const [listArticles, setListArticles] = useState(Storage.get("LIST_ARTICLES", filter));
@@ -16,7 +16,6 @@ const HouseholdListModal = ({ household, disableHouseholdModal }) => {
 
     const createArticleModalRef = useRef(null);
     const listArticleModalRef = useRef(null);
-    const activeListArticleRef = useRef(null);
 
     useEffect(() => setListArticles(Storage.get("LIST_ARTICLES", filter)), [localStorage.getItem("WASTENOT_LIST_ARTICLES")]);
 
@@ -61,6 +60,7 @@ const HouseholdListModal = ({ household, disableHouseholdModal }) => {
                 activeListArticle={activeListArticle}
                 listArticleModalRef={listArticleModalRef}
                 disableListArticleModal={disableListArticleModal}
+                setInfo={setInfo}
             /> : <></>}
             
             <HouseholdHeader title="shopping list" returnFunction={disableHouseholdModal} />

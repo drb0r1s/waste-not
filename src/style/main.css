@@ -241,6 +241,114 @@
   opacity: 1;
 }
 
+.info-modal {
+  height: 15%;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  background-color: #ebd9b4;
+  position: fixed;
+  bottom: -15%;
+  transition: 300ms;
+  z-index: 2;
+}
+.info-modal .info-modal-line {
+  height: 5px;
+  width: 100%;
+  background-color: #638889;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.info-modal img {
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.info-modal p {
+  color: black;
+  font-size: 20px;
+  word-wrap: break-word;
+  margin: 0;
+  padding-top: 20px;
+}
+.info-modal p strong {
+  color: #638889;
+}
+
+#info-modal-active {
+  bottom: 0;
+}
+
+.confirmation-modal-holder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(255, 255, 255, 0.5);
+  position: fixed;
+  opacity: 0;
+  transition: 300ms;
+  z-index: 3;
+}
+.confirmation-modal-holder .confirmation-modal {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #ebd9b4;
+  border-top: 5px solid #638889;
+  position: fixed;
+  bottom: -100%;
+  padding: 20px 10px;
+  transition: 300ms;
+}
+.confirmation-modal-holder .confirmation-modal p {
+  color: black;
+  font-size: 20px;
+  text-align: center;
+  word-wrap: break-word;
+  margin: 0;
+}
+.confirmation-modal-holder .confirmation-modal p strong {
+  color: #638889;
+}
+.confirmation-modal-holder .confirmation-modal .confirmation-modal-button-holder {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
+  padding: 0 30px;
+}
+.confirmation-modal-holder .confirmation-modal .confirmation-modal-button-holder button {
+  width: 70%;
+  color: black;
+  font-size: 15px;
+  text-transform: capitalize;
+  background: transparent;
+  border: 2px solid #9dbc98;
+  border-radius: 5px;
+  padding: 10px 0;
+  transition: 300ms;
+}
+.confirmation-modal-holder #confirmation-modal-active {
+  bottom: 0;
+}
+
+#confirmation-modal-holder-active {
+  opacity: 1;
+}
+
 * {
   margin: 0;
   padding: 0;

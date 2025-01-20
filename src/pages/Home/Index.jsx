@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import MobileInfo from "./MobileInfo";
 import HouseholdButton from "./HouseholdButton";
 import HomeModal from "./HomeModal";
 import HouseholdModal from "./HouseholdModal";
 import NewHouseholdModal from "./NewHouseholdModal";
 import PlusButton from "../../components/PlusButton";
+import InfoModal from "../../components/InfoModal";
 import { useBrowserReturn } from "../../hooks/useBrowserReturn";
 import { Storage } from "../../functions/Storage";
 import { ExtendedDate } from "../../functions/ExtendedDate";
@@ -19,19 +20,27 @@ const Home = () => {
     const [joinHouseholdInput, setJoinHouseholdInput] = useState("");
     const [isNewHouseholdModalActive, setIsNewHouseholdModalActive] = useState(false);
     const [isHouseholdModalLoading, setIsHouseholdModalLoading] = useState(false);
+    const [info, setInfo] = useState("");
 
     const homeModalRef = useRef(null);
     const householdModalRef = useRef(null);
     const newHouseholdModalRef = useRef(null);
     const joinHouseholdInputRef = useRef(null);
+    const infoModalRef = useRef(null);
 
     const navigate = useNavigate();
+    const location = useLocation();
 
     useBrowserReturn();
 
     useEffect(() => {
         const resize = () => setWidth(window.innerWidth);
         window.addEventListener("resize", resize);
+
+        if(location.state?.info && !info) {
+            setInfo(location.state.info);
+            setTimeout(() => { infoModalRef.current.id = "info-modal-active" }, 10);
+        }
 
         return () => {
             window.removeEventListener("resize", resize);
@@ -153,6 +162,8 @@ const Home = () => {
     return(
         <>
             {width > 1024 ? <MobileInfo /> : <div className="home">
+                {info ? <InfoModal info={info} setInfo={setInfo} infoModalRef={infoModalRef} /> : <></>}
+                
                 {isNewHouseholdModalActive ? <NewHouseholdModal
                     newHouseholdModalRef={newHouseholdModalRef}
                     disableNewHouseholdModal={disableNewHouseholdModal}

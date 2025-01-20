@@ -1,0 +1,53 @@
+.confirmation-modal-holder {
+    @include center;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba($color: white, $alpha: 0.5);
+    position: fixed;
+    opacity: 0;
+    transition: 300ms;
+    z-index: 3;
+
+    .confirmation-modal {
+        width: 100vw;
+        @include center(column);
+        gap: 20px;
+        background-color: $background-dark;
+        border-top: 5px solid $secondary;
+        position: fixed;
+        bottom: -100%;
+        padding: 20px 10px;
+        transition: 300ms;
+    
+        p {
+            color: black;
+            font-size: 20px;
+            text-align: center;
+            word-wrap: break-word;
+            margin: 0;
+    
+            strong {
+                color: $secondary;
+            }
+        }
+
+        .confirmation-modal-button-holder {
+            width: 100%;
+            @include center;
+            gap: 10px;
+            padding: 0 30px;
+            
+            button {
+                @include default-button;
+            }
+        }
+    }
+    
+    #confirmation-modal-active {
+        bottom: 0;
+    }
+}
+
+#confirmation-modal-holder-active {
+    opacity: 1;
+}

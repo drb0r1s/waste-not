@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import ConfirmationModal from "../../../../components/ConfirmationModal";
 import HouseholdArticleModalUseModal from "./HouseholdArticleModalUseModal";
 import HouseholdArticleModalRecipesModal from "./householdArticleModalRecipesModal/Index";
 import { images } from "../../../../data/images";
@@ -6,7 +7,7 @@ import { ExtendedDate } from "../../../../functions/ExtendedDate";
 import { Storage } from "../../../../functions/Storage";
 import { cutText } from "../../../../functions/cutText";
 
-const HouseholdArticleModal = ({ activeArticle, disableHouseholdArticleModal }) => {
+const HouseholdArticleModal = ({ activeArticle, disableHouseholdArticleModal, setInfo }) => {
     const [article, setArticle] = useState(activeArticle);
     const [daysLeft, setDaysLeft] = useState("");
     const [lastUsed, setLastUsed] = useState("Hasn't been used");
@@ -14,11 +15,14 @@ const HouseholdArticleModal = ({ activeArticle, disableHouseholdArticleModal }) 
     const [editInputs, setEditInputs] = useState({ name: "", expirationDate: article.expirationDate, amount: "", lastUsed: article.lastUsed });
     const [isAddedToList, setIsAddedToList] = useState(false);
     const [isModalActive, setIsModalActive] = useState(false);
+    const [confirmation, setConfirmation] = useState("");
 
     const useModalRef = useRef(null);
     const recipesModalRef = useRef(null);
     const amountInputRef = useRef(null);
     const lastUsedInputRef = useRef(null);
+    const confirmationModalRef = useRef(null);
+    const confirmationModalHolderRef = useRef(null);
 
     const buttons = ["use", "edit", "recipe recommendations", "add to shopping list", "remove"];
 
@@ -26,6 +30,15 @@ const HouseholdArticleModal = ({ activeArticle, disableHouseholdArticleModal }) 
         if(article.expirationDate) setDaysLeft(ExtendedDate.getExpirationContent(article.expirationDate));
         if(article.lastUsed) setLastUsed(ExtendedDate.getLastUsedContent(article.lastUsed));
     }, []);
+
+    useEffect(() => {
+            if(!confirmation) return;
+    
+            setTimeout(() => {
+                confirmationModalRef.current.id = "confirmation-modal-active";
+                confirmationModalHolderRef.current.id = "confirmation-modal-holder-active";
+            }, 1);
+        }, [confirmation]);
 
     function enableModal(type) {
         setIsModalActive(type);
@@ -69,9 +82,7 @@ const HouseholdArticleModal = ({ activeArticle, disableHouseholdArticleModal }) 
 
                 break;
             case "remove":
-                Storage.remove("ARTICLES", article.id);
-                disableHouseholdArticleModal();
-                
+                setConfirmation(`Are you sure that you want to remove <strong>${activeArticle.name}</strong>?`);
                 break;
             case "done":
                 if(editInputs.amount && editInputs.amount < 1) return amountInputRef.current.style.border = "1px solid red";
@@ -97,6 +108,13 @@ const HouseholdArticleModal = ({ activeArticle, disableHouseholdArticleModal }) 
         }
     }
 
+    function removeArticle() {
+        setInfo(`<strong>${article.name}</strong> has been removed.`);
+
+        Storage.remove("ARTICLES", article.id);
+        disableHouseholdArticleModal();
+    }
+
     function updateDaysLeft(date) {
         setDaysLeft(ExtendedDate.getExpirationContent(date));
         setEditInputs(prevEditInputs => { return {...prevEditInputs, expirationDate: date} });
@@ -111,6 +129,8 @@ const HouseholdArticleModal = ({ activeArticle, disableHouseholdArticleModal }) 
         const newAmount = article.amount - value;
         
         if(!newAmount) {
+            setInfo(`Household has ran out of <strong>${article.name}</strong>.`);
+            
             Storage.remove("ARTICLES", article.id);
             disableHouseholdArticleModal();
         }
@@ -125,6 +145,14 @@ const HouseholdArticleModal = ({ activeArticle, disableHouseholdArticleModal }) 
 
     return(
         <>
+            {confirmation ? <ConfirmationModal
+                confirmation={confirmation}
+                setConfirmation={setConfirmation}
+                confirmationModalRef={confirmationModalRef}
+                confirmationModalHolderRef={confirmationModalHolderRef}
+                onAccept={removeArticle}
+            /> : <></>}
+            
             {isModalActive === "use" ? <HouseholdArticleModalUseModal activeArticle={article} useModalRef={useModalRef} disableModal={disableModal} substractAmount={substractAmount} />
             : isModalActive === "recipe" ? <HouseholdArticleModalRecipesModal recipesModalRef={recipesModalRef} disableModal={disableModal} /> : <></>}
             
