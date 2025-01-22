@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { images } from "../../../../data/images";
 import { Storage } from "../../../../functions/Storage";
 import { ExtendedDate } from "../../../../functions/ExtendedDate";
+import { getUserIcon } from "../../../../functions/getUserIcon";
 
 const HouseholdNotificationsModalNotification = ({ notification }) => {
     const [notificationIcon, setNotificationIcon] = useState("");
@@ -14,7 +15,7 @@ const HouseholdNotificationsModalNotification = ({ notification }) => {
             case "userRemoved":
                 const [user] = Storage.get("USERS", { key: "id", value: notification.userId });
 
-                setNotificationIcon(user.icon ? user.icon : images.noAvatarIcon);
+                setNotificationIcon(getUserIcon(user));
                 setNotificationContent(`<strong>${user.nickname ? user.nickname : user.name}</strong> has ${notification.type === "userJoined" ? "joined" : notification.type === "userLeft" ? "left" : "been removed by the owner"}.`);
                 break;
             case "articleAdded":

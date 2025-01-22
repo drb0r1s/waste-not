@@ -12,14 +12,14 @@ const HouseholdModal = ({
     const [isVideoActive, setIsVideoActive] = useState(false);
     const joinButtonRef = useRef(null);
 
-    const buttons = ["invite people", "done"];
+    const buttons = ["done"];
 
     useEffect(() => {
         setTimeout(() => setIsVideoActive(true), 2000);
     }, []);
 
     function updateJoinHouseholdInput(content) {
-        if(content.length < 16) joinButtonRef.current.classList.add("button-disabled");
+        if(content.length < 15) joinButtonRef.current.classList.add("button-disabled");
         else joinButtonRef.current.classList.remove("button-disabled");
         
         setJoinHouseholdInput(content);
@@ -66,7 +66,7 @@ const HouseholdModal = ({
                             name="household-code"
                             id="household-code"
                             placeholder="84ad345t..."
-                            maxLength="16"
+                            maxLength="15"
                             ref={joinHouseholdInputRef}
                             value={joinHouseholdInput}
                             onChange={e => updateJoinHouseholdInput(e.target.value)}

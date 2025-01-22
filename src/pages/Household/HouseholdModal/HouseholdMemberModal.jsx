@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
+import Avatar from "../../../components/Avatar";
 import ImageInput from "../../../components/ImageInput";
-import { images } from "../../../data/images";
 import { Storage } from "../../../functions/Storage";
 import { cutText } from "../../../functions/cutText";
+import { ExtendedDate } from "../../../functions/ExtendedDate";
 
 const HouseholdMemberModal = ({ activeMemberId, household, householdMemberModalHolderRef, householdMemberModalRef, disableHouseholdMemberModal }) => {
     const [activeMember, setActiveMember] = useState({});
@@ -12,17 +13,26 @@ const HouseholdMemberModal = ({ activeMemberId, household, householdMemberModalH
 
     const imageInputRef = useRef(null);
     
+    const profile = Storage.get("PROFILE");
     const buttons = ["add nickname", "transfer household", "remove"];
 
-    useEffect(() => setActiveMember(...Storage.get("USERS", { key: "id", value: activeMemberId })), [localStorage.getItem("WASTENOT_USERS")]);
+    useEffect(updateActiveMember, [localStorage.getItem("WASTENOT_USERS")]);
 
+    function updateActiveMember() {
+        setActiveMember(...Storage.get("USERS", { key: "id", value: activeMemberId }));
+    }
+    
     function buttonClicked(key) {
         switch(key) {
             case "add":
                 setIsNicknameInputActive(true);
                 break;
             case "save":
-                Storage.update("USERS", activeMember.id, { nickname: nicknameInput });
+                Storage.updateProfile({ nickname: nicknameInput });
+
+                if(typeof household.id === "string" && activeMember.id === profile.id) Storage.gunUpdate("USERS", profile.id, {...profile, nickname: nicknameInput, update: "nickname"});
+                else Storage.update("USERS", activeMember.id, { nickname: nicknameInput });
+            
                 setActiveMember(prevActiveMember => { return {...prevActiveMember, nickname: nicknameInput} });
                 
                 setIsNicknameInputActive(false);
@@ -30,7 +40,9 @@ const HouseholdMemberModal = ({ activeMemberId, household, householdMemberModalH
 
                 break;
             case "transfer":
-                Storage.update("HOUSEHOLDS", household.id, { owner: activeMember.id });
+                if(typeof household.id === "string") Storage.gunUpdate("HOUSEHOLDS", household.id, { owner: activeMember.id });
+                else Storage.update("HOUSEHOLDS", household.id, { owner: activeMember.id });
+                
                 disableHouseholdMemberModal(null, true);
                 
                 break;
@@ -41,7 +53,24 @@ const HouseholdMemberModal = ({ activeMemberId, household, householdMemberModalH
                     if(household.members[i] !== activeMember.id) newMembers.push(household.members[i]);
                 }
 
-                Storage.update("HOUSEHOLDS", household.id, { members: newMembers });
+                const removeNotification = {
+                    householdId: household.id,
+                    type: "userRemoved",
+                    userId: activeMember.id,
+                    date: ExtendedDate.defaultFormat()
+                };
+
+                if(typeof household.id === "string") {
+                    Storage.gunUpdate("HOUSEHOLDS", household.id, { members: newMembers });
+                    Storage.gunAdd("NOTIFICATIONS", removeNotification);
+                }
+
+
+                else {
+                    Storage.update("HOUSEHOLDS", household.id, { members: newMembers });
+                    Storage.add("NOTIFICATIONS", removeNotification);
+                }
+                
                 disableHouseholdMemberModal(null, true);
 
                 break;
@@ -68,6 +97,7 @@ const HouseholdMemberModal = ({ activeMemberId, household, householdMemberModalH
             onClick={e => disableHouseholdMemberModal(e.target)}
         >
             {isImageInputActive ? <ImageInput
+                household={household}
                 type={isImageInputActive}
                 imageInputRef={imageInputRef}
                 disableImageInput={disableImageInput}
@@ -78,12 +108,11 @@ const HouseholdMemberModal = ({ activeMemberId, household, householdMemberModalH
                 <div
                     className="household-member-modal-background"
                     style={activeMember.banner ? { backgroundImage: `url(${activeMember.banner})` } : {}}
-                    onClick={activeMember.id === 1 ? e => enableImageInput(e, "banner") : () => {}}
+                    onClick={profile.id === activeMember.id ? e => enableImageInput(e, "banner") : () => {}}
                 >
-                    <img
-                        src={activeMember.icon ? activeMember.icon : images.noAvatarIcon}
-                        alt="AVATAR"
-                        onClick={activeMember.id === 1 ? e => enableImageInput(e, "icon") : () => {}}
+                    <Avatar
+                        member={activeMember}
+                        onClick={profile.id === activeMember.id ? e => enableImageInput(e, "icon") : () => {}}
                     />
                 </div>
 
@@ -97,8 +126,8 @@ const HouseholdMemberModal = ({ activeMemberId, household, householdMemberModalH
                 
                 <div className="household-member-modal-button-holder">
                     {buttons.map((button, index) => {
-                        if((activeMember.id === 1 || household.owner !== 1) && button === "transfer household") return <React.Fragment key={index} />;
-                        if((activeMember.id === 1 || household.owner !== 1) && button === "remove") return <React.Fragment key={index} />;
+                        if((profile.id === activeMember.id || profile.id !== household.owner) && button === "transfer household") return <React.Fragment key={index} />;
+                        if((profile.id === activeMember.id || profile.id !== household.owner) && button === "remove") return <React.Fragment key={index} />;
                         
                         if(button === "add nickname") return <button
                             key={index}

@@ -1,25 +1,45 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Avatar from "../../components/Avatar";
 import { images } from "../../data/images";
 import { householdNames } from "../../data/householdNames";
 import { articles } from "../../data/articles";
 import { Storage } from "../../functions/Storage";
 import { ExtendedDate } from "../../functions/ExtendedDate";
 
-const NewHouseholdModal = ({ newHouseholdModalRef, disableNewHouseholdModal }) => {
+const NewHouseholdModal = ({ isNewHouseholdModalActive, newHouseholdModalRef, disableNewHouseholdModal }) => {
     const [householdName, setHouseholdName] = useState("");
     const [members, setMembers] = useState([]);
     const [owner, setOwner] = useState({});
 
     const navigate = useNavigate();
+    const profile = Storage.get("PROFILE");
 
     useEffect(() => {
         const newMembers = Storage.selectRandom("USERS", [2, 8]);
         const newOwner = newMembers[Math.floor(Math.random() * newMembers.length)];
         
-        setHouseholdName(getHouseholdName(newOwner));
-        setMembers(newMembers);
-        setOwner(newOwner);
+        if(typeof isNewHouseholdModalActive !== "boolean") {
+            setHouseholdName(isNewHouseholdModalActive.name);
+
+            const realMembers = [];
+
+            for(let i = 0; i < isNewHouseholdModalActive.members.length; i++) {
+                const [realMember] = Storage.get("USERS", { key: "id", value: isNewHouseholdModalActive.members[i] });
+                realMembers.push(realMember);
+            }
+
+            setMembers(realMembers);
+
+            const [realOwner] = Storage.get("USERS", { key: "id", value: isNewHouseholdModalActive.owner });
+            setOwner(realOwner);
+        }
+        
+        else {
+            setHouseholdName(getHouseholdName(newOwner));
+            setMembers(newMembers);
+            setOwner(newOwner);
+        }
     }, []);
 
     function getHouseholdName(owner) {
@@ -31,6 +51,27 @@ const NewHouseholdModal = ({ newHouseholdModalRef, disableNewHouseholdModal }) =
     }
 
     function joinHousehold() {
+        if(typeof isNewHouseholdModalActive !== "boolean") {
+            const updatedHousehold = {...isNewHouseholdModalActive, members: [...isNewHouseholdModalActive.members, profile.id]};
+                                
+            Storage.gunUpdate("HOUSEHOLDS", isNewHouseholdModalActive.id, updatedHousehold);
+            Storage.gunAddUser(profile);
+
+            Storage.gunAdd("NOTIFICATIONS", {
+                householdId: isNewHouseholdModalActive.id,
+                type: "userJoined",
+                userId: profile.id,
+                date: ExtendedDate.defaultFormat()
+            });
+
+            disableNewHouseholdModal();
+            navigate("/household", { state: { household: isNewHouseholdModalActive } });
+        }
+
+        else fakeJoin();
+    }
+
+    function fakeJoin() {
         const memberIds = getMemberIds();
         
         const household = {
@@ -44,6 +85,13 @@ const NewHouseholdModal = ({ newHouseholdModalRef, disableNewHouseholdModal }) =
 
         const newArticles = getArticles();
         const householdId = parseInt(localStorage.getItem("WASTENOT_HOUSEHOLDS_NEXT_ID")) - 1;
+
+        Storage.add("NOTIFICATIONS", {
+            householdId,
+            type: "userJoined",
+            userId: profile.id,
+            date: ExtendedDate.defaultFormat()
+        });
 
         for(let i = 0; i < newArticles.length; i++) Storage.add("ARTICLES", {
             householdId,
@@ -279,7 +327,7 @@ const NewHouseholdModal = ({ newHouseholdModalRef, disableNewHouseholdModal }) =
                             className="new-household-modal-member-star"
                         /> : <></>}
                         
-                        <img src={member.icon ? member.icon : images.noAvatarIcon} alt="AVATAR" />
+                        <Avatar member={member} />
                         <p>{member.nickname ? member.nickname : member.name}</p>
                     </div>;
                 })}

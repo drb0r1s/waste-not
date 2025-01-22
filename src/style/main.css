@@ -694,6 +694,7 @@
   left: 30px;
 }
 .home .new-household-modal .new-household-modal-title-holder {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -749,6 +750,7 @@
   width: 40px;
   -o-object-fit: contain;
      object-fit: contain;
+  border-radius: 50%;
 }
 .home .new-household-modal .new-household-modal-member-holder .new-household-modal-member .new-household-modal-member-star {
   height: 15px;
@@ -1341,28 +1343,24 @@
   top: 30px;
   left: 30px;
 }
-.household .household-members-modal button {
-  width: 70%;
-  color: black;
-  font-size: 15px;
+.household .household-members-modal h3 {
+  color: #9dbc98;
+  font-size: 40px;
   text-transform: capitalize;
-  background: transparent;
-  border: 2px solid #9dbc98;
-  border-radius: 5px;
-  padding: 10px 0;
-  transition: 300ms;
-  font-size: 20px;
 }
 .household .household-members-modal .member-holder {
+  height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: flex-start;
   gap: 15px;
   padding-left: 20px 0;
   padding-left: 30px;
+  overflow-y: scroll;
 }
 .household .household-members-modal .member-holder .household-members-modal-member {
   width: 100%;
@@ -1392,6 +1390,19 @@
      object-fit: contain;
   position: absolute;
   right: 10%;
+}
+.household .household-members-modal button {
+  width: 70%;
+  color: black;
+  font-size: 15px;
+  text-transform: capitalize;
+  background: transparent;
+  border: 2px solid #9dbc98;
+  border-radius: 5px;
+  padding: 10px 0;
+  transition: 300ms;
+  font-size: 20px;
+  margin-bottom: 50px;
 }
 .household .household-list-modal .household-list-modal-list-article-modal-holder {
   height: 100vh;
@@ -1589,6 +1600,7 @@
   width: 60px;
   -o-object-fit: contain;
      object-fit: contain;
+  border-radius: 50%;
 }
 .household .household-notifications-modal .household-notifications-modal-content-holder .household-notifications-modal-notification-holder .household-notifications-modal-notification p {
   color: black;

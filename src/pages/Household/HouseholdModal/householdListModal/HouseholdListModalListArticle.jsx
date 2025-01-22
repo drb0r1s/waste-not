@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Avatar from "../../../../components/Avatar";
 import { images } from "../../../../data/images";
 import { ExtendedDate } from "../../../../functions/ExtendedDate";
 import { cutText } from "../../../../functions/cutText";
@@ -22,7 +23,7 @@ const HouseholdListModalListArticle = ({ listArticle, onClick }) => {
             </div>
 
             <div className="household-list-modal-list-article-user-holder">
-                <img src={member.icon ? member.icon : images.noAvatarIcon} alt="AVATAR" />
+                <Avatar member={member} />
                 <p>{member.nickname ? cutText(member.nickname, 17) : member.name}</p>
             </div>
         </div>

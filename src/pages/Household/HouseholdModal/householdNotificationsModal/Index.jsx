@@ -18,7 +18,7 @@ const HouseholdNotificationsModal = ({ disableHouseholdModal }) => {
                 <HouseholdHeader title="notifications" returnFunction={disableHouseholdModal} />
         
                 <div className="household-notifications-modal-notification-holder">
-                    {notifications.length ? notifications.map((notification, index) => {
+                    {notifications.length ? notifications.reverse().map((notification, index) => {
                         return <HouseholdNotificationsModalNotification
                             key={index}    
                             notification={notification}

@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import HouseholdHeader from "../../../components/HouseholdHeader";
 import ConfirmationModal from "../../../components/ConfirmationModal";
-import { useNavigate } from "react-router-dom";
 import { Storage } from "../../../functions/Storage";
+import { ExtendedDate } from "../../../functions/ExtendedDate";
 
 const HouseholdSettingsModal = ({ household, disableHouseholdModal }) => {
     const [confirmation, setConfirmation] = useState("");
@@ -12,6 +13,8 @@ const HouseholdSettingsModal = ({ household, disableHouseholdModal }) => {
     
     const buttons = ["household settings", "notification settings", "leave / delete household"]
     const navigate = useNavigate();
+
+    const profile = Storage.get("PROFILE");
 
     useEffect(() => {
         if(!confirmation) return;
@@ -27,15 +30,36 @@ const HouseholdSettingsModal = ({ household, disableHouseholdModal }) => {
             case "household": break;
             case "notification": break;
             case "leave":
-                setConfirmation(`Are you sure that you want to ${household.members.length > 1 ? "left" : "delete"} <strong>${household.name}</strong>?`);
+                setConfirmation(`Are you sure that you want to ${household.owner === profile.id ? "delete" : "left"} <strong>${household.name}</strong>?`);
                 break;
             default:
         }
     }
 
     function removeHousehold() {
+        if(household.name[0].toLowerCase() === "b") {
+            if(household.owner === profile.id) Storage.gunRemove("HOUSEHOLDS", household.id);
+            
+            else {
+                const newMembers = [];
+
+                for(let i = 0; i < household.members.length; i++) {
+                    if(household.members[i] !== profile.id) newMembers.push(household.members[i]);
+                }
+
+                Storage.gunUpdate("HOUSEHOLDS", household.id, { members: newMembers });
+                
+                Storage.gunAdd("NOTIFICATIONS", {
+                    householdId: household.id,
+                    type: "userLeft",
+                    userId: profile.id,
+                    date: ExtendedDate.defaultFormat()
+                });
+            }
+        }
+        
         Storage.remove("HOUSEHOLDS", household.id, ["ARTICLES", "LIST_ARTICLES", "NOTIFICATIONS"]);
-        navigate("/", { state: { info: household.members.length > 1 ? `You left <strong>${household.name}</strong>.` : `<strong>${household.name}</strong> has been deleted.` } });
+        navigate("/", { state: { info: household.owner === profile.id ? `<strong>${household.name}</strong> has been deleted.` : `You left <strong>${household.name}</strong>.` } });
     }
 
     return(

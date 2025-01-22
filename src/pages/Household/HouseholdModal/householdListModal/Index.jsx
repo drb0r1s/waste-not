@@ -5,6 +5,7 @@ import HouseholdModal from "../Index";
 import HouseholdListModalListArticleModal from "./HouseholdListModalListArticleModal";
 import PlusButton from "../../../../components/PlusButton";
 import { Storage } from "../../../../functions/Storage";
+import { gun } from "../../../../data/gunInitialization";
 
 const HouseholdListModal = ({ household, disableHouseholdModal, setInfo }) => {
     const filter = { key: "householdId", value: household.id };
@@ -17,8 +18,19 @@ const HouseholdListModal = ({ household, disableHouseholdModal, setInfo }) => {
     const createArticleModalRef = useRef(null);
     const listArticleModalRef = useRef(null);
 
-    useEffect(() => setListArticles(Storage.get("LIST_ARTICLES", filter)), [localStorage.getItem("WASTENOT_LIST_ARTICLES")]);
+    const gunListArticles = gun.get("LIST_ARTICLES");
 
+    useEffect(updateListArticles, [localStorage.getItem("WASTENOT_LIST_ARTICLES")]);
+
+    useEffect(() => {
+        Storage.gunListen("LIST_ARTICLES", updateListArticles);
+        return () => { Storage.gunKill("LIST_ARTICLES") }
+    }, [gunListArticles]);
+
+    function updateListArticles() {
+        setListArticles(Storage.get("LIST_ARTICLES", filter));
+    }
+    
     function enableCreateArticleModal() {
         setIsCreateArticleModalActive(true);
         setTimeout(() => { createArticleModalRef.current.id = "household-modal-active" }, 1);
@@ -57,6 +69,7 @@ const HouseholdListModal = ({ household, disableHouseholdModal, setInfo }) => {
             /> : <></>}
 
             {isListArticleModalActive ? <HouseholdListModalListArticleModal
+                household={household}
                 activeListArticle={activeListArticle}
                 listArticleModalRef={listArticleModalRef}
                 disableListArticleModal={disableListArticleModal}

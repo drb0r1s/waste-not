@@ -6,18 +6,28 @@
     left: 30px;
 }
 
-button {
-    @include default-button;
-    font-size: 20px;
+h3 {
+    color: $primary;
+    font-size: 40px;
+    text-transform: capitalize;
 }
 
 .member-holder {
+    height: 100%;
     width: 100%;
     @include center(column);
+    justify-content: flex-start;
     align-items: flex-start;
     gap: 15px;
     padding-left: 20px 0;
     padding-left: 30px;
+    overflow-y: scroll;
 
     @import "./household-members-modal-member";
+}
+
+button {
+    @include default-button;
+    font-size: 20px;
+    margin-bottom: 50px;
 }

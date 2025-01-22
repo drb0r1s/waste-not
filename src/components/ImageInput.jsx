@@ -3,7 +3,7 @@ import { images } from "../data/images";
 import { cutText } from "../functions/cutText";
 import { Storage } from "../functions/Storage";
 
-const ImageInput = ({ type, imageInputRef, disableImageInput, isProfile }) => {
+const ImageInput = ({ household, type, imageInputRef, disableImageInput, isProfile }) => {
     const [imageName, setImageName] = useState("");
     const [imagePreview, setImagePreview] = useState({});
 
@@ -29,7 +29,11 @@ const ImageInput = ({ type, imageInputRef, disableImageInput, isProfile }) => {
 
         if(isProfile) {
             Storage.updateProfile({ [type]: imagePreview });
-            Storage.update("USERS", 1, { [type]: imagePreview });
+
+            const profile = Storage.get("PROFILE");
+            
+            if(typeof household.id === "string") Storage.gunUpdate("USERS", profile.id, {...profile, [type]: imagePreview, update: type});
+            else Storage.update("USERS", profile.id, { [type]: imagePreview });
         }
     }
     

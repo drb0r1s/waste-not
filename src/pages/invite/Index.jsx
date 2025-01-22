@@ -13,7 +13,7 @@ const Invite = () => {
     const location = useLocation();
     const household = location.state.household;
 
-    useEffect(() => setCode(getInviteCode()), []);
+    useEffect(() => setCode(typeof household.id === "string" ? household.id : getInviteCode()), []);
 
     function copyCode() {
         navigator.clipboard.writeText(code);
@@ -28,7 +28,7 @@ const Invite = () => {
                 src={images.returnIcon}
                 alt="RETURN"
                 className="return"
-                onClick={() => navigate(`/${location.state.returnHome ? "" : "household"}`, { state: location.state.returnHome ? {} : { household } })}
+                onClick={() => navigate("/household", { state: { household } })}
             />
             
             <h2>invite people</h2>

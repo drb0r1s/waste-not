@@ -1,10 +1,13 @@
+import { v4 as uuidv4 } from "uuid";
+import { gun } from "../data/gunInitialization";
 import { users } from "../data/users";
-import { avatars } from "../data/avatars";
-import { banners } from "../data/banners";
 
 export const Storage = {
     initialization: () => {
-        Storage.initializeProfile();
+        const profile = Storage.get("PROFILE");
+        if(typeof profile.id === "number") Storage.clear();
+
+        Storage.profileInitialization();
         
         const items = ["HOUSEHOLDS", "ARTICLES", "LIST_ARTICLES", "NOTIFICATIONS", "USERS"];
         
@@ -16,13 +19,15 @@ export const Storage = {
             if(items[i] !== "USERS") localStorage.setItem(`WASTENOT_${items[i]}_NEXT_ID`, 0);
             else Storage.loadUsers();
         }
+
+        Storage.gunInitialization();
     },
 
-    initializeProfile: () => {
+    profileInitialization: () => {
         if(localStorage.getItem("WASTENOT_PROFILE")) return;
         
         const profile = {
-            id: 1,
+            id: uuidv4(),
             name: "You",
             nickname: "",
             icon: "",
@@ -131,61 +136,104 @@ export const Storage = {
         const profile = JSON.parse(localStorage.getItem("WASTENOT_PROFILE"));
         const formatedUsers = [];
 
-        const usedAvatars = { m: [], f: [] };
-        const usedBanners = [];
-
-        for(let i = 0; i < users.length; i++) {
-            const icon = getAvatar(users[i]);
-            const banner = getBanner();
-            
-            formatedUsers.push({ id: users[i].id, name: users[i].name, nickname: "", icon, banner });
+        for(let i = 0; i < users.length; i++) {            
+            formatedUsers.push({ id: users[i].id, name: users[i].name, nickname: "" });
         }
 
         localStorage.setItem("WASTENOT_USERS", JSON.stringify([profile, ...formatedUsers]));
+    },
 
-        function getAvatar(user) {
-            const avatarProbability = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
-            if(avatarProbability === 3) return "";
+    gunInitialization: () => {
+        const gunItems = ["HOUSEHOLDS", "ARTICLES", "LIST_ARTICLES", "NOTIFICATIONS", "USERS"];
+        
+        for(let i = 0; i < gunItems.length; i++) {
+            const gunItem = gun.get(gunItems[i]);   
+            gunItem.map().on((data, key) => Storage.updateFromGun(gunItems[i], key, data));
+        }
+    },
 
-            if(user.gender === "m" && usedAvatars.m.length === 22) return "";
-            if(user.gender === "f" && usedAvatars.f.length === 15) return "";
-            
-            const avatarNumber = getRandomImageNumber(user.gender === "m" ? [1, 23] : [1, 14]);
-            const avatarName = user.gender + avatarNumber;
+    gunAdd: (key, value) => {
+        const gunItem = gun.get(key);
+        gunItem.set(JSON.stringify(value));
+    },
 
-            if(user.gender === "m") usedAvatars.m.push(avatarNumber);
-            else usedAvatars.f.push(avatarNumber);
-            
-            return avatars[avatarName];
+    gunAddUser: user => {
+        const gunUsers = gun.get("USERS");
+
+        let gunUser;
+        gunUsers.get(user.id).once(data => { gunUser = data });
+
+        if(gunUser !== undefined) return;
+        gunUsers.set(JSON.stringify(user));
+    },
+
+    gunUpdate: (key, valueId, value) => {
+        const gunItem = gun.get(key);
+        
+        let gunValue;
+        gunItem.get(valueId).once(data => { gunValue = JSON.parse(data) });
+        
+        gunItem.get(valueId).put(JSON.stringify({...gunValue, ...value}));
+    },
+
+    gunRemove: (key, valueId) => {
+        const gunItem = gun.get(key);
+        gunItem.get(valueId).put(null);
+    },
+
+    gunListen: (key, callback) => {
+        const gunItem = gun.get(key);
+        gunItem.map().on(callback);
+    },
+
+    gunKill: key => {
+        const gunItem = gun.get(key);
+        gunItem.map().off();
+    },
+
+    addFromGun: (key, valueId, value) => {
+        const values = JSON.parse(localStorage.getItem(`WASTENOT_${key}`));
+        localStorage.setItem(`WASTENOT_${key}`, JSON.stringify([...values, {...value, id: valueId}]));
+    },
+
+    updateFromGun: (key, valueId, value) => {
+        if(value === null) return Storage.remove(key, valueId);
+
+        const item = Storage.get(key);
+        const parsedValue = JSON.parse(value);
+
+        const id = key === "USERS" ? parsedValue.id : valueId;
+        let exists = false;
+
+        for(let i = 0; i < item.length; i++) if(item[i].id === id) {
+            exists = true;
+            break;
         }
 
-        function getBanner() {
-            const bannerProbability = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
-            if(bannerProbability === 3) return "";
+        let updatedValue = parsedValue;
 
-            if(usedBanners.length === 11) return "";
+        if(key === "USERS") {
+            const [user] = Storage.get("USERS", { key: "id", value: parsedValue.id });
 
-            const bunnerNumber = getRandomImageNumber([1, 11], true);
-            const bunnerName = `banner${bunnerNumber}`;
-
-            usedBanners.push(bunnerNumber);
-            return banners[bunnerName];
+            if(parsedValue?.update) updatedValue = {...user, [parsedValue.update]: parsedValue[parsedValue.update]};
+            else updatedValue = user;
         }
 
-        function getRandomImageNumber(bounds, isBanner = false) {
-            const [min, max] = bounds;
-            const randomImageNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+        if(exists) return Storage.update(key, id, updatedValue);
+        Storage.addFromGun(key, id, parsedValue);
+    },
 
-            let exists = false;
+    clear: () => {
+        const gunItems = ["HOUSEHOLDS", "ARTICLES", "LIST_ARTICLES", "NOTIFICATIONS", "USERS"];
+        
+        for(let i = 0; i < gunItems.length; i++) {
+            const gunItem = gun.get(gunItems[i]);   
+            
+            gunItem.map().once((data, key) => {
+                if (key) gunItem.get(key).put(null);
+            });
 
-            const usedArray = isBanner ? usedBanners : usedAvatars;
-
-            for(let i = 0; i < usedArray.length; i++) {
-                if(usedArray[i] === randomImageNumber) exists = true;
-            }
-
-            if(exists) return getRandomImageNumber(bounds);
-            return randomImageNumber;
+            localStorage.clear();
         }
     }
 }

@@ -6,7 +6,7 @@ export function getInviteCode() {
     
     let code = "";
 
-    for(let i = 0; i < 16; i++) {
+    for(let i = 0; i < 15; i++) {
         const randomArray = Math.floor(Math.random() * combination.length);
         let randomCase = false;
 

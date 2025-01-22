@@ -8,6 +8,7 @@ import HouseholdArticle from "./HouseholdArticle";
 import HouseholdModal from "./householdModal/Index";
 import HouseholdMemberModal from "./householdModal/HouseholdMemberModal";
 import { Storage } from "../../functions/Storage";
+import { gun } from "../../data/gunInitialization";
 
 const Household = () => {
     const location = useLocation();
@@ -32,16 +33,16 @@ const Household = () => {
 
     const tags = ["fridge", "freezer", "pantry"];
 
+    const gunArticles = gun.get("ARTICLES");
+
     useEffect(() => setHousehold(...Storage.get("HOUSEHOLDS", { key: "id", value: household.id })), [localStorage.getItem("WASTENOT_HOUSEHOLDS")]);
     
-    useEffect(() => {
-        setArticles(Storage.get("ARTICLES", storageFilter));
+    useEffect(updateArticles, [localStorage.getItem("WASTENOT_ARTICLES")]);
 
-        if(activeArticle) {
-            const newActiveArticle = Storage.get("ARTICLES", { key: "id", value: activeArticle.id });
-            setActiveArticle(newActiveArticle);
-        }
-    }, [localStorage.getItem("WASTENOT_ARTICLES")]);
+    useEffect(() => {
+        Storage.gunListen("ARTICLES", updateArticles);
+        return () => { Storage.gunKill("ARTICLES") };
+    }, [gunArticles]);
 
     useEffect(() => {
         if(!info) return;
@@ -56,6 +57,15 @@ const Household = () => {
 
         setFilteredArticles(newFilteredArticles);
     }, [searchInput]);
+
+    function updateArticles() {
+        setArticles(Storage.get("ARTICLES", storageFilter));
+    
+        if(activeArticle) {
+            const newActiveArticle = Storage.get("ARTICLES", { key: "id", value: activeArticle.id });
+            setActiveArticle(newActiveArticle);
+        }
+    }
 
     function updateFilter() {
         if(!filter && articles.length) return search(articles);

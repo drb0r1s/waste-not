@@ -19,6 +19,7 @@
     }
 
     .new-household-modal-title-holder {
+        width: 100%;
         @include center(column);
         gap: 10px;
         position: absolute;
@@ -59,6 +60,7 @@
                 height: 40px;
                 width: 40px;
                 object-fit: contain;
+                border-radius: 50%;
             }
 
             .new-household-modal-member-star {

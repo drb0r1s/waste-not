@@ -6,8 +6,9 @@ import { images } from "../../../../data/images";
 import { ExtendedDate } from "../../../../functions/ExtendedDate";
 import { Storage } from "../../../../functions/Storage";
 import { cutText } from "../../../../functions/cutText";
+import { getArticleIcon } from "../../../../functions/getArticleIcon";
 
-const HouseholdArticleModal = ({ activeArticle, disableHouseholdArticleModal, setInfo }) => {
+const HouseholdArticleModal = ({ household, activeArticle, disableHouseholdArticleModal, setInfo }) => {
     const [article, setArticle] = useState(activeArticle);
     const [daysLeft, setDaysLeft] = useState("");
     const [lastUsed, setLastUsed] = useState("Hasn't been used");
@@ -25,6 +26,7 @@ const HouseholdArticleModal = ({ activeArticle, disableHouseholdArticleModal, se
     const confirmationModalHolderRef = useRef(null);
 
     const buttons = ["use", "edit", "recipe recommendations", "add to shopping list", "remove"];
+    const profile = Storage.get("PROFILE");
 
     useEffect(() => {
         if(article.expirationDate) setDaysLeft(ExtendedDate.getExpirationContent(article.expirationDate));
@@ -70,15 +72,35 @@ const HouseholdArticleModal = ({ activeArticle, disableHouseholdArticleModal, se
             case "add":
                 if(isAddedToList) return;
                 setIsAddedToList(true);
-            
-                Storage.add("LIST_ARTICLES", {
+
+                const listArticleObject = {
                     householdId: article.householdId,
                     name: article.name,
                     icon: article.icon,
                     date: ExtendedDate.defaultFormat(),
                     isMarked: false,
-                    addedBy: Storage.get("PROFILE").id
-                });
+                    addedBy: profile.id
+                };
+
+                const listArticleAddedNotification = {
+                    householdId: household.id,
+                    type: "listArticleAdded",
+                    name: article.name,
+                    icon: article.icon,
+                    tag: article.tag,
+                    date: ExtendedDate.defaultFormat(),
+                    addedBy: profile.id
+                };
+            
+                if(typeof household.id === "string") {
+                    Storage.gunAdd("LIST_ARTICLES", listArticleObject);
+                    Storage.gunAdd("NOTIFICATIONS", listArticleAddedNotification);
+                }
+
+                else {
+                    Storage.add("LIST_ARTICLES", listArticleObject);
+                    Storage.add("NOTIFICATIONS", listArticleAddedNotification);
+                }
 
                 break;
             case "remove":
@@ -93,10 +115,28 @@ const HouseholdArticleModal = ({ activeArticle, disableHouseholdArticleModal, se
                     name: editInputs.name ? editInputs.name : article.name,
                     expirationDate: editInputs.expirationDate ? editInputs.expirationDate : article.expirationDate,
                     amount: editInputs.amount ? editInputs.amount : article.amount,
-                    lastUsed: editInputs.lastUsed ? editInputs.lastUsed : article.lastUsed
+                    lastUsed: editInputs.lastUsed ? editInputs.lastUsed : article.lastUsed,
+                    icon: editInputs.name ? getArticleIcon(editInputs.name) : article.icon
                 };
 
-                Storage.update("ARTICLES", article.id, updatedProps);
+                const articleEditedNotification = {
+                    householdId: household.id,
+                    type: "articleEdited",
+                    name: article.name,
+                    icon: article.icon,
+                    date: ExtendedDate.defaultFormat(),
+                    editedBy: profile.id
+                };
+
+                if(typeof household.id === "string") {
+                    Storage.gunUpdate("ARTICLES", article.id, updatedProps);
+                    Storage.gunAdd("NOTIFICATIONS", articleEditedNotification);
+                }
+
+                else {
+                    Storage.update("ARTICLES", article.id, updatedProps);
+                    Storage.add("NOTIFICATIONS", articleEditedNotification);
+                }
 
                 setArticle(prevArticle => { return {...prevArticle, ...updatedProps} });
                 if(updatedProps.expirationDate) setDaysLeft(ExtendedDate.getExpirationContent(updatedProps.expirationDate));
@@ -109,9 +149,27 @@ const HouseholdArticleModal = ({ activeArticle, disableHouseholdArticleModal, se
     }
 
     function removeArticle() {
+        const articleRemovedNotification = {
+            householdId: household.id,
+            type: "articleRemoved",
+            name: article.name,
+            icon: article.icon,
+            date: ExtendedDate.defaultFormat(),
+            removedBy: profile.id
+        };
+        
         setInfo(`<strong>${article.name}</strong> has been removed.`);
 
-        Storage.remove("ARTICLES", article.id);
+        if(typeof household.id === "string") {
+            Storage.gunRemove("ARTICLES", article.id);
+            Storage.gunAdd("NOTIFICATIONS", articleRemovedNotification);
+        }
+
+        else {
+            Storage.remove("ARTICLES", article.id);
+            Storage.add("NOTIFICATIONS", articleRemovedNotification);
+        }
+        
         disableHouseholdArticleModal();
     }
 
@@ -129,14 +187,49 @@ const HouseholdArticleModal = ({ activeArticle, disableHouseholdArticleModal, se
         const newAmount = article.amount - value;
         
         if(!newAmount) {
+            const articleRanOutNotification = {
+                householdId: household.id,
+                type: "articleRanOut",
+                name: article.name,
+                icon: article.icon,
+                date: ExtendedDate.defaultFormat()
+            };
+
             setInfo(`Household has ran out of <strong>${article.name}</strong>.`);
             
-            Storage.remove("ARTICLES", article.id);
+            if(typeof household.id === "string") {
+                Storage.gunRemove("ARTICLES", article.id);
+                Storage.gunAdd("NOTIFICATIONS", articleRanOutNotification);
+            }
+
+            else {
+                Storage.remove("ARTICLES", article.id);
+                Storage.add("NOTIFICATIONS", articleRanOutNotification);
+            }
+            
             disableHouseholdArticleModal();
         }
             
         else {
-            Storage.update("ARTICLES", article.id, { amount: newAmount, lastUsed: ExtendedDate.defaultFormat() });            
+            const articleUsedNotification = {
+                householdId: household.id,
+                type: "articleUsed",
+                name: article.name,
+                icon: article.icon,
+                amount: article.amount,
+                date: ExtendedDate.defaultFormat(),
+                usedBy: profile.id
+            };
+            
+            if(typeof household.id === "string") {
+                Storage.gunUpdate("ARTICLES", article.id, { amount: newAmount, lastUsed: ExtendedDate.defaultFormat() });
+                Storage.gunAdd("NOTIFICATIONS", articleUsedNotification);
+            }
+
+            else {
+                Storage.update("ARTICLES", article.id, { amount: newAmount, lastUsed: ExtendedDate.defaultFormat() });
+                Storage.add("NOTIFICATIONS", articleUsedNotification);
+            }
                     
             setArticle(prevArticle => { return {...prevArticle, amount: newAmount, lastUsed: ExtendedDate.defaultFormat() } });
             setLastUsed(ExtendedDate.getLastUsedContent(ExtendedDate.defaultFormat()));

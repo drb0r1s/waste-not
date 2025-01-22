@@ -10,10 +10,13 @@ import InfoModal from "../../components/InfoModal";
 import { useBrowserReturn } from "../../hooks/useBrowserReturn";
 import { Storage } from "../../functions/Storage";
 import { ExtendedDate } from "../../functions/ExtendedDate";
+import { gun } from "../../data/gunInitialization";
 
 const Home = () => {
+    const profile = Storage.get("PROFILE");
+
     const [width, setWidth] = useState(window.innerWidth);
-    const [households, setHouseholds] = useState(Storage.get("HOUSEHOLDS"));
+    const [households, setHouseholds] = useState(getJoinedHouseholds());
     const [isHomeModalActive, setIsHomeModalActive] = useState(false);
     const [householdModals, setHouseholdModals] = useState({ create: false, join: false, scan: false });
     const [createHouseholdInput, setCreateHouseholdInput] = useState("");
@@ -31,6 +34,8 @@ const Home = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
+    const gunHouseholds = gun.get("HOUSEHOLDS");
+
     useBrowserReturn();
 
     useEffect(() => {
@@ -47,9 +52,12 @@ const Home = () => {
         }
     }, []);
     
+    useEffect(updateHouseholds, [localStorage.getItem("WASTENOT_HOUSEHOLDS")]);
+
     useEffect(() => {
-        if(Storage.get("HOUSEHOLDS").length) setHouseholds(Storage.get("HOUSEHOLDS"));
-    }, [localStorage.getItem("WASTENOT_HOUSEHOLDS")]);
+        Storage.gunListen("HOUSEHOLDS", updateHouseholds);
+        return () => { Storage.gunKill("HOUSEHOLDS") }
+    }, [gunHouseholds]);
     
     useEffect(() => {
         if(isHomeModalActive) setTimeout(() => { homeModalRef.current.id = "home-modal-active" }, 1);
@@ -59,6 +67,24 @@ const Home = () => {
         if(isNewHouseholdModalActive) setTimeout(() => { newHouseholdModalRef.current.id = "new-household-modal-active" }, 10);
     }, [isNewHouseholdModalActive]);
 
+    function updateHouseholds() {
+        const joinedHouseholds = getJoinedHouseholds();
+        setHouseholds(joinedHouseholds);
+    }
+
+    function getJoinedHouseholds() {
+        if(!Storage.get("HOUSEHOLDS").length) return [];
+
+        const households = Storage.get("HOUSEHOLDS");
+        const joinedHouseholds = [];
+
+        for(let i = 0; i < households.length; i++) {
+            if(households[i].members.indexOf(profile.id) !== -1) joinedHouseholds.push(households[i]);
+        }
+
+        return joinedHouseholds;
+    }
+    
     function disableHomeModal() {
         homeModalRef.current.id = "";
         setTimeout(() => setIsHomeModalActive(false), 300);
@@ -83,9 +109,6 @@ const Home = () => {
     
     function createButtonClicked(key) {
         switch(key) {
-            case "invite":
-                navigate("/invite", { state: { household: {}, returnHome: true } });
-                break;
             case "done":
                 const householdNextId = parseInt(localStorage.getItem("WASTENOT_HOUSEHOLDS_NEXT_ID"));
                 const householdName = createHouseholdInput ? createHouseholdInput : `Household ${householdNextId + 1}`;
@@ -97,7 +120,12 @@ const Home = () => {
                     owner: Storage.get("PROFILE").id
                 };
 
-                Storage.add("HOUSEHOLDS", household);
+                if(householdName[0].toLowerCase() === "b") {
+                    Storage.gunAdd("HOUSEHOLDS", household);
+                    Storage.gunAddUser(profile);
+                }
+
+                else Storage.add("HOUSEHOLDS", household);
 
                 if(householdName[0].toLowerCase() === "a") {
                     const users = Storage.selectRandom("USERS", [2, 8]);
@@ -129,7 +157,7 @@ const Home = () => {
     }
 
     function joinButtonClicked() {
-        if(joinHouseholdInput.length < 16) return;
+        if(joinHouseholdInput.length < 15) return;
 
         const code = joinHouseholdInput;
         
@@ -142,8 +170,14 @@ const Home = () => {
             setIsHouseholdModalLoading(false);
             
             setTimeout(() => {
-                if(code[0].toLowerCase() !== "a") return joinHouseholdInputRef.current.style.border = "3px solid red";
-                setIsNewHouseholdModalActive(true);
+                const [household] = Storage.get("HOUSEHOLDS", { key: "id", value: code });
+
+                if(household) setIsNewHouseholdModalActive(household);
+
+                else {
+                    if(code[0].toLowerCase() !== "a") return joinHouseholdInputRef.current.style.border = "3px solid red";
+                    setIsNewHouseholdModalActive(true);
+                }
             }, 1);
         }, loadingTime * 1000);
     }
@@ -165,6 +199,7 @@ const Home = () => {
                 {info ? <InfoModal info={info} setInfo={setInfo} infoModalRef={infoModalRef} /> : <></>}
                 
                 {isNewHouseholdModalActive ? <NewHouseholdModal
+                    isNewHouseholdModalActive={isNewHouseholdModalActive}
                     newHouseholdModalRef={newHouseholdModalRef}
                     disableNewHouseholdModal={disableNewHouseholdModal}
                 /> : <></>}

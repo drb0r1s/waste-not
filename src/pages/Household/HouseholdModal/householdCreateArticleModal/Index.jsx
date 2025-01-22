@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import HouseholdHeader from "../../../../components/HouseholdHeader";
 import HouseholdCreateArticleModalScan from "./HouseholdCreateArticleModalScan";
-import { articleImages } from "../../../../data/articleImages";
 import { Storage } from "../../../../functions/Storage";
 import { ExtendedDate } from "../../../../functions/ExtendedDate";
-import { toCamelCase } from "../../../../functions/toCamelCase";
+import { getArticleIcon } from "../../../../functions/getArticleIcon";
 
 const HouseholdCreateArticleModal = ({ household, disableHouseholdModal, isList }) => {
     const [articleInputs, setArticleInputs] = useState({ name: "", expirationDate: "", tag: "fridge" });
@@ -17,6 +16,7 @@ const HouseholdCreateArticleModal = ({ household, disableHouseholdModal, isList 
     const createArticleButtonRef = useRef(null);
     
     const buttons = ["scan barcode", "scan expiration date"];
+    const profile = Storage.get("PROFILE");
 
     useEffect(() => {
         if(!isPerishable && articleInputs.expirationDate) setArticleInputs(prevArticleInputs => { return {...prevArticleInputs, expirationDate: ""} });
@@ -45,6 +45,24 @@ const HouseholdCreateArticleModal = ({ household, disableHouseholdModal, isList 
         if(!articleInputs.name) return;
         if(isPerishable && !articleInputs.expirationDate && !isList) return expirationInputRef.current.style.border = "2px solid red";
         
+        const articleObject = {
+            householdId: household.id,
+            ...articleInputs,
+            icon: getArticleIcon(articleInputs.name),
+            amount: 1,
+            lastUsed: null
+        };
+
+        const articleAddedNotification = type => { return {
+            householdId: household.id,
+            type,
+            name: articleInputs.name,
+            icon: articleInputs.icon,
+            tag: articleInputs.tag,
+            date: ExtendedDate.defaultFormat(),
+            addedBy: profile.id
+        }};
+
         const householdArticles = Storage.get("ARTICLES", { key: "householdId", value: household.id });
         let existingArticle = null;
 
@@ -52,37 +70,53 @@ const HouseholdCreateArticleModal = ({ household, disableHouseholdModal, isList 
             if(householdArticles[i].name === articleInputs.name) existingArticle = householdArticles[i];
         }
 
-        if(existingArticle && !isList) Storage.update("ARTICLES", existingArticle.id, { amount: existingArticle.amount + 1 });
+        if(existingArticle && !isList) {
+            if(typeof household.id === "string") {
+                Storage.gunUpdate("ARTICLES", existingArticle.id, { amount: existingArticle.amount + 1 });
+                Storage.gunAdd("NOTIFICATIONS", articleAddedNotification("articleAdded"));
+            }
+
+            else {
+                Storage.update("ARTICLES", existingArticle.id, { amount: existingArticle.amount + 1 });
+                Storage.add("NOTIFICATIONS", articleAddedNotification("articleAdded"));
+            }
+        }
         
-        else if(isList) Storage.add("LIST_ARTICLES", {
-            householdId: household.id,
-            name: articleInputs.name,
-            icon: getArticleIcon(articleInputs.name),
-            date: ExtendedDate.defaultFormat(),
-            isMarked: false,
-            addedBy: Storage.get("PROFILE").id
-        });
+        else if(isList) {
+            const listArticleObject = {
+                householdId: household.id,
+                name: articleInputs.name,
+                icon: getArticleIcon(articleInputs.name),
+                date: ExtendedDate.defaultFormat(),
+                isMarked: false,
+                addedBy: Storage.get("PROFILE").id
+            };
+
+            if(typeof household.id === "string") {
+                Storage.gunAdd("LIST_ARTICLES", listArticleObject);
+                Storage.gunAdd("NOTIFICATIONS", articleAddedNotification("listArticleAdded"));
+            }
+
+            else {
+                Storage.add("LIST_ARTICLES", listArticleObject);
+                Storage.add("NOTIFICATIONS", articleAddedNotification("listArticleAdded"));
+            }
+        }
         
-        else Storage.add("ARTICLES", {
-            householdId: household.id,
-            ...articleInputs,
-            icon: getArticleIcon(articleInputs.name),
-            amount: 1,
-            lastUsed: null
-        });
+        else {
+            if(typeof household.id === "string") {
+                Storage.gunAdd("ARTICLES", articleObject);
+                Storage.gunAdd("NOTIFICATIONS", articleAddedNotification("articleAdded"));
+            }
+
+            else {
+                Storage.add("ARTICLES", articleObject);
+                Storage.add("NOTIFICATIONS", articleAddedNotification("articleAdded"));
+            }
+        }
         
         setArticleInputs({ name: "", expirationDate: "", tag: "fridge" });
         disableHouseholdModal();
-
-        function getArticleIcon(name) {
-            let icon = "";
-            
-            Object.keys(articleImages).forEach((imageKey, index) => {
-                if(imageKey === toCamelCase(name)) icon = Object.values(articleImages)[index];
-            });
-
-            return icon;
-        }
     }
 
     function enableScanModal(key) {

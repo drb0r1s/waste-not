@@ -3,14 +3,16 @@ import ConfirmationModal from "../../../../components/ConfirmationModal";
 import { images } from "../../../../data/images";
 import { Storage } from "../../../../functions/Storage";
 import { cutText } from "../../../../functions/cutText";
+import { ExtendedDate } from "../../../../functions/ExtendedDate";
 
-const HouseholdListModalListArticleModal = ({ activeListArticle, listArticleModalRef, disableListArticleModal, setInfo }) => {
+const HouseholdListModalListArticleModal = ({ household, activeListArticle, listArticleModalRef, disableListArticleModal, setInfo }) => {
     const [confirmation, setConfirmation] = useState("");
 
     const confirmationModalRef = useRef(null);
     const confirmationModalHolderRef = useRef(null);
     
     const buttons = ["make as bought", "remove item"];
+    const profile = Storage.get("PROFILE");
 
     useEffect(() => {
         if(!confirmation) return;
@@ -24,7 +26,9 @@ const HouseholdListModalListArticleModal = ({ activeListArticle, listArticleModa
     function buttonClicked(key) {
         switch(key) {
             case "make":
-                Storage.update("LIST_ARTICLES", activeListArticle.id, { isMarked: !activeListArticle.isMarked });
+                if(typeof household.id === "string") Storage.gunUpdate("LIST_ARTICLES", activeListArticle.id, { isMarked: !activeListArticle.isMarked });
+                else Storage.update("LIST_ARTICLES", activeListArticle.id, { isMarked: !activeListArticle.isMarked });
+
                 disableListArticleModal(null, true);
 
                 break;
@@ -36,9 +40,26 @@ const HouseholdListModalListArticleModal = ({ activeListArticle, listArticleModa
     }
 
     function removeListArticle() {
+        const listArticleRemovedNotification = {
+            type: "listArticleRemoved",
+            name: activeListArticle.name,
+            icon: activeListArticle.icon,
+            date: ExtendedDate.defaultFormat(),
+            removedBy: profile.id
+        };
+        
         setInfo(`<strong>${activeListArticle.name}</strong> has been removed from the shopping list.`);
 
-        Storage.remove("LIST_ARTICLES", activeListArticle.id);
+        if(typeof household.id === "string") {
+            Storage.gunRemove("LIST_ARTICLES", activeListArticle.id);
+            Storage.gunAdd("NOTIFICATIONS", listArticleRemovedNotification);
+        }
+
+        else {
+            Storage.remove("LIST_ARTICLES", activeListArticle.id);
+            Storage.add("NOTIFICATIONS", listArticleRemovedNotification);
+        }
+        
         disableListArticleModal(null, true);
     }
     
