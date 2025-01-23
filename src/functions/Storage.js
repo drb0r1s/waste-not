@@ -22,7 +22,7 @@ export const Storage = {
     },
 
     synchronizeVersion: () => {
-        const VERSION = "V2";
+        const VERSION = "V3";
 
         if(localStorage.getItem("WASTENOT_VERSION")) {
             const item = localStorage.getItem("WASTENOT_VERSION");
