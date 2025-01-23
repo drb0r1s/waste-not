@@ -2,11 +2,9 @@ import { v4 as uuidv4 } from "uuid";
 import { gun } from "../data/gunInitialization";
 import { users } from "../data/users";
 
-export const Storage = {
+export const Storage = {    
     initialization: () => {
-        const profile = Storage.get("PROFILE");
-        if(typeof profile.id === "number") Storage.clear();
-
+        Storage.synchronizeVersion();
         Storage.profileInitialization();
         
         const items = ["HOUSEHOLDS", "ARTICLES", "LIST_ARTICLES", "NOTIFICATIONS", "USERS"];
@@ -21,6 +19,26 @@ export const Storage = {
         }
 
         Storage.gunInitialization();
+    },
+
+    synchronizeVersion: () => {
+        const VERSION = "V1";
+
+        if(localStorage.getItem("WASTENOT_VERSION")) {
+            const item = localStorage.getItem("WASTENOT_VERSION");
+            
+            if(VERSION !== item) {
+                console.log("a1")
+                Storage.clear();
+                localStorage.setItem("WASTENOT_VERSION", VERSION);
+            }
+        }
+
+        else {
+            console.log("a2")
+            Storage.clear();
+            localStorage.setItem("WASTENOT_VERSION", VERSION);
+        }
     },
 
     profileInitialization: () => {
