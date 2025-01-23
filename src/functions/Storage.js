@@ -3,7 +3,7 @@ import { gun } from "../data/gunInitialization";
 import { users } from "../data/users";
 
 export const Storage = {    
-    initialization: () => {
+    initialization: () => {        
         Storage.synchronizeVersion();
         Storage.profileInitialization();
         
@@ -28,14 +28,12 @@ export const Storage = {
             const item = localStorage.getItem("WASTENOT_VERSION");
             
             if(VERSION !== item) {
-                console.log("a1")
                 Storage.clear();
                 localStorage.setItem("WASTENOT_VERSION", VERSION);
             }
         }
 
         else {
-            console.log("a2")
             Storage.clear();
             localStorage.setItem("WASTENOT_VERSION", VERSION);
         }
@@ -162,7 +160,7 @@ export const Storage = {
     },
 
     gunInitialization: () => {
-        const gunItems = ["HOUSEHOLDS", "ARTICLES", "LIST_ARTICLES", "NOTIFICATIONS", "USERS"];
+        const gunItems = ["NOTIFICATIONS", "USERS"];
         
         for(let i = 0; i < gunItems.length; i++) {
             const gunItem = gun.get(gunItems[i]);   
@@ -201,7 +199,11 @@ export const Storage = {
 
     gunListen: (key, callback) => {
         const gunItem = gun.get(key);
-        gunItem.map().on(callback);
+        
+        gunItem.map().on((data, gunKey) => {
+            callback();
+            Storage.updateFromGun(key, gunKey, data)
+        });
     },
 
     gunKill: key => {
