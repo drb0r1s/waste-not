@@ -1,7 +1,6 @@
 import Gun from "gun";
 
 export const gun = Gun({
-    // https://gun-manhattan.herokuapp.com/gun
-    peers: ["https://gun-relay-production.up.railway.app/gun"],
+    peers: ["http://192.168.255.23:8765/gun"],
     batch: true
 });

@@ -24,6 +24,7 @@ const HouseholdMembersModal = ({ household, disableHouseholdModal, enableHouseho
                         memberId={member}
                         household={household}
                         enableHouseholdMemberModal={enableHouseholdMemberModal}
+                        line={index < household.members.length - 1}
                     />;
                 })}
             </div>

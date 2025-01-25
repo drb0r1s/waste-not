@@ -18,10 +18,8 @@ h3 {
     @include center(column);
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 15px;
-    padding-left: 20px 0;
-    padding-left: 30px;
     overflow-y: scroll;
+    overflow-x: hidden;
 
     @import "./household-members-modal-member";
 }

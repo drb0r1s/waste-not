@@ -1357,10 +1357,8 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 15px;
-  padding-left: 20px 0;
-  padding-left: 30px;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 .household .household-members-modal .member-holder .household-members-modal-member {
   width: 100%;
@@ -1370,6 +1368,9 @@
   flex-direction: row;
   justify-content: flex-start;
   gap: 20px;
+  padding: 10px 0;
+  padding-left: 30px;
+  position: relative;
 }
 .household .household-members-modal .member-holder .household-members-modal-member img {
   height: 35px;
@@ -1390,6 +1391,19 @@
      object-fit: contain;
   position: absolute;
   right: 10%;
+}
+.household .household-members-modal .member-holder .household-members-modal-line-holder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+  margin: 5px;
+}
+.household .household-members-modal .member-holder .household-members-modal-line-holder .household-members-modal-line {
+  height: 1px;
+  width: 90%;
+  background-color: #638889;
 }
 .household .household-members-modal button {
   width: 70%;

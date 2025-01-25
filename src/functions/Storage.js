@@ -22,7 +22,7 @@ export const Storage = {
     },
 
     synchronizeVersion: () => {
-        const VERSION = "V3";
+        const VERSION = "V4";
 
         if(localStorage.getItem("WASTENOT_VERSION")) {
             const item = localStorage.getItem("WASTENOT_VERSION");
@@ -123,8 +123,17 @@ export const Storage = {
     },
 
     selectRandom: (key, bounds) => {
-        const item = JSON.parse(localStorage.getItem(`WASTENOT_${key}`));
-        if(key === "USERS") item.shift();
+        let item = JSON.parse(localStorage.getItem(`WASTENOT_${key}`));
+        
+        if(key === "USERS") {
+            const fakeUsers = [];
+
+            for(let i = 0; i < item.length; i++) if(typeof item[i].id === "number") {
+                fakeUsers.push(item[i]);
+            }
+
+            item = fakeUsers;
+        }
 
         const selected = [];
 

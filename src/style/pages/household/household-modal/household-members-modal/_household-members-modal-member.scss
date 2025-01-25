@@ -3,6 +3,9 @@
     @include center;
     justify-content: flex-start;
     gap: 20px;
+    padding: 10px 0;
+    padding-left: 30px;
+    position: relative;
 
     img {
         height: 35px;
@@ -23,5 +26,17 @@
         object-fit: contain;
         position: absolute;
         right: 10%;
+    }
+}
+
+.household-members-modal-line-holder {
+    @include center;
+    width: 100%;
+    margin: 5px;
+    
+    .household-members-modal-line {
+        height: 1px;
+        width: 90%;
+        background-color: $secondary;
     }
 }
