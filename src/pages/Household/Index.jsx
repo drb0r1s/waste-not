@@ -33,13 +33,15 @@ const Household = () => {
 
     const tags = ["fridge", "freezer", "pantry"];
 
-    const gunArticles = gun.get("ARTICLES");
+    const gunArticles = gun === null ? null : gun.get("ARTICLES");
 
     useEffect(() => setHousehold(...Storage.get("HOUSEHOLDS", { key: "id", value: household.id })), [localStorage.getItem("WASTENOT_HOUSEHOLDS")]);
     
     useEffect(updateArticles, [localStorage.getItem("WASTENOT_ARTICLES")]);
 
     useEffect(() => {
+        if(gun === null) return;
+        
         Storage.gunListen("ARTICLES", updateArticles);
         return () => { Storage.gunKill("ARTICLES") };
     }, [gunArticles]);

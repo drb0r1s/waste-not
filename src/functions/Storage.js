@@ -22,7 +22,7 @@ export const Storage = {
     },
 
     synchronizeVersion: () => {
-        const VERSION = "V4";
+        const VERSION = "V6";
 
         if(localStorage.getItem("WASTENOT_VERSION")) {
             const item = localStorage.getItem("WASTENOT_VERSION");
@@ -169,6 +169,8 @@ export const Storage = {
     },
 
     gunInitialization: () => {
+        if(gun === null) return;
+        
         const gunItems = ["NOTIFICATIONS", "USERS"];
         
         for(let i = 0; i < gunItems.length; i++) {
@@ -178,11 +180,15 @@ export const Storage = {
     },
 
     gunAdd: (key, value) => {
+        if(gun === null) return;
+
         const gunItem = gun.get(key);
         gunItem.set(JSON.stringify(value));
     },
 
     gunAddUser: user => {
+        if(gun === null) return;
+
         const gunUsers = gun.get("USERS");
 
         let gunUser;
@@ -193,6 +199,8 @@ export const Storage = {
     },
 
     gunUpdate: (key, valueId, value) => {
+        if(gun === null) return;
+
         const gunItem = gun.get(key);
         
         let gunValue;
@@ -202,11 +210,15 @@ export const Storage = {
     },
 
     gunRemove: (key, valueId) => {
+        if(gun === null) return;
+
         const gunItem = gun.get(key);
         gunItem.get(valueId).put(null);
     },
 
     gunListen: (key, callback) => {
+        if(gun === null) return;
+
         const gunItem = gun.get(key);
         
         gunItem.map().on((data, gunKey) => {
@@ -216,6 +228,8 @@ export const Storage = {
     },
 
     gunKill: key => {
+        if(gun === null) return;
+
         const gunItem = gun.get(key);
         gunItem.map().off();
     },
@@ -253,6 +267,8 @@ export const Storage = {
     },
 
     clear: () => {
+        if(gun === null) return localStorage.clear();
+        
         const gunItems = ["HOUSEHOLDS", "ARTICLES", "LIST_ARTICLES", "NOTIFICATIONS", "USERS"];
         
         for(let i = 0; i < gunItems.length; i++) {

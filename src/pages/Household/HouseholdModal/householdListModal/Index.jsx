@@ -18,11 +18,13 @@ const HouseholdListModal = ({ household, disableHouseholdModal, setInfo }) => {
     const createArticleModalRef = useRef(null);
     const listArticleModalRef = useRef(null);
 
-    const gunListArticles = gun.get("LIST_ARTICLES");
+    const gunListArticles = gun === null ? null : gun.get("LIST_ARTICLES");
 
     useEffect(updateListArticles, [localStorage.getItem("WASTENOT_LIST_ARTICLES")]);
 
     useEffect(() => {
+        if(gun === null) return;
+        
         Storage.gunListen("LIST_ARTICLES", updateListArticles);
         return () => { Storage.gunKill("LIST_ARTICLES") }
     }, [gunListArticles]);

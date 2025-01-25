@@ -34,7 +34,7 @@ const Home = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const gunHouseholds = gun.get("HOUSEHOLDS");
+    const gunHouseholds = gun === null ? null : gun.get("HOUSEHOLDS");
 
     useBrowserReturn();
 
@@ -55,6 +55,8 @@ const Home = () => {
     useEffect(updateHouseholds, [localStorage.getItem("WASTENOT_HOUSEHOLDS")]);
 
     useEffect(() => {
+        if(gun === null) return;
+        
         Storage.gunListen("HOUSEHOLDS", updateHouseholds);
         return () => { Storage.gunKill("HOUSEHOLDS") }
     }, [gunHouseholds]);
@@ -120,7 +122,7 @@ const Home = () => {
                     owner: Storage.get("PROFILE").id
                 };
 
-                if(householdName[0].toLowerCase() === "b") {
+                if(householdName[0].toLowerCase() === "b" && gun) {
                     Storage.gunAdd("HOUSEHOLDS", household);
                     Storage.gunAddUser(profile);
                 }

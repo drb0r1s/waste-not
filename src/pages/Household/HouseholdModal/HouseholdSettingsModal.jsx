@@ -4,6 +4,7 @@ import HouseholdHeader from "../../../components/HouseholdHeader";
 import ConfirmationModal from "../../../components/ConfirmationModal";
 import { Storage } from "../../../functions/Storage";
 import { ExtendedDate } from "../../../functions/ExtendedDate";
+import { gun } from "../../../data/gunInitialization";
 
 const HouseholdSettingsModal = ({ household, disableHouseholdModal }) => {
     const [confirmation, setConfirmation] = useState("");
@@ -37,7 +38,7 @@ const HouseholdSettingsModal = ({ household, disableHouseholdModal }) => {
     }
 
     function removeHousehold() {
-        if(household.name[0].toLowerCase() === "b") {
+        if(household.name[0].toLowerCase() === "b" && gun) {
             if(household.owner === profile.id) Storage.gunRemove("HOUSEHOLDS", household.id);
             
             else {
